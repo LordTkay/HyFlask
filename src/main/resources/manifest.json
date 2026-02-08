@@ -1,20 +1,22 @@
 {
-    "Group": "HytaleModding",
-    "Name": "ExamplePlugin",
-    "Version": "0.0.0",
-    "Description": "Description of your plugin",
+    "Group": "LordTkay",
+    "Name": "HyFlask",
+    "Version": "1.0.0",
+    "Description": "A mod that adds reusable and upgradable flasks!",
     "Authors": [
         {
-            "Name": "Your Name",
-            "Email": "your.email@example.com",
-            "Url": "https://your-website.com"
+            "Name": "Lord Tkay",
+            "Email": "tobawa2601@gmail.com",
+            "Url": "https://github.com/LordTkay"
         }
     ],
-    "Website": "https://your-plugin-website.com",
+    "Website": "https://www.curseforge.com/hytale/mods/hyflask",
     "DisabledByDefault": false,
-    "IncludesAssetPack": false,
-    "Dependencies": {},
+    "IncludesAssetPack": true,
+    "Dependencies": {
+        "Hytale:Beds": "*"
+    },
     "OptionalDependencies": {},
     "ServerVersion": "*",
-    "Main": "dev.hytalemodding.ExamplePlugin"
+    "Main": "de.lordtkay.hyflask.HyFlaskPlugin"
 }

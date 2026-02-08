@@ -1,4 +1,5 @@
-rootProject.name = "dev.hytalemodding"
+import dev.scaffoldit.hytale.wire.HytaleManifest
+rootProject.name = "hyflask"
 
 plugins {
     // See documentation on https://scaffoldit.dev
@@ -21,8 +22,18 @@ hytale {
     }
 
     manifest {
-        Group = "HytaleModding"
-        Name = "ExamplePlugin"
-        Main = "dev.hytalemodding.ExamplePlugin"
+        Group = "LordTkay"
+        Name = "HyFlask"
+        Version = "1.0.0"
+        Description = "A mod that adds reusable and upgradable flasks!"
+        Main = "de.lordtkay.hyflask.HyFlaskPlugin"
+        Website = "https://www.curseforge.com/hytale/mods/hyflask"
+        Authors = listOf(
+            HytaleManifest.Author("Lord Tkay", "tobawa2601@gmail.com", "https://github.com/LordTkay")
+        )
+        IncludesAssetPack = true
+        Dependencies = mapOf(
+            "Hytale:Beds" to "*"
+        )
     }
 }
