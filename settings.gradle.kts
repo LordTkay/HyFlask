@@ -1,9 +1,16 @@
 import dev.scaffoldit.hytale.wire.HytaleManifest
+
+pluginManagement {
+    plugins {
+        kotlin("jvm") version "2.3.10"
+    }
+}
 rootProject.name = "hyflask"
 
 plugins {
     // See documentation on https://scaffoldit.dev
     id("dev.scaffoldit") version "0.2.+"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 // Would you like to do a split project?
