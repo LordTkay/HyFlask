@@ -44,3 +44,6 @@ build/
 .kotlin
 devserver
 /.idea/
+
+/hytale-assets/*
+!/hytale-assets/.gitkeep
