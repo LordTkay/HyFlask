@@ -1,11 +1,12 @@
 import dev.scaffoldit.hytale.wire.HytaleManifest
 
+rootProject.name = "hyflask"
+
 pluginManagement {
     plugins {
         kotlin("jvm") version "2.3.10"
     }
 }
-rootProject.name = "hyflask"
 
 plugins {
     // See documentation on https://scaffoldit.dev
