@@ -3,6 +3,8 @@ package de.lordtkay.hyflask
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
+import de.lordtkay.hyflask.uses.command.GetUsesCommand
+import de.lordtkay.hyflask.uses.command.UsesCommandCollection
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -19,6 +21,8 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
 
     override fun setup() {
         logger.atInfo().log("[$name] Setting up...")
+
+        commandRegistry.registerCommand(UsesCommandCollection())
 
         logger.atInfo().log("[$name] Setup complete!")
     }
