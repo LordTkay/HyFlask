@@ -1,0 +1,14 @@
+# === general ===
+
+
+# === ui ====
+
+
+# === items ===
+
+
+# === commands ===
+hyflask.commands.error=Error occurred while executing the command.
+hyflask.commands.uses=Display and manipulate uses of a players flask.
+hyflask.commands.uses.get=Get remaining and maximum uses of players flask.
+hyflask.commands.uses.get.success={uses} of {max} uses remaining.
