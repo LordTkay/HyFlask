@@ -3,6 +3,7 @@ import se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
 plugins {
     kotlin("jvm")
     id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "3.1.2"
+    id("com.gradleup.shadow") version "9.3.1"
 }
 /**
  * NOTE: This is entirely optional and basics can be done in `settings.gradle.kts`
@@ -19,6 +20,13 @@ dependencies {
 }
 kotlin {
     jvmToolchain(25)
+}
+
+tasks.shadowJar {
+    // Removed the `-all` suffix from the Shadow JAR
+    archiveClassifier.set("")
+
+    relocate("kotlin", "de.lordtkay.hyflask.shadow.kotlin")
 }
 
 tasks.named<GitChangelogTask>("gitChangelog") {
