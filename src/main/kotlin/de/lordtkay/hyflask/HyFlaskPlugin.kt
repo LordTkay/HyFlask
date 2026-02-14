@@ -7,6 +7,7 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Int
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
 import com.hypixel.hytale.server.core.util.Config
+import de.lordtkay.hyflask.command.HyFlaskCommandCollection
 import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
@@ -30,11 +31,12 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     override fun setup() {
         logger.atInfo().log("[$name] Setting up...")
 
-        config.save();
+        config.save()
 
         registerAssetStores()
         registerComponents()
         registerInteractions()
+        commandRegistry.registerCommand(HyFlaskCommandCollection())
 
         logger.atInfo().log("[$name] Setup complete!")
     }
@@ -80,7 +82,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
 
     override fun shutdown() {
         logger.atInfo().log("[$name] Shut down")
-        config.save();
+        config.save()
         instance = null
     }
 }
