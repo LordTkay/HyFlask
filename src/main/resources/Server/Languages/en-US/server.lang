@@ -9,6 +9,10 @@
 
 # === commands ===
 hyflask.commands.error=Error occurred while executing the command.
+
 hyflask.commands.uses=Display and manipulate uses of a players flask.
+hyflask.commands.uses.add=Add amount to remaining uses of players flask.
+hyflask.commands.uses.add.amount=The amount of uses that will be added or removed.
+hyflask.commands.uses.add.success={uses} of {max} uses now.
 hyflask.commands.uses.get=Get remaining and maximum uses of players flask.
 hyflask.commands.uses.get.success={uses} of {max} uses remaining.
