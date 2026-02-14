@@ -1,0 +1,57 @@
+package de.lordtkay.hyflask.uses.command
+
+import com.hypixel.hytale.component.Ref
+import com.hypixel.hytale.component.Store
+import com.hypixel.hytale.logger.HytaleLogger
+import com.hypixel.hytale.server.core.Message
+import com.hypixel.hytale.server.core.command.system.CommandContext
+import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg
+import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes
+import com.hypixel.hytale.server.core.command.system.basecommands.AbstractTargetPlayerCommand
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
+import com.hypixel.hytale.server.core.modules.entitystats.asset.EntityStatType
+import com.hypixel.hytale.server.core.universe.PlayerRef
+import com.hypixel.hytale.server.core.universe.world.World
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+
+class SetUsesCommand : AbstractTargetPlayerCommand("set", "server.hyflask.commands.uses.set") {
+    companion object {
+        private val logger = HytaleLogger.forEnclosingClass()
+    }
+
+    private val amountArg: RequiredArg<Int> = this.withRequiredArg(
+        "amount",
+        "server.hyflask.commands.uses.set.amount",
+        ArgTypes.INTEGER
+    )
+
+    override fun execute(
+        commandContext: CommandContext,
+        ref: Ref<EntityStore?>?,
+        ref1: Ref<EntityStore?>,
+        playerRef: PlayerRef,
+        world: World,
+        store: Store<EntityStore?>
+    ) {
+        val statMap = store.getComponent(playerRef.reference!!, EntityStatMap.getComponentType())
+        if (statMap == null) {
+            logger.atWarning()
+                .log("${EntityStatMap::class.simpleName} was not found on player reference.")
+            playerRef.sendMessage(Message.translation("server.hyflask.commands.error"))
+            return
+        }
+        val assetMap = EntityStatType.getAssetMap()
+        // TODO: Magic string into enum
+        val statIndex = assetMap.getIndex("HyFlask_Uses")
+        val usesStat = statMap.get(statIndex)
+
+        val setUses = amountArg.get(commandContext)
+        val currentUses = statMap.setStatValue(statIndex, setUses.toFloat())
+        val currentMax = usesStat?.max ?: 0f
+
+        val message = Message.translation("server.hyflask.commands.uses.set.success")
+            .param("uses", currentUses)
+            .param("max", currentMax)
+        playerRef.sendMessage(message)
+    }
+}
