@@ -8,6 +8,7 @@
 
 
 # === commands ===
+hyflask.commands=Commands for HyFlask.
 hyflask.commands.error=Error occurred while executing the command.
 
 hyflask.commands.uses=Display and manipulate uses of a players flask.
