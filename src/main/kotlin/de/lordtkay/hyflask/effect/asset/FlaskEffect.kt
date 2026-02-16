@@ -23,7 +23,7 @@ import de.lordtkay.hyflask.effect.protocol.FlaskEffectInteractionType
 class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect>> {
 
     companion object {
-        const val ASSET_PATH = "Hyflask/Effects"
+        const val ASSET_PATH = "HyFlask/FlaskEffects"
         val CODEC: AssetBuilderCodec<String, FlaskEffect>
         private var ASSET_STORE: AssetStore<String, FlaskEffect, IndexedAssetMap<String, FlaskEffect>>? = null
 
@@ -39,7 +39,7 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
             )
 
             builder
-                .appendInherited(/**/
+                .appendInherited(
                     KeyedCodec("Icon", Codec.STRING),
                     { asset, value -> asset.icon = value },
                     { asset -> asset.icon },
