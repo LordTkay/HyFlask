@@ -5,6 +5,8 @@ import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.asset.HytaleAssetStore
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
+import com.hypixel.hytale.server.core.util.Config
+import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 
 @Suppress("unused")
@@ -16,6 +18,8 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             private set
     }
 
+    val config: Config<FlaskConfig> = this.withConfig(FlaskConfig.CONFIG_NAME, FlaskConfig.CODEC)
+
     init {
         instance = this
     }
@@ -23,6 +27,8 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     override fun setup() {
         logger.atInfo().log("[$name] Setting up...")
 
+        config.save();
+        
         registerAssetStores()
 
         logger.atInfo().log("[$name] Setup complete!")
@@ -51,6 +57,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
 
     override fun shutdown() {
         logger.atInfo().log("[$name] Shut down")
+        config.save();
         instance = null
     }
 }
