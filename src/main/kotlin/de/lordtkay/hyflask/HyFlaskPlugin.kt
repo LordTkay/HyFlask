@@ -8,6 +8,7 @@ import com.hypixel.hytale.server.core.plugin.JavaPluginInit
 import com.hypixel.hytale.server.core.util.Config
 import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
+import de.lordtkay.hyflask.effect.interaction.FlaskEffectComponent
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -30,10 +31,10 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
         config.save();
         
         registerAssetStores()
+        registerComponents()
 
         logger.atInfo().log("[$name] Setup complete!")
     }
-
 
     private fun registerAssetStores() {
         val flaskEffectAssetStore = HytaleAssetStore
@@ -49,6 +50,16 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             .build()
 
         assetRegistry.register(flaskEffectAssetStore)
+    }
+
+
+    private fun registerComponents() {
+        val flaskEffectComponent = entityStoreRegistry.registerComponent(
+            FlaskEffectComponent::class.java,
+            FlaskEffectComponent.ID,
+            FlaskEffectComponent.CODEC
+        )
+        FlaskEffectComponent.componentType = flaskEffectComponent
     }
 
     override fun start() {
