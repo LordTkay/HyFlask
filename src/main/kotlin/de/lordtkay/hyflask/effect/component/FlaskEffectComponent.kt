@@ -15,7 +15,8 @@ class FlaskEffectComponent : Component<EntityStore> {
         const val ID = "HyFlask_FlaskEffect"
         private var logger = HytaleLogger.forEnclosingClass()
 
-        var componentType: ComponentType<EntityStore, FlaskEffectComponent>? = null
+        lateinit var componentType: ComponentType<EntityStore, FlaskEffectComponent>
+
         val CODEC: BuilderCodec<FlaskEffectComponent>
 
         init {
