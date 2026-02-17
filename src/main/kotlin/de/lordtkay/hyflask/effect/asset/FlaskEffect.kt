@@ -102,16 +102,16 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
             CODEC = builder.build()
         }
 
-        fun getAssetStore(): AssetStore<String, FlaskEffect, IndexedAssetMap<String, FlaskEffect>> {
-            if (ASSET_STORE == null) {
-                ASSET_STORE = AssetRegistry.getAssetStore(FlaskEffect::class.java)
+        val assetStore: AssetStore<String, FlaskEffect, IndexedAssetMap<String, FlaskEffect>>
+            get() {
+                if (ASSET_STORE == null) {
+                    ASSET_STORE = AssetRegistry.getAssetStore(FlaskEffect::class.java)
+                }
+                return ASSET_STORE!!
             }
-            return ASSET_STORE!!
-        }
 
-        fun getAssetMap(): IndexedAssetMap<String, FlaskEffect> {
-            return getAssetStore().assetMap
-        }
+        val assetMap: IndexedAssetMap<String, FlaskEffect>
+            get() = assetStore.assetMap
     }
 
     private var id: String = ""
