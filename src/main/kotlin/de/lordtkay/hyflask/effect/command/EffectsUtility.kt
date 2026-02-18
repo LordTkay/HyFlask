@@ -17,7 +17,7 @@ fun fetchEffect(
             .param("id", effectId)
         playerRef.sendMessage(message)
 
-        logger.atSevere().log("Could not find flask effect asset with ID '$effectId'")
+        logger.atWarning().log("Could not find flask effect asset with ID '$effectId'")
         return null
     }
 
