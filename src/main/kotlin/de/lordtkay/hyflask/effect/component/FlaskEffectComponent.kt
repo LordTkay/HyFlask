@@ -74,7 +74,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
      */
     fun learnEffect(assetId: String): Boolean {
         val modifiedAssetId = assetId.uppercase()
-        if (modifiedAssetId in learnedEffects) {
+        if (knowsEffect(modifiedAssetId)) {
             logger.atFine().log("Player already knows flask effect '$modifiedAssetId'")
             return false
         }
@@ -92,12 +92,12 @@ class FlaskEffectComponent : Component<EntityStore?> {
      */
     fun forgetEffect(assetId: String): Boolean {
         val modifiedAssetId = assetId.uppercase()
-        if (modifiedAssetId !in learnedEffects) {
+        if (!knowsEffect(modifiedAssetId)) {
             logger.atFine().log("Player does not know flask effect '$modifiedAssetId' and thus cannot forget it")
             return false
         }
 
-        if (modifiedAssetId in activeEffects) {
+        if (activatedEffect(modifiedAssetId)) {
             activeEffects.remove(modifiedAssetId)
         }
 
@@ -114,12 +114,12 @@ class FlaskEffectComponent : Component<EntityStore?> {
      */
     fun activateEffect(assetId: String): Boolean {
         val modifiedAssetId = assetId.uppercase()
-        if (modifiedAssetId !in learnedEffects) {
+        if (!knowsEffect(modifiedAssetId)) {
             logger.atFine().log("Player does not know flask effect '$modifiedAssetId' and thus cannot activate it")
             return false
         }
 
-        if (modifiedAssetId in activeEffects) {
+        if (activatedEffect(modifiedAssetId)) {
             logger.atFine().log("Player already has flask effect '$modifiedAssetId' active")
             return false
         }
@@ -137,7 +137,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
      */
     fun deactivateEffect(assetId: String): Boolean {
         val modifiedAssetId = assetId.uppercase()
-        if (modifiedAssetId !in activeEffects) {
+        if (!activatedEffect(modifiedAssetId)) {
             logger.atFine()
                 .log("Player does not have flask effect '$modifiedAssetId' active and thus cannot deactivate it")
             return false
@@ -147,6 +147,22 @@ class FlaskEffectComponent : Component<EntityStore?> {
         activeEffects.remove(modifiedAssetId)
         return true
     }
+
+    /**
+     * Checks whether the specified effect is in the list of learned effects.
+     *
+     * @param assetId The ID of the effect asset to check.
+     * @return `true` if the effect has been learned, otherwise `false`.
+     */
+    fun knowsEffect(assetId: String) = assetId.uppercase() in learnedEffects
+
+    /**
+     * Checks whether the specified effect is currently active.
+     *
+     * @param assetId The ID of the effect asset to check.
+     * @return `true` if the effect is active, otherwise `false`.
+     */
+    fun activatedEffect(assetId: String) = assetId.uppercase() in activeEffects
 
 
     override fun clone(): Component<EntityStore?> {

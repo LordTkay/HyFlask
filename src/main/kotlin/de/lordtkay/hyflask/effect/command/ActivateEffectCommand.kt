@@ -41,7 +41,7 @@ class ActivateEffectCommand : AbstractTargetPlayerCommand("activate", "server.hy
         val wasActivated = flaskEffectComponent.activateEffect(effectId)
 
         if (!wasActivated) {
-            if (effectId in flaskEffectComponent.learnedEffects) {
+            if (flaskEffectComponent.knowsEffect(effectId)) {
                 val message = Message.translation("server.hyflask.commands.effects.activate.alreadyActive")
                     .param("name", assetName)
                 playerRef.sendMessage(message)

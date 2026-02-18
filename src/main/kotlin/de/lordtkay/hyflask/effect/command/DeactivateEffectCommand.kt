@@ -42,7 +42,7 @@ class DeactivateEffectCommand :
         val wasActivated = flaskEffectComponent.deactivateEffect(effectId)
 
         if (!wasActivated) {
-            if (effectId in flaskEffectComponent.learnedEffects) {
+            if (flaskEffectComponent.knowsEffect(effectId)) {
                 val message = Message.translation("server.hyflask.commands.effects.deactivate.alreadyDeactivated")
                     .param("name", assetName)
                 playerRef.sendMessage(message)
