@@ -36,7 +36,7 @@ class DeactivateEffectCommand :
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val effectId = effectIdArg.get(commandContext)
+        val effectId = effectIdArg.get(commandContext).uppercase()
         val assetName = fetchEffect(logger, playerRef, effectId) ?: return
 
         val wasActivated = flaskEffectComponent.deactivateEffect(effectId)

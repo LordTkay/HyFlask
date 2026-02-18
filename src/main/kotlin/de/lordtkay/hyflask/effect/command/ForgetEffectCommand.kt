@@ -35,7 +35,7 @@ class ForgetEffectCommand : AbstractTargetPlayerCommand("forget", "server.hyflas
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val effectId = effectIdArg.get(commandContext)
+        val effectId = effectIdArg.get(commandContext).uppercase()
         val assetName = fetchEffect(logger, playerRef, effectId) ?: return
 
         val wasForgotten = flaskEffectComponent.forgetEffect(effectId)

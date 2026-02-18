@@ -25,7 +25,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
             builder
                 .append(
                     KeyedCodec("LearnedEffects", Codec.STRING_ARRAY),
-                    { component, value -> component.learnedEffects.addAll(value) },
+                    { component, value -> component.learnedEffects.addAll(value.map { it.uppercase() }) },
                     { component -> component.learnedEffects.toTypedArray() }
                 )
                 .documentation("A list of effects that the player has learned and could equip.")
@@ -34,7 +34,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
             builder
                 .append(
                     KeyedCodec("ActiveEffects", Codec.STRING_ARRAY),
-                    { component, value -> component.activeEffects.addAll(value) },
+                    { component, value -> component.activeEffects.addAll(value.map { it.uppercase() }) },
                     { component -> component.activeEffects.toTypedArray() }
                 )
                 .documentation("A list of effects that the player currently has active and would be executed, when consuming the flask.")
@@ -59,8 +59,8 @@ class FlaskEffectComponent : Component<EntityStore?> {
     init {
         val config = HyFlaskPlugin.instance?.config?.get()
         if (config != null) {
-            learnedEffects.addAll(config.startingLearnedEffects)
-            activeEffects.addAll(config.startingActiveEffects)
+            learnedEffects.addAll(config.startingLearnedEffects.map { it.uppercase() })
+            activeEffects.addAll(config.startingActiveEffects.map { it.uppercase() })
         } else {
             logger.atWarning().log("Could not load config for initializing flask effects")
         }
@@ -73,13 +73,14 @@ class FlaskEffectComponent : Component<EntityStore?> {
      * @return `true` if the effect was successfully learned, or `false` if the effect was already known.
      */
     fun learnEffect(assetId: String): Boolean {
-        if (assetId in learnedEffects) {
-            logger.atFine().log("Player already knows flask effect '$assetId'")
+        val modifiedAssetId = assetId.uppercase()
+        if (modifiedAssetId in learnedEffects) {
+            logger.atFine().log("Player already knows flask effect '$modifiedAssetId'")
             return false
         }
 
-        logger.atFine().log("Player learned flask effect '$assetId'")
-        learnedEffects.add(assetId)
+        logger.atFine().log("Player learned flask effect '$modifiedAssetId'")
+        learnedEffects.add(modifiedAssetId)
         return true
     }
 
@@ -90,17 +91,18 @@ class FlaskEffectComponent : Component<EntityStore?> {
      * @return `true` if the effect was successfully forgotten, or `false` if the effect was not learned.
      */
     fun forgetEffect(assetId: String): Boolean {
-        if (assetId !in learnedEffects) {
-            logger.atFine().log("Player does not know flask effect '$assetId' and thus cannot forget it")
+        val modifiedAssetId = assetId.uppercase()
+        if (modifiedAssetId !in learnedEffects) {
+            logger.atFine().log("Player does not know flask effect '$modifiedAssetId' and thus cannot forget it")
             return false
         }
 
-        if (assetId in activeEffects) {
-            activeEffects.remove(assetId)
+        if (modifiedAssetId in activeEffects) {
+            activeEffects.remove(modifiedAssetId)
         }
 
-        logger.atFine().log("Player forgot flask effect '$assetId'")
-        learnedEffects.remove(assetId)
+        logger.atFine().log("Player forgot flask effect '$modifiedAssetId'")
+        learnedEffects.remove(modifiedAssetId)
         return true
     }
 
@@ -111,18 +113,19 @@ class FlaskEffectComponent : Component<EntityStore?> {
      * @return `true` if the effect was successfully activated, or `false` if the effect was not learned or already active.
      */
     fun activateEffect(assetId: String): Boolean {
-        if (assetId !in learnedEffects) {
-            logger.atFine().log("Player does not know flask effect '$assetId' and thus cannot activate it")
+        val modifiedAssetId = assetId.uppercase()
+        if (modifiedAssetId !in learnedEffects) {
+            logger.atFine().log("Player does not know flask effect '$modifiedAssetId' and thus cannot activate it")
             return false
         }
 
-        if (assetId in activeEffects) {
-            logger.atFine().log("Player already has flask effect '$assetId' active")
+        if (modifiedAssetId in activeEffects) {
+            logger.atFine().log("Player already has flask effect '$modifiedAssetId' active")
             return false
         }
 
-        logger.atFine().log("Player activated flask effect '$assetId'")
-        activeEffects.add(assetId)
+        logger.atFine().log("Player activated flask effect '$modifiedAssetId'")
+        activeEffects.add(modifiedAssetId)
         return true
     }
 
@@ -133,13 +136,15 @@ class FlaskEffectComponent : Component<EntityStore?> {
      * @return `true` if the effect was successfully deactivated, or `false` if the effect was not active.
      */
     fun deactivateEffect(assetId: String): Boolean {
-        if (assetId !in activeEffects) {
-            logger.atFine().log("Player does not have flask effect '$assetId' active and thus cannot deactivate it")
+        val modifiedAssetId = assetId.uppercase()
+        if (modifiedAssetId !in activeEffects) {
+            logger.atFine()
+                .log("Player does not have flask effect '$modifiedAssetId' active and thus cannot deactivate it")
             return false
         }
 
-        logger.atFine().log("Player deactivated flask effect '$assetId'")
-        activeEffects.remove(assetId)
+        logger.atFine().log("Player deactivated flask effect '$modifiedAssetId'")
+        activeEffects.remove(modifiedAssetId)
         return true
     }
 
