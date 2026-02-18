@@ -19,6 +19,11 @@ hyflask.commands.effects.learn.effectId=The flask effect asset ID of the effect 
 hyflask.commands.effects.learn.alreadyLearned=Flask effect '{name}' already learned.
 hyflask.commands.effects.learn.success=Flask effect '{name}' learned successfully.
 
+hyflask.commands.effects.forget=Forget a flask effect by asset ID.
+hyflask.commands.effects.forget.effectId=The flask effect asset ID of the effect to forget.
+hyflask.commands.effects.forget.notLearned=Flask effect '{name}' not learned.
+hyflask.commands.effects.forget.success=Flask effect '{name}' forgotten successfully.
+
 hyflask.commands.uses=Display and manipulate uses of a players flask.
 hyflask.commands.uses.add=Add amount to remaining uses of players flask.
 hyflask.commands.uses.add.amount=The amount of uses that will be added or removed.

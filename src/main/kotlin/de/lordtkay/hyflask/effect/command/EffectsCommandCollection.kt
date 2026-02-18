@@ -6,6 +6,7 @@ class EffectsCommandCollection : AbstractCommandCollection("effects", "server.hy
 
     init {
         addSubCommand(LearnEffectCommand())
+        addSubCommand(ForgetEffectCommand())
     }
 
 }
