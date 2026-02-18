@@ -3,12 +3,14 @@ package de.lordtkay.hyflask
 import com.hypixel.hytale.assetstore.map.IndexedAssetMap
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.asset.HytaleAssetStore
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
 import com.hypixel.hytale.server.core.util.Config
 import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
+import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -29,12 +31,14 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
         logger.atInfo().log("[$name] Setting up...")
 
         config.save();
-        
+
         registerAssetStores()
         registerComponents()
+        registerInteractions()
 
         logger.atInfo().log("[$name] Setup complete!")
     }
+
 
     private fun registerAssetStores() {
         val flaskEffectAssetStore = HytaleAssetStore
@@ -60,6 +64,14 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             FlaskEffectComponent.CODEC
         )
         FlaskEffectComponent.componentType = flaskEffectComponent
+    }
+
+    private fun registerInteractions() {
+        getCodecRegistry(Interaction.CODEC).register(
+            FlaskEffectApplyInteraction.ID,
+            FlaskEffectApplyInteraction::class.java,
+            FlaskEffectApplyInteraction.CODEC
+        )
     }
 
     override fun start() {
