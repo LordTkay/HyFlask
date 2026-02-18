@@ -30,6 +30,12 @@ hyflask.commands.effects.activate.alreadyActive=Flask effect '{name}' already ac
 hyflask.commands.effects.activate.notLearned=Flask effect '{name}' not learned.
 hyflask.commands.effects.activate.success=Flask effect '{name}' activated successfully.
 
+hyflask.commands.effects.deactivate=Deactivate a flask effect.
+hyflask.commands.effects.deactivate.effectId=The flask effect asset ID of the effect to deactivate.
+hyflask.commands.effects.deactivate.alreadyDeactivated=Flask effect '{name}' already deactivated.
+hyflask.commands.effects.deactivate.notLearned=Flask effect '{name}' not learned.
+hyflask.commands.effects.deactivate.success=Flask effect '{name}' deactivated successfully.
+
 hyflask.commands.uses=Display and manipulate uses of a players flask.
 hyflask.commands.uses.add=Add amount to remaining uses of players flask.
 hyflask.commands.uses.add.amount=The amount of uses that will be added or removed.

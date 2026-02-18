@@ -8,6 +8,7 @@ class EffectsCommandCollection : AbstractCommandCollection("effects", "server.hy
         addSubCommand(LearnEffectCommand())
         addSubCommand(ForgetEffectCommand())
         addSubCommand(ActivateEffectCommand())
+        addSubCommand(DeactivateEffectCommand())
     }
 
 }
