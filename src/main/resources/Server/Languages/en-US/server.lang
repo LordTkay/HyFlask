@@ -11,6 +11,14 @@
 hyflask.commands=Commands for HyFlask.
 hyflask.commands.error=Error occurred while executing the command.
 
+hyflask.commands.effects=Display and manage a player's learned and active flask effects.
+hyflask.commands.effects.invalidEffectId=Flask effect with ID '{id}' not found.
+
+hyflask.commands.effects.learn=Learn a flask effect by asset ID.
+hyflask.commands.effects.learn.effectId=The flask effect asset ID of the effect to learn.
+hyflask.commands.effects.learn.alreadyLearned=Flask effect '{name}' already learned.
+hyflask.commands.effects.learn.success=Flask effect '{name}' learned successfully.
+
 hyflask.commands.uses=Display and manipulate uses of a players flask.
 hyflask.commands.uses.add=Add amount to remaining uses of players flask.
 hyflask.commands.uses.add.amount=The amount of uses that will be added or removed.
