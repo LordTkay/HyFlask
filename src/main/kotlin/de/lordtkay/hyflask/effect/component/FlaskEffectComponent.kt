@@ -9,13 +9,13 @@ import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.HyFlaskPlugin
 
-class FlaskEffectComponent : Component<EntityStore> {
+class FlaskEffectComponent : Component<EntityStore?> {
 
     companion object {
         const val ID = "HyFlask_FlaskEffect"
         private var logger = HytaleLogger.forEnclosingClass()
 
-        lateinit var componentType: ComponentType<EntityStore, FlaskEffectComponent>
+        lateinit var componentType: ComponentType<EntityStore?, FlaskEffectComponent>
 
         val CODEC: BuilderCodec<FlaskEffectComponent>
 
@@ -57,7 +57,7 @@ class FlaskEffectComponent : Component<EntityStore> {
         private set
 
     init {
-        val config = HyFlaskPlugin.Companion.instance?.config?.get()
+        val config = HyFlaskPlugin.instance?.config?.get()
         if (config != null) {
             learnedEffects.addAll(config.startingLearnedEffects)
             activeEffects.addAll(config.startingActiveEffects)
@@ -144,7 +144,7 @@ class FlaskEffectComponent : Component<EntityStore> {
     }
 
 
-    override fun clone(): Component<EntityStore> {
+    override fun clone(): Component<EntityStore?> {
         val copy = FlaskEffectComponent()
         copy.activeEffects = activeEffects.toMutableSet()
         copy.learnedEffects = learnedEffects.toMutableSet()
