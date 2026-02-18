@@ -8,6 +8,7 @@ import com.hypixel.hytale.component.ComponentType
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.HyFlaskPlugin
+import de.lordtkay.hyflask.effect.asset.FlaskEffect
 
 class FlaskEffectComponent : Component<EntityStore?> {
 
@@ -45,13 +46,13 @@ class FlaskEffectComponent : Component<EntityStore?> {
     }
 
     /**
-     * Contains the IDs of [de.lordtkay.hyflask.effect.asset.FlaskEffect] assets that the player has learned and could equip.
+     * Contains the IDs of [FlaskEffect] assets that the player has learned and could equip.
      */
     var learnedEffects: MutableSet<String> = mutableSetOf()
         private set
 
     /**
-     * Contains the IDs of [de.lordtkay.hyflask.effect.asset.FlaskEffect] assets that are currently active on the player and will be executed, when used.
+     * Contains the IDs of [FlaskEffect] assets that are currently active on the player and will be executed, when used.
      */
     var activeEffects: MutableSet<String> = mutableSetOf()
         private set
@@ -69,7 +70,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
     /**
      * Adds the specified effect to the list of learned effects if it is not already known.
      *
-     * @param assetId The ID of the [de.lordtkay.hyflask.effect.asset.FlaskEffect] asset that should be learned.
+     * @param assetId The ID of the [FlaskEffect] asset that should be learned.
      * @return `true` if the effect was successfully learned, or `false` if the effect was already known.
      */
     fun learnEffect(assetId: String): Boolean {
@@ -87,7 +88,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
     /**
      * Removes the specified effect from the list of learned effects if it exists and deactivates it if it is active.
      *
-     * @param assetId The ID of the [de.lordtkay.hyflask.effect.asset.FlaskEffect] asset that should be forgotten.
+     * @param assetId The ID of the [FlaskEffect] asset that should be forgotten.
      * @return `true` if the effect was successfully forgotten, or `false` if the effect was not learned.
      */
     fun forgetEffect(assetId: String): Boolean {
@@ -109,7 +110,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
     /**
      * Activates the specified effect if it is learned and not already active.
      *
-     * @param assetId The ID of the [de.lordtkay.hyflask.effect.asset.FlaskEffect] asset that should be activated.
+     * @param assetId The ID of the [FlaskEffect] asset that should be activated.
      * @return `true` if the effect was successfully activated, or `false` if the effect was not learned or already active.
      */
     fun activateEffect(assetId: String): Boolean {
@@ -132,7 +133,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
     /**
      * Deactivates the specified effect if it is currently active.
      *
-     * @param assetId The ID of the [de.lordtkay.hyflask.effect.asset.FlaskEffect] asset that should be deactivated.
+     * @param assetId The ID of the [FlaskEffect] asset that should be deactivated.
      * @return `true` if the effect was successfully deactivated, or `false` if the effect was not active.
      */
     fun deactivateEffect(assetId: String): Boolean {
