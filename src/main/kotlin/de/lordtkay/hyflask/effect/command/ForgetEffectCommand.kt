@@ -35,25 +35,22 @@ class ForgetEffectCommand : AbstractTargetPlayerCommand("forget", "server.hyflas
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val effectId = effectIdArg.get(commandContext).uppercase()
-        val assetName = fetchEffect(logger, playerRef, effectId) ?: return
+        val effectId = effectIdArg.get(commandContext)
 
-        val wasForgotten = flaskEffectComponent.forgetEffect(effectId)
+        val message = when (val result = flaskEffectComponent.forgetEffect(effectId)) {
+            is FlaskEffectComponent.ForgetResult.NotLearned ->
+                Message.translation("server.hyflask.commands.effects.forget.notLearned")
+                    .param("name", result.asset.displayNameWithId)
 
-        if (!wasForgotten) {
-            val message = Message.translation("server.hyflask.commands.effects.forget.notLearned")
-                .param("name", assetName)
-            playerRef.sendMessage(message)
+            is FlaskEffectComponent.ForgetResult.Success ->
+                Message.translation("server.hyflask.commands.effects.forget.success")
+                    .param("name", result.asset.displayNameWithId)
 
-            logger.atInfo()
-                .log("Player '${playerRef.username}' tried to forget flask effect '${assetName}' but it was not learned yet")
-            return
+            FlaskEffectComponent.ForgetResult.UnknownAsset ->
+                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                    .param("id", effectId)
         }
 
-        val message = Message.translation("server.hyflask.commands.effects.forget.success")
-            .param("name", assetName)
         playerRef.sendMessage(message)
-
-        logger.atInfo().log("Player '${playerRef.username}' forgot flask effect '${assetName}'")
     }
 }

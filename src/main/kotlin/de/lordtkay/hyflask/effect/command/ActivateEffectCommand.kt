@@ -35,34 +35,26 @@ class ActivateEffectCommand : AbstractTargetPlayerCommand("activate", "server.hy
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val effectId = effectIdArg.get(commandContext).uppercase()
-        val assetName = fetchEffect(logger, playerRef, effectId) ?: return
+        val effectId = effectIdArg.get(commandContext)
 
-        val wasActivated = flaskEffectComponent.activateEffect(effectId)
+        val message = when (val result = flaskEffectComponent.activateEffect(effectId)) {
+            is FlaskEffectComponent.ActivateResult.Success ->
+                Message.translation("server.hyflask.commands.effects.activate.success")
+                    .param("name", result.asset.displayNameWithId)
 
-        if (!wasActivated) {
-            if (flaskEffectComponent.knowsEffect(effectId)) {
-                val message = Message.translation("server.hyflask.commands.effects.activate.alreadyActive")
-                    .param("name", assetName)
-                playerRef.sendMessage(message)
+            is FlaskEffectComponent.ActivateResult.AlreadyActive ->
+                Message.translation("server.hyflask.commands.effects.activate.alreadyActive")
+                    .param("name", result.asset.displayNameWithId)
 
-                logger.atInfo()
-                    .log("Player '${playerRef.username}' tried to activate flask effect '${assetName}' but it was already active")
-            } else {
-                val message = Message.translation("server.hyflask.commands.effects.activate.notLearned")
-                    .param("name", assetName)
-                playerRef.sendMessage(message)
+            is FlaskEffectComponent.ActivateResult.NotLearned ->
+                Message.translation("server.hyflask.commands.effects.activate.notLearned")
+                    .param("name", result.asset.displayNameWithId)
 
-                logger.atInfo()
-                    .log("Player '${playerRef.username}' tried to activate flask effect '${assetName}' but it was not learned yet")
-            }
-            return
+            FlaskEffectComponent.ActivateResult.UnknownAsset ->
+                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                    .param("id", effectId)
         }
 
-        val message = Message.translation("server.hyflask.commands.effects.activate.success")
-            .param("name", assetName)
         playerRef.sendMessage(message)
-
-        logger.atInfo().log("Player '${playerRef.username}' activated flask effect '${assetName}'")
     }
 }

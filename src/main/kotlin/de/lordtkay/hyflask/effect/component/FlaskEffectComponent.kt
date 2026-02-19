@@ -60,116 +60,120 @@ class FlaskEffectComponent : Component<EntityStore?> {
     init {
         val config = HyFlaskPlugin.instance?.config?.get()
         if (config != null) {
-            learnedEffects.addAll(config.startingLearnedEffects.map { it.uppercase() })
-            activeEffects.addAll(config.startingActiveEffects.map { it.uppercase() })
+            learnedEffects.addAll(config.startingLearnedEffects.map { normalizeAssetId(it) })
+            activeEffects.addAll(config.startingActiveEffects.map { normalizeAssetId(it) })
         } else {
             logger.atWarning().log("Could not load config for initializing flask effects")
         }
     }
 
-    /**
-     * Adds the specified effect to the list of learned effects if it is not already known.
-     *
-     * @param assetId The ID of the [FlaskEffect] asset that should be learned.
-     * @return `true` if the effect was successfully learned, or `false` if the effect was already known.
-     */
-    fun learnEffect(assetId: String): Boolean {
-        val modifiedAssetId = assetId.uppercase()
-        if (knowsEffect(modifiedAssetId)) {
-            logger.atFine().log("Player already knows flask effect '$modifiedAssetId'")
-            return false
+    val activeEffectsDisplayNames get() = activeEffects.mapNotNull { getEffectAsset(it)?.displayNameWithId }
+    val learnedEffectsDisplayNames get() = learnedEffects.mapNotNull { getEffectAsset(it)?.displayNameWithId }
+
+    fun learnEffect(assetId: String): LearnResult {
+        val normalizedAssetId = normalizeAssetId(assetId)
+        val asset = getEffectAsset(normalizedAssetId) ?: return LearnResult.UnknownAsset
+
+        if (normalizedAssetId in learnedEffects) {
+            logger.atFine().log("Player already knows flask effect '${asset.displayNameWithId}'")
+            return LearnResult.AlreadyLearned(asset)
         }
 
-        logger.atFine().log("Player learned flask effect '$modifiedAssetId'")
-        learnedEffects.add(modifiedAssetId)
-        return true
+        logger.atFine().log("Player learned flask effect '${asset.displayNameWithId}'")
+        learnedEffects.add(normalizedAssetId)
+        return LearnResult.Success(asset)
     }
 
-    /**
-     * Removes the specified effect from the list of learned effects if it exists and deactivates it if it is active.
-     *
-     * @param assetId The ID of the [FlaskEffect] asset that should be forgotten.
-     * @return `true` if the effect was successfully forgotten, or `false` if the effect was not learned.
-     */
-    fun forgetEffect(assetId: String): Boolean {
-        val modifiedAssetId = assetId.uppercase()
-        if (!knowsEffect(modifiedAssetId)) {
-            logger.atFine().log("Player does not know flask effect '$modifiedAssetId' and thus cannot forget it")
-            return false
+    fun forgetEffect(assetId: String): ForgetResult {
+        val normalizedAssetId = normalizeAssetId(assetId)
+        val asset = getEffectAsset(normalizedAssetId) ?: return ForgetResult.UnknownAsset
+
+        if (normalizedAssetId !in learnedEffects) {
+            logger.atFine().log("Player does not know flask effect '${asset.displayNameWithId}'")
+            return ForgetResult.NotLearned(asset)
         }
 
-        if (activatedEffect(modifiedAssetId)) {
-            activeEffects.remove(modifiedAssetId)
-        }
-
-        logger.atFine().log("Player forgot flask effect '$modifiedAssetId'")
-        learnedEffects.remove(modifiedAssetId)
-        return true
+        activeEffects.remove(normalizedAssetId)
+        learnedEffects.remove(normalizedAssetId)
+        logger.atFine().log("Player forgot flask effect '${asset.displayNameWithId}'")
+        return ForgetResult.Success(asset)
     }
 
-    /**
-     * Activates the specified effect if it is learned and not already active.
-     *
-     * @param assetId The ID of the [FlaskEffect] asset that should be activated.
-     * @return `true` if the effect was successfully activated, or `false` if the effect was not learned or already active.
-     */
-    fun activateEffect(assetId: String): Boolean {
-        val modifiedAssetId = assetId.uppercase()
-        if (!knowsEffect(modifiedAssetId)) {
-            logger.atFine().log("Player does not know flask effect '$modifiedAssetId' and thus cannot activate it")
-            return false
+    fun activateEffect(assetId: String): ActivateResult {
+        val normalizedAssetId = normalizeAssetId(assetId)
+        val asset = getEffectAsset(normalizedAssetId) ?: return ActivateResult.UnknownAsset
+
+        if (normalizedAssetId !in learnedEffects) {
+            logger.atFine().log("Player does not know flask effect '${asset.displayNameWithId}'")
+            return ActivateResult.NotLearned(asset)
         }
 
-        if (activatedEffect(modifiedAssetId)) {
-            logger.atFine().log("Player already has flask effect '$modifiedAssetId' active")
-            return false
+        if (normalizedAssetId in activeEffects) {
+            logger.atFine().log("Player already has flask effect '${asset.displayNameWithId}' active")
+            return ActivateResult.AlreadyActive(asset)
         }
 
-        logger.atFine().log("Player activated flask effect '$modifiedAssetId'")
-        activeEffects.add(modifiedAssetId)
-        return true
+        activeEffects.add(normalizedAssetId)
+        logger.atFine().log("Player activated flask effect '${asset.displayNameWithId}'")
+        return ActivateResult.Success(asset)
     }
 
-    /**
-     * Deactivates the specified effect if it is currently active.
-     *
-     * @param assetId The ID of the [FlaskEffect] asset that should be deactivated.
-     * @return `true` if the effect was successfully deactivated, or `false` if the effect was not active.
-     */
-    fun deactivateEffect(assetId: String): Boolean {
-        val modifiedAssetId = assetId.uppercase()
-        if (!activatedEffect(modifiedAssetId)) {
-            logger.atFine()
-                .log("Player does not have flask effect '$modifiedAssetId' active and thus cannot deactivate it")
-            return false
+    fun deactivateEffect(assetId: String): DeactivateResult {
+        val normalizedAssetId = normalizeAssetId(assetId)
+        val asset = getEffectAsset(normalizedAssetId) ?: return DeactivateResult.UnknownAsset
+
+        if (normalizedAssetId !in activeEffects) {
+            logger.atFine().log("Player does not have flask effect '${asset.displayNameWithId}' active")
+            return DeactivateResult.NotActive(asset)
         }
 
-        logger.atFine().log("Player deactivated flask effect '$modifiedAssetId'")
-        activeEffects.remove(modifiedAssetId)
-        return true
+        activeEffects.remove(normalizedAssetId)
+        logger.atFine().log("Player deactivated flask effect '${asset.displayNameWithId}'")
+        return DeactivateResult.Success(asset)
     }
 
-    /**
-     * Checks whether the specified effect is in the list of learned effects.
-     *
-     * @param assetId The ID of the effect asset to check.
-     * @return `true` if the effect has been learned, otherwise `false`.
-     */
-    fun knowsEffect(assetId: String) = assetId.uppercase() in learnedEffects
+    private fun getEffectAsset(assetId: String): FlaskEffect? {
+        val asset = FlaskEffect.assetMap.getAsset(assetId)
 
-    /**
-     * Checks whether the specified effect is currently active.
-     *
-     * @param assetId The ID of the effect asset to check.
-     * @return `true` if the effect is active, otherwise `false`.
-     */
-    fun activatedEffect(assetId: String) = assetId.uppercase() in activeEffects
+        if (asset == null) {
+            logger.atWarning().log("Could not find flask effect asset with ID '$assetId'")
+            return null
+        }
 
+        return asset
+    }
+
+    private fun normalizeAssetId(assetId: String) = assetId.uppercase()
 
     override fun clone(): Component<EntityStore?> {
         val copy = FlaskEffectComponent()
         copy.activeEffects = activeEffects.toMutableSet()
         copy.learnedEffects = learnedEffects.toMutableSet()
         return copy
+    }
+
+    sealed interface LearnResult {
+        data object UnknownAsset : LearnResult
+        data class Success(val asset: FlaskEffect) : LearnResult
+        data class AlreadyLearned(val asset: FlaskEffect) : LearnResult
+    }
+
+    sealed interface ForgetResult {
+        data object UnknownAsset : ForgetResult
+        data class Success(val asset: FlaskEffect) : ForgetResult
+        data class NotLearned(val asset: FlaskEffect) : ForgetResult
+    }
+
+    sealed interface ActivateResult {
+        data object UnknownAsset : ActivateResult
+        data class Success(val asset: FlaskEffect) : ActivateResult
+        data class NotLearned(val asset: FlaskEffect) : ActivateResult
+        data class AlreadyActive(val asset: FlaskEffect) : ActivateResult
+    }
+
+    sealed interface DeactivateResult {
+        data object UnknownAsset : DeactivateResult
+        data class Success(val asset: FlaskEffect) : DeactivateResult
+        data class NotActive(val asset: FlaskEffect) : DeactivateResult
     }
 }

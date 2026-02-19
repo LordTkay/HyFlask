@@ -28,8 +28,8 @@ class GetEffectCommand : AbstractTargetPlayerCommand("get", "server.hyflask.comm
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val activeEffects = flaskEffectComponent.activeEffects.mapNotNull { fetchEffect(logger, playerRef, it) }
-        val learnedEffects = flaskEffectComponent.learnedEffects.mapNotNull { fetchEffect(logger, playerRef, it) }
+        val activeEffects = flaskEffectComponent.activeEffectsDisplayNames
+        val learnedEffects = flaskEffectComponent.learnedEffectsDisplayNames
 
         val message = Message.translation("server.hyflask.commands.effects.get.success")
             .param("activeEffects", activeEffects.joinToString("\n") { "- $it" })

@@ -35,25 +35,21 @@ class LearnEffectCommand : AbstractTargetPlayerCommand("learn", "server.hyflask.
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val effectId = effectIdArg.get(commandContext).uppercase()
-        val assetName = fetchEffect(logger, playerRef, effectId) ?: return
+        val effectId = effectIdArg.get(commandContext)
+        val message = when (val result = flaskEffectComponent.learnEffect(effectId)) {
+            is FlaskEffectComponent.LearnResult.Success ->
+                Message.translation("server.hyflask.commands.effects.learn.success")
+                    .param("name", result.asset.displayNameWithId)
 
-        val wasLearned = flaskEffectComponent.learnEffect(effectId)
+            is FlaskEffectComponent.LearnResult.AlreadyLearned ->
+                Message.translation("server.hyflask.commands.effects.learn.alreadyLearned")
+                    .param("name", result.asset.displayNameWithId)
 
-        if (!wasLearned) {
-            val message = Message.translation("server.hyflask.commands.effects.learn.alreadyLearned")
-                .param("name", assetName)
-            playerRef.sendMessage(message)
-
-            logger.atInfo()
-                .log("Player '${playerRef.username}' tried to learn flask effect '${assetName}' but it was already learned")
-            return
+            FlaskEffectComponent.LearnResult.UnknownAsset ->
+                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                    .param("id", effectId)
         }
 
-        val message = Message.translation("server.hyflask.commands.effects.learn.success")
-            .param("name", assetName)
         playerRef.sendMessage(message)
-
-        logger.atInfo().log("Player '${playerRef.username}' learned flask effect '${assetName}'")
     }
 }

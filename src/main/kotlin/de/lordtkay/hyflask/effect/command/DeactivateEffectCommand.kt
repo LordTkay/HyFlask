@@ -36,34 +36,22 @@ class DeactivateEffectCommand :
         val flaskEffectComponent =
             store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
 
-        val effectId = effectIdArg.get(commandContext).uppercase()
-        val assetName = fetchEffect(logger, playerRef, effectId) ?: return
+        val effectId = effectIdArg.get(commandContext)
 
-        val wasActivated = flaskEffectComponent.deactivateEffect(effectId)
+        val message = when (val result = flaskEffectComponent.deactivateEffect(effectId)) {
+            is FlaskEffectComponent.DeactivateResult.Success ->
+                Message.translation("server.hyflask.commands.effects.deactivate.success")
+                    .param("name", result.asset.displayNameWithId)
 
-        if (!wasActivated) {
-            if (flaskEffectComponent.knowsEffect(effectId)) {
-                val message = Message.translation("server.hyflask.commands.effects.deactivate.alreadyDeactivated")
-                    .param("name", assetName)
-                playerRef.sendMessage(message)
+            is FlaskEffectComponent.DeactivateResult.NotActive ->
+                Message.translation("server.hyflask.commands.effects.deactivate.alreadyDeactivated")
+                    .param("name", result.asset.displayNameWithId)
 
-                logger.atInfo()
-                    .log("Player '${playerRef.username}' tried to deactivate flask effect '${assetName}' but it was already deactivated")
-            } else {
-                val message = Message.translation("server.hyflask.commands.effects.deactivate.notLearned")
-                    .param("name", assetName)
-                playerRef.sendMessage(message)
-
-                logger.atInfo()
-                    .log("Player '${playerRef.username}' tried to deactivate flask effect '${assetName}' but it was not learned yet")
-            }
-            return
+            FlaskEffectComponent.DeactivateResult.UnknownAsset ->
+                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                    .param("id", effectId)
         }
 
-        val message = Message.translation("server.hyflask.commands.effects.deactivate.success")
-            .param("name", assetName)
         playerRef.sendMessage(message)
-
-        logger.atInfo().log("Player '${playerRef.username}' deactivated flask effect '${assetName}'")
     }
 }

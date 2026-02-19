@@ -10,11 +10,15 @@ import com.hypixel.hytale.codec.Codec
 import com.hypixel.hytale.codec.KeyedCodec
 import com.hypixel.hytale.codec.codecs.map.EnumMapCodec
 import com.hypixel.hytale.codec.codecs.map.MapCodec
-import com.hypixel.hytale.codec.schema.metadata.ui.*
+import com.hypixel.hytale.codec.schema.metadata.ui.UIEditor
+import com.hypixel.hytale.codec.schema.metadata.ui.UIEditorSectionStart
+import com.hypixel.hytale.codec.schema.metadata.ui.UIRebuildCaches
+import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.asset.common.CommonAssetValidator
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemTranslationProperties
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.RootInteraction
+import com.hypixel.hytale.server.core.util.MessageUtil
 import de.lordtkay.hyflask.effect.protocol.FlaskEffectInteractionType
 
 /**
@@ -140,6 +144,31 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
     override fun getId(): String {
         return id
     }
+
+    /**
+     * Provides a display name for the effect, which is either the translated name or the `id` if no translation
+     * is defined.
+     */
+    val displayName: String
+        get() {
+            translationProperties?.name?.let {
+                val message = Message.translation(it)
+                return MessageUtil.toAnsiString(message).toString()
+            }
+
+            return id
+        }
+
+    /**
+     * Provides a display name for the effect, including the effect's unique identifier in parentheses. If the asset
+     * does not have a translation, it returns the `id` directly.
+     */
+    val displayNameWithId: String
+        get() {
+            val translatedName = displayName
+            if (translatedName == id) return id
+            return "$translatedName ($id)"
+        }
 
     private fun processConfig() {
         val itemQualityAssetMap = ItemQuality.getAssetMap()
