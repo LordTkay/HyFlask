@@ -76,6 +76,16 @@ class FlaskEffectComponent : Component<EntityStore?> {
     val activeEffectsDisplayNames get() = activeEffects.mapNotNull { getEffectAsset(it)?.displayNameWithId }
     val learnedEffectsDisplayNames get() = learnedEffects.mapNotNull { getEffectAsset(it)?.displayNameWithId }
 
+    /**
+     * Attempts to learn the flask effect associated with the given asset ID.
+     * If the effect is already learned, a corresponding result is returned.
+     *
+     * @param assetId The ID of the flask effect to learn. This ID is normalized internally before processing.
+     * @return A [LearnResult] indicating the outcome:
+     *         - [LearnResult.UnknownAsset]: If the effect asset could not be found.
+     *         - [LearnResult.AlreadyLearned]: If the player has already learned the specified effect.
+     *         - [LearnResult.Success]: If the effect was successfully learned.
+     */
     fun learnEffect(assetId: String): LearnResult {
         val normalizedAssetId = normalizeAssetId(assetId)
         val asset = getEffectAsset(normalizedAssetId) ?: return LearnResult.UnknownAsset
@@ -90,6 +100,15 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return LearnResult.Success(asset)
     }
 
+    /**
+     * Removes the learned flask effect associated with the given asset ID, if it exists.
+     *
+     * @param assetId The ID of the flask effect to forget. This ID is normalized internally before processing.
+     * @return A [ForgetResult] indicating the outcome:
+     *         - [ForgetResult.UnknownAsset]: If the effect asset could not be found.
+     *         - [ForgetResult.NotLearned]: If the player has not learned the specified effect.
+     *         - [ForgetResult.Success]: If the effect was successfully forgotten.
+     */
     fun forgetEffect(assetId: String): ForgetResult {
         val normalizedAssetId = normalizeAssetId(assetId)
         val asset = getEffectAsset(normalizedAssetId) ?: return ForgetResult.UnknownAsset
@@ -105,6 +124,17 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return ForgetResult.Success(asset)
     }
 
+    /**
+     * Activates the flask effect associated with the specified asset ID, if possible.
+     *
+     * @param assetId The ID of the flask effect to activate.
+     *                This ID is normalized internally before processing.
+     * @return An [ActivateResult] indicating the outcome:
+     *         - [ActivateResult.UnknownAsset]: If the effect asset could not be found.
+     *         - [ActivateResult.NotLearned]: If the player has not learned the specified effect.
+     *         - [ActivateResult.AlreadyActive]: If the effect is already active.
+     *         - [ActivateResult.Success]: If the effect was successfully activated.
+     */
     fun activateEffect(assetId: String): ActivateResult {
         val normalizedAssetId = normalizeAssetId(assetId)
         val asset = getEffectAsset(normalizedAssetId) ?: return ActivateResult.UnknownAsset
@@ -124,6 +154,16 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return ActivateResult.Success(asset)
     }
 
+    /**
+     * Deactivates the active flask effect associated with the given asset ID.
+     *
+     * @param assetId The ID of the flask effect to deactivate.
+     *                This ID is normalized internally before processing.
+     * @return A [DeactivateResult] indicating the outcome:
+     *         - [DeactivateResult.UnknownAsset] if the effect asset could not be found.
+     *         - [DeactivateResult.NotActive] if the effect is not currently active.
+     *         - [DeactivateResult.Success] if the effect was successfully deactivated.
+     */
     fun deactivateEffect(assetId: String): DeactivateResult {
         val normalizedAssetId = normalizeAssetId(assetId)
         val asset = getEffectAsset(normalizedAssetId) ?: return DeactivateResult.UnknownAsset
@@ -138,6 +178,18 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return DeactivateResult.Success(asset)
     }
 
+
+    /**
+     * Executes all the active flask effects associated with the player.
+     * If a flask effect is successfully executed, it will trigger the corresponding interactions.
+     *
+     * @param playerStoreRef A reference to the player's entity store, used to retrieve and manage player-related data.
+     * @param interactionManager The interaction manager responsible for handling and executing effect interactions.
+     * @return An instance of [ExecuteResult], which indicates the outcome of the operation:
+     *         - [ExecuteResult.Success]: If one or more effects were successfully executed, containing the count of successfully executed effects and the total effects.
+     *         - [ExecuteResult.NoActiveEffects]: If there are no active flask effects to execute.
+     *         - [ExecuteResult.NoEffectsExecuted]: If the execution process fails for all active effects.
+     */
     fun executeEffect(
         playerStoreRef: Ref<EntityStore>,
         interactionManager: InteractionManager
