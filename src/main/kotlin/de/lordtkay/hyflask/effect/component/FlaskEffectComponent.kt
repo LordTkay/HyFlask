@@ -5,10 +5,16 @@ import com.hypixel.hytale.codec.KeyedCodec
 import com.hypixel.hytale.codec.builder.BuilderCodec
 import com.hypixel.hytale.component.Component
 import com.hypixel.hytale.component.ComponentType
+import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.logger.HytaleLogger
+import com.hypixel.hytale.protocol.InteractionType
+import com.hypixel.hytale.server.core.entity.InteractionContext
+import com.hypixel.hytale.server.core.entity.InteractionManager
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.RootInteraction
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.HyFlaskPlugin
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
+import de.lordtkay.hyflask.effect.protocol.FlaskEffectInteractionType.Consumption
 
 class FlaskEffectComponent : Component<EntityStore?> {
 
@@ -132,6 +138,62 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return DeactivateResult.Success(asset)
     }
 
+    fun executeEffect(
+        playerStoreRef: Ref<EntityStore>,
+        interactionManager: InteractionManager
+    ): ExecuteResult {
+
+        val interactionContext = InteractionContext.forInteraction(
+            interactionManager,
+            playerStoreRef,
+            InteractionType.Secondary,
+            playerStoreRef.store
+        )
+
+        activeEffects.ifEmpty {
+            logger.atFine().log("Player does not have any flask effects active")
+            return ExecuteResult.NoActiveEffects
+        }
+
+        var successfullyExecutions = 0
+
+        activeEffects.forEach { effectId ->
+            val asset = getEffectAsset(effectId) ?: return@forEach
+
+            val rootInteractionId = asset.interactions[Consumption]
+            if (rootInteractionId == null) {
+                logger.atWarning()
+                    .log("Flask effect asset '${asset.displayNameWithId}' does not have a '${Consumption.name}' interaction")
+                return@forEach
+            }
+
+            val rootInteraction = RootInteraction.getAssetMap().getAsset(rootInteractionId)
+            if (rootInteraction == null) {
+                logger.atWarning()
+                    .log("Could not find root interaction with ID '$rootInteractionId' for flask effect asset '${asset.displayNameWithId}'")
+                return@forEach
+            }
+
+            val effectChain = interactionManager.initChain(
+                InteractionType.Secondary,
+                interactionContext,
+                rootInteraction,
+                false
+            )
+            interactionManager.queueExecuteChain(effectChain)
+            logger.atFine().log("Executed flask effect '${asset.displayNameWithId}'")
+            successfullyExecutions++
+        }
+
+        if (successfullyExecutions == 0) {
+            logger.atFine().log("No flask effects were executed")
+            return ExecuteResult.NoEffectsExecuted
+        }
+
+        logger.atFine().log("Executed $successfullyExecutions/$${activeEffects.size} flask effects")
+        return ExecuteResult.Success(successfullyExecutions, activeEffects.size)
+    }
+
     private fun getEffectAsset(assetId: String): FlaskEffect? {
         val asset = FlaskEffect.assetMap.getAsset(assetId)
 
@@ -175,5 +237,11 @@ class FlaskEffectComponent : Component<EntityStore?> {
         data object UnknownAsset : DeactivateResult
         data class Success(val asset: FlaskEffect) : DeactivateResult
         data class NotActive(val asset: FlaskEffect) : DeactivateResult
+    }
+
+    sealed interface ExecuteResult {
+        data class Success(val successful: Int, val total: Int) : ExecuteResult
+        data object NoActiveEffects : ExecuteResult
+        data object NoEffectsExecuted : ExecuteResult
     }
 }
