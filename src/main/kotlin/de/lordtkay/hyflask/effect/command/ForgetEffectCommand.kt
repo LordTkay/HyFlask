@@ -38,13 +38,17 @@ class ForgetEffectCommand : AbstractTargetPlayerCommand("forget", "server.hyflas
         val effectId = effectIdArg.get(commandContext)
 
         val message = when (val result = flaskEffectComponent.forgetEffect(effectId)) {
+            is FlaskEffectComponent.ForgetResult.Success ->
+                Message.translation("server.hyflask.commands.effects.forget.success")
+                    .param("name", result.asset.displayNameWithId)
+
             is FlaskEffectComponent.ForgetResult.NotLearned ->
                 Message.translation("server.hyflask.commands.effects.forget.notLearned")
                     .param("name", result.asset.displayNameWithId)
 
-            is FlaskEffectComponent.ForgetResult.Success ->
+            FlaskEffectComponent.ForgetResult.SuccessUnknownAsset ->
                 Message.translation("server.hyflask.commands.effects.forget.success")
-                    .param("name", result.asset.displayNameWithId)
+                    .param("name", effectId)
 
             FlaskEffectComponent.ForgetResult.UnknownAsset ->
                 Message.translation("server.hyflask.commands.effects.invalidEffectId")

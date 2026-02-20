@@ -111,15 +111,21 @@ class FlaskEffectComponent : Component<EntityStore?> {
      */
     fun forgetEffect(assetId: String): ForgetResult {
         val normalizedAssetId = normalizeAssetId(assetId)
-        val asset = getEffectAsset(normalizedAssetId) ?: return ForgetResult.UnknownAsset
+        val asset = getEffectAsset(normalizedAssetId)
 
-        if (normalizedAssetId !in learnedEffects) {
+        val activeRemoved = activeEffects.remove(normalizedAssetId)
+        val learnedRemoved = learnedEffects.remove(normalizedAssetId)
+
+        if (!activeRemoved && !learnedRemoved) {
+            if (asset == null) return ForgetResult.UnknownAsset
+
             logger.atFine().log("Player does not know flask effect '${asset.displayNameWithId}'")
             return ForgetResult.NotLearned(asset)
+        } else if (asset == null) {
+            logger.atFine().log("Player forgot unknown flask effect '${normalizedAssetId}'")
+            return ForgetResult.SuccessUnknownAsset
         }
 
-        activeEffects.remove(normalizedAssetId)
-        learnedEffects.remove(normalizedAssetId)
         logger.atFine().log("Player forgot flask effect '${asset.displayNameWithId}'")
         return ForgetResult.Success(asset)
     }
@@ -275,6 +281,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
     sealed interface ForgetResult {
         data object UnknownAsset : ForgetResult
         data class Success(val asset: FlaskEffect) : ForgetResult
+        data object SuccessUnknownAsset : ForgetResult
         data class NotLearned(val asset: FlaskEffect) : ForgetResult
     }
 
