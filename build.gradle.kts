@@ -17,6 +17,11 @@ repositories {
 dependencies {
     // Any external dependency you also want to include
     implementation(kotlin("stdlib-jdk8"))
+
+    // Unit Testing
+    testImplementation(platform("org.junit:junit-bom:6.0.3"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("io.mockk:mockk:1.14.9")
 }
 kotlin {
     jvmToolchain(25)

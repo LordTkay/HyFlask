@@ -1,0 +1,52 @@
+# === general ===
+
+
+# === ui ====
+
+
+# === items ===
+
+
+# === commands ===
+hyflask.commands=Commands for HyFlask.
+hyflask.commands.error=Error occurred while executing the command.
+
+hyflask.commands.effects=Display and manage a player's learned and active flask effects.
+hyflask.commands.effects.invalidEffectId=Flask effect with ID '{id}' not found.
+
+hyflask.commands.effects.get=Get the active and learned flask effects of a player.
+hyflask.commands.effects.get.success=Active:\n{activeEffects}\n\nLearned:\n{learnedEffects}
+
+hyflask.commands.effects.learn=Learn a flask effect by asset ID.
+hyflask.commands.effects.learn.effectId=The flask effect asset ID of the effect to learn.
+hyflask.commands.effects.learn.alreadyLearned=Flask effect '{name}' already learned.
+hyflask.commands.effects.learn.success=Flask effect '{name}' learned successfully.
+
+hyflask.commands.effects.forget=Forget a flask effect by asset ID.
+hyflask.commands.effects.forget.effectId=The flask effect asset ID of the effect to forget.
+hyflask.commands.effects.forget.notLearned=Flask effect '{name}' not learned.
+hyflask.commands.effects.forget.success=Flask effect '{name}' forgotten successfully.
+
+hyflask.commands.effects.activate=Activate a flask effect.
+hyflask.commands.effects.activate.effectId=The flask effect asset ID of the effect to activate.
+hyflask.commands.effects.activate.alreadyActive=Flask effect '{name}' already active.
+hyflask.commands.effects.activate.notLearned=Flask effect '{name}' not learned.
+hyflask.commands.effects.activate.success=Flask effect '{name}' activated successfully.
+
+hyflask.commands.effects.deactivate=Deactivate a flask effect.
+hyflask.commands.effects.deactivate.effectId=The flask effect asset ID of the effect to deactivate.
+hyflask.commands.effects.deactivate.alreadyDeactivated=Flask effect '{name}' already deactivated.
+hyflask.commands.effects.deactivate.notLearned=Flask effect '{name}' not learned.
+hyflask.commands.effects.deactivate.success=Flask effect '{name}' deactivated successfully.
+
+hyflask.commands.uses=Display and manipulate uses of a players flask.
+hyflask.commands.uses.add=Add amount to remaining uses of players flask.
+hyflask.commands.uses.add.amount=The amount of uses that will be added or removed.
+hyflask.commands.uses.add.success={uses} of {max} uses now.
+hyflask.commands.uses.get=Get remaining and maximum uses of players flask.
+hyflask.commands.uses.get.success={uses} of {max} uses remaining.
+hyflask.commands.uses.settomax=Resets the amount of uses of players flask.
+hyflask.commands.uses.settomax.success={uses} of {max} uses reset.
+hyflask.commands.uses.set=Sets the uses of players flask to fix amount.
+hyflask.commands.uses.set.amount=The amount of uses the flask will have.
+hyflask.commands.uses.set.success={uses} of {max} uses now.
