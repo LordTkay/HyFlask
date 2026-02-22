@@ -170,6 +170,21 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
             return "$translatedName ($id)"
         }
 
+    /**
+     * Provides a description for the effect, which is either the translated description or an empty string if no
+     * translation is defined.
+     */
+    val description: String?
+        get() {
+            translationProperties?.description?.let {
+                val message = Message.translation(it)
+                return MessageUtil.toAnsiString(message).toString()
+            }
+
+            return null
+        }
+
+
     private fun processConfig() {
         val itemQualityAssetMap = ItemQuality.getAssetMap()
         if (this.qualityId != null) {
