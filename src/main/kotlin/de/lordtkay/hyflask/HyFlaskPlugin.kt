@@ -4,6 +4,7 @@ import com.hypixel.hytale.assetstore.map.IndexedAssetMap
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.asset.HytaleAssetStore
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.server.OpenCustomUIInteraction
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
 import com.hypixel.hytale.server.core.util.Config
@@ -12,6 +13,7 @@ import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
+import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -36,11 +38,11 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
         registerAssetStores()
         registerComponents()
         registerInteractions()
+        registerPages()
         commandRegistry.registerCommand(HyFlaskCommandCollection())
 
         logger.atInfo().log("[$name] Setup complete!")
     }
-
 
     private fun registerAssetStores() {
         val flaskEffectAssetStore = HytaleAssetStore
@@ -73,6 +75,14 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             FlaskEffectApplyInteraction.ID,
             FlaskEffectApplyInteraction::class.java,
             FlaskEffectApplyInteraction.CODEC
+        )
+    }
+
+    private fun registerPages() {
+        getCodecRegistry(OpenCustomUIInteraction.PAGE_CODEC).register(
+            FlaskEffectSelectionSupplier.ID,
+            FlaskEffectSelectionSupplier::class.java,
+            FlaskEffectSelectionSupplier.CODEC
         )
     }
 

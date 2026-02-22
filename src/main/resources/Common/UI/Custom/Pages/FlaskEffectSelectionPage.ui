@@ -1,0 +1,68 @@
+$C = "../Common.ui";
+$Sounds = "../Sounds.ui";
+$FES = "FlaskEffectSelectionConstants.ui";
+
+$C.@PageOverlay {
+
+  Group {
+    Anchor: (Width: 1000, Height: 500);
+
+    LayoutMode: Left;
+
+    $C.@Container #LearnedEffects {
+      Anchor: (Width: 395);
+
+      #Title {
+        Group {
+          $C.@Title {
+            @Text = "Learned Effects";
+          }
+          $C.@HeaderSearch {}
+        }
+      }
+
+      #Content {
+        LayoutMode: TopScrolling;
+        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+        KeepScrollPosition: true;
+      }
+    }
+
+    // Spacer
+    Group {
+      Anchor: (Width: 10);
+    }
+
+    $C.@Container #ActiveEffects {
+      Anchor: (Width: 595);
+
+      #Title {
+        Group {
+          $C.@Title {
+            @Text = "Active Effects";
+          }
+          $C.@HeaderSearch {}
+        }
+      }
+
+      #Content {
+        LayoutMode: Top;
+
+        Group #EffectList {
+          LayoutMode: TopScrolling;
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+          KeepScrollPosition: true;
+          FlexWeight: 1;
+        }
+
+        Group #Details {
+          Label {
+            Text: "Capacity 10/10";
+          }
+        }
+      }
+    }
+  }
+}
+
+$C.@BackButton {}
