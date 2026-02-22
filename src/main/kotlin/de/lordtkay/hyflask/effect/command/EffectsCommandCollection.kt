@@ -5,6 +5,7 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractComman
 class EffectsCommandCollection : AbstractCommandCollection("effects", "server.hyflask.commands.effects") {
 
     init {
+        addSubCommand(SelectEffectCommand())
         addSubCommand(GetEffectCommand())
         addSubCommand(LearnEffectCommand())
         addSubCommand(ForgetEffectCommand())
