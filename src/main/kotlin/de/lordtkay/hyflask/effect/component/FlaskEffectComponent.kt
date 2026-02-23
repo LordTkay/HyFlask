@@ -252,6 +252,16 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return ExecuteResult.Success(successfullyExecutions, activeEffects.size)
     }
 
+    /**
+     * Checks whether the flask effect associated with the given asset ID is currently active.
+     *
+     * @param assetId The ID of the flask effect to check. This ID is normalized internally before processing.
+     * @return True if the flask effect is currently active, false otherwise.
+     */
+    fun isActive(assetId: String): Boolean {
+        return normalizeAssetId(assetId) in activeEffects
+    }
+
     private fun getEffectAsset(assetId: String): FlaskEffect? {
         val asset = FlaskEffect.assetMap.getAsset(assetId)
 
