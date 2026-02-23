@@ -47,30 +47,34 @@ class FlaskEffectSelectionPage(
         groups.values.forEach { group ->
             val activeEffect = group.activeEffect
             if (activeEffect != null) {
-                activeCount = addActiveEffectElement(activeCount, commandBuilder, activeEffect, group)
+                if (activeCount > 0) {
+                    commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectSpacerItem.ui")
+                    activeCount++
+                }
+                applyActiveEffectElement(activeCount, commandBuilder, activeEffect, group)
+                activeCount++
             } else {
-                learnedCount = addLearnedEffectElement(learnedCount, commandBuilder, group)
+                if (learnedCount > 0) {
+                    commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectSpacerItem.ui")
+                    learnedCount++
+                }
+                applyLearnedEffectElement(learnedCount, commandBuilder, group)
+                learnedCount++
             }
         }
 
     }
 
-    private fun addActiveEffectElement(
-        activeCount: Int,
+    private fun applyActiveEffectElement(
+        index: Int,
         commandBuilder: UICommandBuilder,
         activeEffect: FlaskEffect,
         group: EffectGroup
-    ): Int {
-        var count = activeCount
-
-        if (count > 0) {
-            commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectSpacerItem.ui")
-            count++
-        }
+    ) {
         val currentLevel = activeEffect.groupDetails?.level ?: 1
 
         commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
-        val selector = "#ActiveEffects #EffectList[$count]"
+        val selector = "#ActiveEffects #EffectList[$index]"
 
         commandBuilder.set("$selector #ItemLabel.Text", activeEffect.displayName)
         commandBuilder.set("$selector #ItemText.TooltipText", activeEffect.displayName)
@@ -113,24 +117,15 @@ class FlaskEffectSelectionPage(
         if (icon != null) {
             commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
         }
-
-        return ++count
     }
 
-    private fun addLearnedEffectElement(
-        learnedCount: Int,
+    private fun applyLearnedEffectElement(
+        index: Int,
         commandBuilder: UICommandBuilder,
         group: EffectGroup
-    ): Int {
-        var count = learnedCount
-
-        if (count > 0) {
-            commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectSpacerItem.ui")
-            count++
-        }
-
+    ) {
         commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
-        val selector = "#LearnedEffects #Content[$count]"
+        val selector = "#LearnedEffects #Content[$index]"
 
         commandBuilder.set("$selector #ItemLabel.Text", group.name)
         commandBuilder.set("$selector #ItemLabel.TooltipText", group.name)
@@ -146,8 +141,6 @@ class FlaskEffectSelectionPage(
         if (icon != null) {
             commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
         }
-
-        return ++count
     }
 
     private fun groupEffects(): Map<String, EffectGroup> {
