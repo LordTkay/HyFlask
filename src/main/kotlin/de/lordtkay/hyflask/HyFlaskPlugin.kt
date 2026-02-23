@@ -11,6 +11,7 @@ import com.hypixel.hytale.server.core.util.Config
 import de.lordtkay.hyflask.command.HyFlaskCommandCollection
 import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
+import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
@@ -45,6 +46,22 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     }
 
     private fun registerAssetStores() {
+
+        val flaskEffectGroupAssetStore = HytaleAssetStore
+            .builder(
+                String::class.java,
+                FlaskEffectGroup::class.java,
+                IndexedAssetMap<String, FlaskEffectGroup>()
+            )
+            .setCodec(FlaskEffectGroup.CODEC)
+            .setPath(FlaskEffectGroup.ASSET_PATH)
+            .setKeyFunction { asset -> asset.id }
+            .setReplaceOnRemove { id -> FlaskEffectGroup(id) }
+            .build()
+
+        assetRegistry.register(flaskEffectGroupAssetStore)
+
+
         val flaskEffectAssetStore = HytaleAssetStore
             .builder(
                 String::class.java,
