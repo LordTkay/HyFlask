@@ -66,6 +66,7 @@ class FlaskEffectSelectionPage(
             commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectSpacerItem.ui")
             count++
         }
+        val currentLevel = activeEffect.groupDetails?.level ?: 1
 
         commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
         val selector = "#ActiveEffects #EffectList[$count]"
@@ -76,6 +77,7 @@ class FlaskEffectSelectionPage(
 
         commandBuilder.set("$selector #ItemCost.Text", "5")
         commandBuilder.set("$selector #ItemLevel.Text", "LV 1")
+        commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
 
         val quality = ItemQuality.getAssetMap().getAsset(activeEffect.qualityIndex)
         if (quality != null) {
