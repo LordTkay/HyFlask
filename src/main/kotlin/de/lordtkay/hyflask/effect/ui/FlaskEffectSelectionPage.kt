@@ -30,6 +30,10 @@ class FlaskEffectSelectionPage(
     CustomPageLifetime.CanDismiss,
     FlaskEffectSelectionEventData.CODEC
 ) {
+
+    private var activeGroups: MutableList<EffectGroup> = mutableListOf()
+    private var learnedGroups: MutableList<EffectGroup> = mutableListOf()
+
     override fun build(
         ref: Ref<EntityStore?>,
         commandBuilder: UICommandBuilder,
@@ -42,37 +46,25 @@ class FlaskEffectSelectionPage(
 
         val groups = groupEffects()
 
-        var learnedCount = 0
-        var activeCount = 0
-
         groups.values.forEach { group ->
             val activeEffect = group.activeEffect
             if (activeEffect != null) {
-                if (activeCount > 0) {
-                    commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectSpacerItem.ui")
-                    activeCount++
-                }
-                applyActiveEffectElement(commandBuilder, eventBuilder, activeCount, activeEffect, group)
-                activeCount++
+                activeGroups.add(group)
+                applyActiveEffectElement(commandBuilder, eventBuilder, activeGroups.size - 1, group)
             } else {
-                if (learnedCount > 0) {
-                    commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectSpacerItem.ui")
-                    learnedCount++
-                }
-                applyLearnedEffectElement(commandBuilder, eventBuilder, learnedCount, group)
-                learnedCount++
+                learnedGroups.add(group)
+                applyLearnedEffectElement(commandBuilder, eventBuilder, learnedGroups.size - 1, group)
             }
         }
-
     }
 
     private fun applyActiveEffectElement(
         commandBuilder: UICommandBuilder,
         eventBuilder: UIEventBuilder,
         index: Int,
-        activeEffect: FlaskEffect,
         group: EffectGroup
     ) {
+        val activeEffect = group.activeEffect ?: return
         val currentLevel = activeEffect.groupDetails?.level ?: 1
 
         commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
@@ -107,7 +99,7 @@ class FlaskEffectSelectionPage(
             )
             commandBuilder.set("$selector #ItemLabel.Style.TextColor", colorHex)
             commandBuilder.setObject(
-                "$selector.Background", PatchStyle(
+                "$selector #Item.Background", PatchStyle(
                     Value.of("Borders/Border${quality.id}.png"),
                     Value.of(20)
                 )
