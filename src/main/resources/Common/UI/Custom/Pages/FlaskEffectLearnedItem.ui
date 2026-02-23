@@ -1,54 +1,59 @@
 $C = "../Common.ui";
 
-Group #Item {
-  LayoutMode: Left;
-  Padding: (Full: 5);
-  Background: (TexturePath: "../Common/ContainerPanelPatch.png", Border: 4);
+Group {
+  Padding: (Bottom: 5);
+  LayoutMode: Top;
 
-  AssetImage #ItemIcon {
-    AssetPath: "UI/Custom/Common/ContainerPanelPatch.png";
-    Padding: (Full: 5);
-    Anchor: (Width: 32, Height: 32);
-  }
-
-  Label #ItemLabel {
-    FlexWeight: 1;
-    Text: "Unknown Item";
-    TooltipText: "Unknown Item";
-    TextTooltipShowDelay: 1;
-    TextTooltipStyle: (
-      MaxWidth: 400,
-      LabelStyle: (Wrap: true, FontSize: 16),
-      Padding: 10,
-      Background: (TexturePath: "../Common/SecondaryButton.png", Border: 12)
-    );
-    Style: (VerticalAlignment: Center);
-    Padding: (Left: 10, Right: 5);
-  }
-
-  Group {
+  Group #Item {
     LayoutMode: Left;
-    Padding: (Right: 10);
+    Padding: (Full: 5);
+    Background: (TexturePath: "../Common/ContainerPanelPatch.png", Border: 4);
 
-    Label #ItemCostRange {
-      Text: "0";
-      Style: (FontSize: 10, TextColor: #ffd700, VerticalAlignment: Center);
-      Padding: (Right: 5);
+    AssetImage #ItemIcon {
+      AssetPath: "UI/Custom/Common/ContainerPanelPatch.png";
+      Padding: (Full: 5);
+      Anchor: (Width: 32, Height: 32);
+    }
+
+    Label #ItemLabel {
+      FlexWeight: 1;
+      Text: "Unknown Item";
+      TooltipText: "Unknown Item";
+      TextTooltipShowDelay: 1;
+      TextTooltipStyle: (
+        MaxWidth: 400,
+        LabelStyle: (Wrap: true, FontSize: 16),
+        Padding: 10,
+        Background: (TexturePath: "../Common/SecondaryButton.png", Border: 12)
+      );
+      Style: (VerticalAlignment: Center);
+      Padding: (Left: 10, Right: 5);
     }
 
     Group {
-      AssetImage {
-        AssetPath: "UI/Custom/Common/SliderHandle.png";
-        Anchor: (Width: 10, Height: 10);
+      LayoutMode: Left;
+      Padding: (Right: 10);
+
+      Label #ItemCostRange {
+        Text: "0";
+        Style: (FontSize: 10, TextColor: #ffd700, VerticalAlignment: Center);
+        Padding: (Right: 5);
+      }
+
+      Group {
+        AssetImage {
+          AssetPath: "UI/Custom/Common/SliderHandle.png";
+          Anchor: (Width: 10, Height: 10);
+        }
       }
     }
+
+
+    $C.@SecondaryTextButton #AddButton {
+      Anchor: (Width: 30);
+      Padding: (Full: 2);
+      Text: "+";
+    }
+
   }
-
-
-  $C.@SecondaryTextButton #AddButton {
-    Anchor: (Width: 30);
-    Padding: (Full: 2);
-    Text: "+";
-  }
-
 }
