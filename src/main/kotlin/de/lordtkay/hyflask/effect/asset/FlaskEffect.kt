@@ -1,6 +1,7 @@
 package de.lordtkay.hyflask.effect.asset
 
 import com.hypixel.hytale.assetstore.AssetExtraInfo
+import com.hypixel.hytale.assetstore.AssetKeyValidator
 import com.hypixel.hytale.assetstore.AssetRegistry
 import com.hypixel.hytale.assetstore.AssetStore
 import com.hypixel.hytale.assetstore.codec.AssetBuilderCodec
@@ -13,6 +14,7 @@ import com.hypixel.hytale.codec.codecs.map.MapCodec
 import com.hypixel.hytale.codec.schema.metadata.ui.UIEditor
 import com.hypixel.hytale.codec.schema.metadata.ui.UIEditorSectionStart
 import com.hypixel.hytale.codec.schema.metadata.ui.UIRebuildCaches
+import com.hypixel.hytale.codec.validation.ValidatorCache
 import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.asset.common.CommonAssetValidator
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
@@ -29,6 +31,7 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
     companion object {
         const val ASSET_PATH = "HyFlask/FlaskEffects"
         val CODEC: AssetBuilderCodec<String, FlaskEffect>
+        val VALIDATOR_CACHE = ValidatorCache(AssetKeyValidator(FlaskEffect::assetStore))
         private var ASSET_STORE: AssetStore<String, FlaskEffect, IndexedAssetMap<String, FlaskEffect>>? = null
 
         init {
@@ -101,6 +104,16 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
                 .addValidator(RootInteraction.VALIDATOR_CACHE.mapValueValidator)
                 .add()
 
+            builder
+                .appendInherited(
+                    KeyedCodec("GroupDetails", FlaskEffectGroupDetails.CODEC),
+                    { asset, value -> asset.groupDetails = value },
+                    { asset -> asset.groupDetails },
+                    { asset, parent -> asset.groupDetails = parent.groupDetails }
+                )
+                .documentation("A Group is used when the effect has multiple levels. It will group all effects together that use the same ID.")
+                .add()
+
             builder.afterDecode(FlaskEffect::processConfig)
 
             CODEC = builder.build()
@@ -133,6 +146,8 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
     var interactions: MutableMap<FlaskEffectInteractionType, String> = mutableMapOf()
         private set
     var interactionVars: MutableMap<String, String> = mutableMapOf()
+        private set
+    var groupDetails: FlaskEffectGroupDetails? = null
         private set
 
     constructor()
