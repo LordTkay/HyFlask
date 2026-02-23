@@ -17,6 +17,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
+import java.util.*
 
 // TODO: Texts need to be in the server.lang
 // TODO: Effects of the same family/group need to be put together and their family/group content should be displayed
@@ -51,14 +52,14 @@ class FlaskEffectSelectionPage(
                     commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectSpacerItem.ui")
                     activeCount++
                 }
-                applyActiveEffectElement(activeCount, commandBuilder, activeEffect, group)
+                applyActiveEffectElement(commandBuilder, eventBuilder, activeCount, activeEffect, group)
                 activeCount++
             } else {
                 if (learnedCount > 0) {
                     commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectSpacerItem.ui")
                     learnedCount++
                 }
-                applyLearnedEffectElement(learnedCount, commandBuilder, group)
+                applyLearnedEffectElement(commandBuilder, eventBuilder, learnedCount, group)
                 learnedCount++
             }
         }
@@ -66,8 +67,9 @@ class FlaskEffectSelectionPage(
     }
 
     private fun applyActiveEffectElement(
-        index: Int,
         commandBuilder: UICommandBuilder,
+        eventBuilder: UIEventBuilder,
+        index: Int,
         activeEffect: FlaskEffect,
         group: EffectGroup
     ) {
@@ -120,8 +122,9 @@ class FlaskEffectSelectionPage(
     }
 
     private fun applyLearnedEffectElement(
-        index: Int,
         commandBuilder: UICommandBuilder,
+        eventBuilder: UIEventBuilder,
+        index: Int,
         group: EffectGroup
     ) {
         commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
@@ -150,6 +153,7 @@ class FlaskEffectSelectionPage(
             val asset = FlaskEffect.assetMap.getAsset(effectId) ?: return@forEach
 
             val effectGroup = asset.groupDetails
+            val currentLevel = asset.groupDetails?.level ?: 1
 
             // TODO: Change the costs to the asset one
             // TODO: Logic could be improved
@@ -170,18 +174,15 @@ class FlaskEffectSelectionPage(
                 } else {
                     entry = groups[groupId]!!
                     entry.maxCost = 10
-
-
                 }
 
-                val activeLevel = entry.activeEffect?.groupDetails?.level ?: 0
-                val currentLevel = asset.groupDetails?.level ?: 0
+                val activeLevel = entry.activeEffect?.groupDetails?.level ?: 1
                 if (activeLevel > currentLevel) {
                     isActiveEffect = false
                 }
             }
 
-            entry.learnedEffects.add(asset)
+            entry.learnedEffects[currentLevel] = asset
 
             if (isActiveEffect) {
                 entry.activeEffect = asset
@@ -197,7 +198,7 @@ class FlaskEffectSelectionPage(
         val icon: String?,
         var minCost: Int,
         var maxCost: Int,
-        var learnedEffects: MutableList<FlaskEffect> = mutableListOf(),
+        var learnedEffects: TreeMap<Int, FlaskEffect> = TreeMap(),
         var activeEffect: FlaskEffect? = null
     )
 
