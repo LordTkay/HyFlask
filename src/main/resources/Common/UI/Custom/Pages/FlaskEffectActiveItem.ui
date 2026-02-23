@@ -41,11 +41,12 @@ Group #Item {
     Padding: (Right: 5);
     FlexWeight: 1;
 
-
-    $C.@SmallSecondaryTextButton #AddLevelButton {
+    $C.@SmallSecondaryTextButton #DecreaseLevelButton {
       Anchor: (Width: 25, Height: 25);
-      Text: "+";
-      TooltipText: "Increase Effect Level";
+      Text: "-";
+      TooltipText: "Decrease Effect Level";
+      Visible: false;
+      Disabled: true;
     }
 
     Label #ItemLevel {
@@ -55,10 +56,12 @@ Group #Item {
       Style: (Alignment: Center, FontSize: 10, TextColor: #ffd700);
     }
 
-    $C.@SmallSecondaryTextButton #RemoveLevelButton {
+    $C.@SmallSecondaryTextButton #IncreaseLevelButton {
       Anchor: (Width: 25, Height: 25);
-      Text: "-";
-      TooltipText: "Decrease Effect Level";
+      Text: "+";
+      TooltipText: "Increase Effect Level";
+      Visible: false;
+      Disabled: true;
     }
   }
 

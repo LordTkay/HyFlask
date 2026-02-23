@@ -47,7 +47,7 @@ class FlaskEffectSelectionPage(
         groups.values.forEach { group ->
             val activeEffect = group.activeEffect
             if (activeEffect != null) {
-                activeCount = addActiveEffectElement(activeCount, commandBuilder, activeEffect)
+                activeCount = addActiveEffectElement(activeCount, commandBuilder, activeEffect, group)
             } else {
                 learnedCount = addLearnedEffectElement(learnedCount, commandBuilder, group)
             }
@@ -58,7 +58,8 @@ class FlaskEffectSelectionPage(
     private fun addActiveEffectElement(
         activeCount: Int,
         commandBuilder: UICommandBuilder,
-        activeEffect: FlaskEffect
+        activeEffect: FlaskEffect,
+        group: EffectGroup
     ): Int {
         var count = activeCount
 
@@ -76,8 +77,19 @@ class FlaskEffectSelectionPage(
         commandBuilder.set("$selector #ItemDescription.Text", activeEffect.description ?: "")
 
         commandBuilder.set("$selector #ItemCost.Text", "5")
-        commandBuilder.set("$selector #ItemLevel.Text", "LV 1")
         commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
+
+        if (group.learnedEffects.size > 1) {
+            commandBuilder.set("$selector #IncreaseLevelButton.Visible", true)
+            commandBuilder.set("$selector #DecreaseLevelButton.Visible", true)
+        }
+
+        if (group.learnedEffects.size > currentLevel) {
+            commandBuilder.set("$selector #IncreaseLevelButton.Disabled", false)
+        }
+        if (currentLevel > 1) {
+            commandBuilder.set("$selector #DecreaseLevelButton.Disabled", false)
+        }
 
         val quality = ItemQuality.getAssetMap().getAsset(activeEffect.qualityIndex)
         if (quality != null) {
