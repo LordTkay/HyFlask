@@ -3,13 +3,16 @@ package de.lordtkay.hyflask.effect.ui
 import com.hypixel.hytale.codec.Codec
 import com.hypixel.hytale.codec.KeyedCodec
 import com.hypixel.hytale.codec.builder.BuilderCodec
+import com.hypixel.hytale.codec.validation.Validators
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.component.Store
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime
+import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage
 import com.hypixel.hytale.server.core.ui.PatchStyle
 import com.hypixel.hytale.server.core.ui.Value
+import com.hypixel.hytale.server.core.ui.builder.EventData
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder
 import com.hypixel.hytale.server.core.universe.PlayerRef
@@ -50,9 +53,11 @@ class FlaskEffectSelectionPage(
             val activeEffect = group.activeEffect
             if (activeEffect != null) {
                 activeGroups.add(group)
+                commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
                 applyActiveEffectElement(commandBuilder, eventBuilder, activeGroups.size - 1, group)
             } else {
                 learnedGroups.add(group)
+                commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
                 applyLearnedEffectElement(commandBuilder, eventBuilder, learnedGroups.size - 1, group)
             }
         }
@@ -66,8 +71,6 @@ class FlaskEffectSelectionPage(
     ) {
         val activeEffect = group.activeEffect ?: return
         val currentLevel = activeEffect.groupDetails?.level ?: 1
-
-        commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
         val selector = "#ActiveEffects #EffectList[$index]"
 
         commandBuilder.set("$selector #ItemLabel.Text", activeEffect.displayName)
@@ -77,17 +80,10 @@ class FlaskEffectSelectionPage(
         commandBuilder.set("$selector #ItemCost.Text", "5")
         commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
 
-        if (group.learnedEffects.size > 1) {
-            commandBuilder.set("$selector #IncreaseLevelButton.Visible", true)
-            commandBuilder.set("$selector #DecreaseLevelButton.Visible", true)
-        }
-
-        if (group.learnedEffects.size > currentLevel) {
-            commandBuilder.set("$selector #IncreaseLevelButton.Disabled", false)
-        }
-        if (currentLevel > 1) {
-            commandBuilder.set("$selector #DecreaseLevelButton.Disabled", false)
-        }
+        commandBuilder.set("$selector #IncreaseLevelButton.Visible", group.learnedEffects.size > 1)
+        commandBuilder.set("$selector #DecreaseLevelButton.Visible", group.learnedEffects.size > 1)
+        commandBuilder.set("$selector #IncreaseLevelButton.Disabled", currentLevel >= group.learnedEffects.size)
+        commandBuilder.set("$selector #DecreaseLevelButton.Disabled", currentLevel <= 1)
 
         val quality = ItemQuality.getAssetMap().getAsset(activeEffect.qualityIndex)
         if (quality != null) {
@@ -106,11 +102,31 @@ class FlaskEffectSelectionPage(
             )
         }
 
-
         val icon = activeEffect.icon
         if (icon != null) {
             commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
         }
+
+        val currentIndex = activeGroups.indexOf(group)
+        eventBuilder.addEventBinding(
+            CustomUIEventBindingType.Activating,
+            "$selector #IncreaseLevelButton",
+            EventData.of(
+                "EventType", EventType.INCREASE_LEVEL.name
+            ).append(
+                "TargetIndex", currentIndex.toString()
+            )
+        )
+
+        eventBuilder.addEventBinding(
+            CustomUIEventBindingType.Activating,
+            "$selector #DecreaseLevelButton",
+            EventData.of(
+                "EventType", EventType.DECREASE_LEVEL.name
+            ).append(
+                "TargetIndex", currentIndex.toString()
+            )
+        )
     }
 
     private fun applyLearnedEffectElement(
@@ -119,7 +135,6 @@ class FlaskEffectSelectionPage(
         index: Int,
         group: EffectGroup
     ) {
-        commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
         val selector = "#LearnedEffects #Content[$index]"
 
         commandBuilder.set("$selector #ItemLabel.Text", group.name)
@@ -185,6 +200,40 @@ class FlaskEffectSelectionPage(
         return groups.toMap()
     }
 
+    override fun handleDataEvent(
+        ref: Ref<EntityStore?>,
+        store: Store<EntityStore?>,
+        data: FlaskEffectSelectionEventData
+    ) {
+        super.handleDataEvent(ref, store, data)
+        val commandBuilder = UICommandBuilder()
+
+        if (data.eventType == EventType.INCREASE_LEVEL || data.eventType == EventType.DECREASE_LEVEL) {
+            val targetGroup = activeGroups[data.targetIndex]
+            val activeEffect = targetGroup.activeEffect
+
+            if (activeEffect != null) {
+                val activeIndex = activeEffect.groupDetails?.level ?: 1
+
+                val nextLevel = if (data.eventType === EventType.INCREASE_LEVEL) {
+                    targetGroup.learnedEffects.higherEntry(activeIndex)
+                } else {
+                    targetGroup.learnedEffects.lowerEntry(activeIndex)
+                }
+
+                if (nextLevel != null) {
+                    targetGroup.activeEffect = nextLevel.value
+                }
+            } else {
+                targetGroup.activeEffect = targetGroup.learnedEffects.firstEntry().value
+            }
+
+            applyActiveEffectElement(commandBuilder, UIEventBuilder(), data.targetIndex, targetGroup)
+        }
+
+        sendUpdate(commandBuilder)
+    }
+
     class EffectGroup(
         val name: String,
         val icon: String?,
@@ -194,9 +243,14 @@ class FlaskEffectSelectionPage(
         var activeEffect: FlaskEffect? = null
     )
 
+    enum class EventType {
+        INCREASE_LEVEL,
+        DECREASE_LEVEL
+    }
+
     class FlaskEffectSelectionEventData {
-        var selectedEffect: String? = null
-            private set
+        var targetIndex: Int = 0
+        lateinit var eventType: EventType
 
         companion object {
             val CODEC: BuilderCodec<FlaskEffectSelectionEventData?>
@@ -207,16 +261,32 @@ class FlaskEffectSelectionPage(
                     ::FlaskEffectSelectionEventData
                 )
 
-                builder.append(
-                    KeyedCodec("SelectedEffect", Codec.STRING),
-                    { data: FlaskEffectSelectionEventData, value: String? ->
-                        if (value == null) return@append
-                        data.selectedEffect = value
-                    },
-                    { data: FlaskEffectSelectionEventData ->
-                        data.selectedEffect
-                    }
-                ).add()
+                builder
+                    .append(
+                        KeyedCodec("TargetIndex", Codec.STRING),
+                        { data: FlaskEffectSelectionEventData, value: String ->
+                            data.targetIndex = value.toInt()
+                        },
+                        { data: FlaskEffectSelectionEventData ->
+                            data.targetIndex.toString()
+                        }
+                    )
+                    .addValidator(Validators.nonNull())
+                    .add()
+
+                builder
+                    .append(
+                        KeyedCodec("EventType", Codec.STRING),
+                        { data: FlaskEffectSelectionEventData, value: String ->
+                            data.eventType = EventType.valueOf(value)
+                        },
+                        { data: FlaskEffectSelectionEventData ->
+                            data.eventType.name
+                        }
+                    )
+                    .addValidator(Validators.nonNull())
+                    .add()
+
 
                 CODEC = builder.build()
             }
