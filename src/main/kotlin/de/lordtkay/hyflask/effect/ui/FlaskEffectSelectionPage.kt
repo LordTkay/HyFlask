@@ -65,8 +65,6 @@ class FlaskEffectSelectionPage(
                 applyActiveEffectElement(
                     commandBuilder,
                     eventBuilder,
-                    activeGroups,
-                    learnedGroups,
                     group,
                     activeGroups.size - 1
                 )
@@ -76,8 +74,6 @@ class FlaskEffectSelectionPage(
                 applyLearnedEffectElement(
                     commandBuilder,
                     eventBuilder,
-                    activeGroups,
-                    learnedGroups,
                     group,
                     learnedGroups.size - 1
                 )
@@ -172,8 +168,6 @@ class FlaskEffectSelectionPage(
         fun applyActiveEffectElement(
             commandBuilder: UICommandBuilder,
             eventBuilder: UIEventBuilder,
-            activeGroups: List<EffectGroup>,
-            learnedGroups: List<EffectGroup>,
             group: EffectGroup,
             index: Int
         ) {
@@ -250,8 +244,6 @@ class FlaskEffectSelectionPage(
         fun applyLearnedEffectElement(
             commandBuilder: UICommandBuilder,
             eventBuilder: UIEventBuilder,
-            activeGroups: List<EffectGroup>,
-            learnedGroups: List<EffectGroup>,
             group: EffectGroup,
             index: Int
         ) {

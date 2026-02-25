@@ -32,8 +32,6 @@ class DeactivateEffectCommand(
         FlaskEffectSelectionPage.applyLearnedEffectElement(
             commandBuilder,
             eventBuilder,
-            activeGroups,
-            learnedGroups,
             group,
             newIndex
         )

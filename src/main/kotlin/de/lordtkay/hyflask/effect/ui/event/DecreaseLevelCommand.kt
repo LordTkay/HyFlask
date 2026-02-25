@@ -25,8 +25,6 @@ class DecreaseLevelCommand(
         FlaskEffectSelectionPage.applyActiveEffectElement(
             commandBuilder,
             eventBuilder,
-            activeGroups,
-            learnedGroups,
             group,
             index
         )

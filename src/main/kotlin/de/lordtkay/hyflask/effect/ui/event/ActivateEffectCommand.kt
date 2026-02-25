@@ -32,8 +32,6 @@ class ActivateEffectCommand(
         FlaskEffectSelectionPage.applyActiveEffectElement(
             commandBuilder,
             eventBuilder,
-            activeGroups,
-            learnedGroups,
             group,
             newIndex
         )
