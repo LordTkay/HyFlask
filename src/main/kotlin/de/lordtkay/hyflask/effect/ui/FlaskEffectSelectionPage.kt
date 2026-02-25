@@ -22,6 +22,8 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.DECREASE_LEVEL
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.INCREASE_LEVEL
+import de.lordtkay.hyflask.effect.ui.event.ActivateEffectCommand
+import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelCommand
 import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelCommand
 import de.lordtkay.hyflask.utility.command.CommandManager
@@ -144,9 +146,15 @@ class FlaskEffectSelectionPage(
             INCREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
                 IncreaseLevelCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
             }
-
             DECREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
                 DecreaseLevelCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
+            }
+            EventType.ACTIVATE_EFFECT -> learnedGroups.find { it.name == data.groupName }?.let {
+                ActivateEffectCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
+            }
+
+            EventType.DEACTIVATE_EFFECT -> activeGroups.find { it.name == data.groupName }?.let {
+                DeactivateEffectCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
             }
         }
 
@@ -154,10 +162,13 @@ class FlaskEffectSelectionPage(
             initiator.execute(command)
         }
 
-        sendUpdate(commandBuilder)
+        sendUpdate(commandBuilder, eventBuilder, false)
     }
 
     companion object {
+        fun getActiveEffectSelector(index: Int): String = "#ActiveEffects #EffectList[$index]"
+        fun getLearnedEffectSelector(index: Int): String = "#LearnedEffects #Content[$index]"
+
         fun applyActiveEffectElement(
             commandBuilder: UICommandBuilder,
             eventBuilder: UIEventBuilder,
@@ -168,7 +179,7 @@ class FlaskEffectSelectionPage(
         ) {
             val activeEffect = group.activeEffect ?: return
             val currentLevel = activeEffect.groupDetails?.level ?: 1
-            val selector = "#ActiveEffects #EffectList[$index]"
+            val selector = getActiveEffectSelector(index)
 
             commandBuilder.set("$selector #ItemLabel.Text", activeEffect.displayName)
             commandBuilder.set("$selector #ItemText.TooltipText", activeEffect.displayName)
@@ -223,7 +234,18 @@ class FlaskEffectSelectionPage(
                     "GroupName", group.name
                 )
             )
+
+            eventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "$selector #RemoveButton",
+                EventData.of(
+                    "EventType", EventType.DEACTIVATE_EFFECT.name
+                ).append(
+                    "GroupName", group.name
+                )
+            )
         }
+
 
         fun applyLearnedEffectElement(
             commandBuilder: UICommandBuilder,
@@ -233,7 +255,7 @@ class FlaskEffectSelectionPage(
             group: EffectGroup,
             index: Int
         ) {
-            val selector = "#LearnedEffects #Content[$index]"
+            val selector = getLearnedEffectSelector(index)
 
             commandBuilder.set("$selector #ItemLabel.Text", group.name)
             commandBuilder.set("$selector #ItemLabel.TooltipText", group.name)
@@ -249,6 +271,16 @@ class FlaskEffectSelectionPage(
             if (icon != null) {
                 commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
             }
+
+            eventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "$selector #AddButton",
+                EventData.of(
+                    "EventType", EventType.ACTIVATE_EFFECT.name
+                ).append(
+                    "GroupName", group.name
+                )
+            )
         }
     }
 
@@ -263,7 +295,9 @@ class FlaskEffectSelectionPage(
 
     enum class EventType {
         INCREASE_LEVEL,
-        DECREASE_LEVEL
+        DECREASE_LEVEL,
+        ACTIVATE_EFFECT,
+        DEACTIVATE_EFFECT
     }
 
     class FlaskEffectSelectionEventData {
