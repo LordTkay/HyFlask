@@ -56,8 +56,21 @@ $C.@PageOverlay {
         }
 
         Group #Details {
+          LayoutMode: Left;
           Label {
             Text: "Capacity 10/10";
+          }
+
+          $C.@SecondaryTextButton #UndoButton {
+            Anchor: (Width: 30);
+            Padding: (Full: 2);
+            Text: "<";
+          }
+
+          $C.@SecondaryTextButton #RedoButton {
+            Anchor: (Width: 30);
+            Padding: (Full: 2);
+            Text: ">";
           }
         }
       }

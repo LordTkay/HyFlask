@@ -23,16 +23,22 @@ class ActivateEffectCommand(
         commandBuilder.remove(learnedSelector)
         learnedGroups.remove(group)
 
-        activeGroups.add(group)
+        activeGroups.add(newIndex, group)
         group.activeEffect = group.learnedEffects.firstEntry().value
 
-        commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
-        FlaskEffectSelectionPage.applyActiveEffectElement(
-            commandBuilder,
-            eventBuilder,
-            group,
-            newIndex
-        )
+        for (i in newIndex until activeGroups.size) {
+            if (i >= activeGroups.size - 1) {
+                commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
+
+            }
+            FlaskEffectSelectionPage.applyActiveEffectElement(
+                commandBuilder,
+                eventBuilder,
+                activeGroups[i],
+                i
+            )
+        }
+
         return true
     }
 

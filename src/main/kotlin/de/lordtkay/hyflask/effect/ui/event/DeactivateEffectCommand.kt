@@ -24,15 +24,22 @@ class DeactivateEffectCommand(
         commandBuilder.remove(activeSelector)
         activeGroups.remove(group)
 
-        learnedGroups.add(group)
+        learnedGroups.add(newIndex, group)
 
-        commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
-        FlaskEffectSelectionPage.applyLearnedEffectElement(
-            commandBuilder,
-            eventBuilder,
-            group,
-            newIndex
-        )
+        for (i in newIndex until learnedGroups.size) {
+            if (i >= learnedGroups.size - 1) {
+                commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
+            }
+
+            FlaskEffectSelectionPage.applyLearnedEffectElement(
+                commandBuilder,
+                eventBuilder,
+                learnedGroups[i],
+                i
+            )
+        }
+
+
         return true
     }
 

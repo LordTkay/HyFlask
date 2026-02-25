@@ -54,6 +54,22 @@ class FlaskEffectSelectionPage(
         commandBuilder.clear("#LearnedEffects #Content")
         commandBuilder.clear("#ActiveEffects #EffectList")
 
+        eventBuilder.addEventBinding(
+            CustomUIEventBindingType.Activating,
+            "#UndoButton",
+            EventData.of(
+                "EventType", UNDO.name
+            )
+        )
+
+        eventBuilder.addEventBinding(
+            CustomUIEventBindingType.Activating,
+            "#RedoButton",
+            EventData.of(
+                "EventType", REDO.name
+            )
+        )
+
         val groups = groupEffects()
 
         groups.values.forEach { group ->
@@ -152,6 +168,16 @@ class FlaskEffectSelectionPage(
 
             DEACTIVATE_EFFECT -> activeGroups.find { it.name == data.groupName }?.let {
                 DeactivateEffectCommand(activeGroups, learnedGroups, it)
+            }
+
+            UNDO -> {
+                initiator.undo(commandBuilder, eventBuilder)
+                null
+            }
+
+            REDO -> {
+                initiator.redo(commandBuilder, eventBuilder)
+                null
             }
         }
 
@@ -290,11 +316,13 @@ class FlaskEffectSelectionPage(
         INCREASE_LEVEL,
         DECREASE_LEVEL,
         ACTIVATE_EFFECT,
-        DEACTIVATE_EFFECT
+        DEACTIVATE_EFFECT,
+        UNDO,
+        REDO
     }
 
     class FlaskEffectSelectionEventData {
-        lateinit var groupName: String
+        var groupName: String? = null
         lateinit var eventType: EventType
 
         companion object {
@@ -309,14 +337,13 @@ class FlaskEffectSelectionPage(
                 builder
                     .append(
                         KeyedCodec("GroupName", Codec.STRING),
-                        { data: FlaskEffectSelectionEventData, value: String ->
+                        { data: FlaskEffectSelectionEventData, value: String? ->
                             data.groupName = value
                         },
                         { data: FlaskEffectSelectionEventData ->
                             data.groupName
                         }
                     )
-                    .addValidator(Validators.nonNull())
                     .add()
 
                 builder
