@@ -20,6 +20,11 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
+import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.DECREASE_LEVEL
+import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.INCREASE_LEVEL
+import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelCommand
+import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelCommand
+import de.lordtkay.hyflask.utility.command.CommandManager
 import java.util.*
 
 // TODO: Texts need to be in the server.lang
@@ -34,6 +39,7 @@ class FlaskEffectSelectionPage(
     FlaskEffectSelectionEventData.CODEC
 ) {
 
+    private val initiator = CommandManager()
     private var activeGroups: MutableList<EffectGroup> = mutableListOf()
     private var learnedGroups: MutableList<EffectGroup> = mutableListOf()
 
@@ -54,102 +60,26 @@ class FlaskEffectSelectionPage(
             if (activeEffect != null) {
                 activeGroups.add(group)
                 commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
-                applyActiveEffectElement(commandBuilder, eventBuilder, activeGroups.size - 1, group)
+                applyActiveEffectElement(
+                    commandBuilder,
+                    eventBuilder,
+                    activeGroups,
+                    learnedGroups,
+                    group,
+                    activeGroups.size - 1
+                )
             } else {
                 learnedGroups.add(group)
                 commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
-                applyLearnedEffectElement(commandBuilder, eventBuilder, learnedGroups.size - 1, group)
-            }
-        }
-    }
-
-    private fun applyActiveEffectElement(
-        commandBuilder: UICommandBuilder,
-        eventBuilder: UIEventBuilder,
-        index: Int,
-        group: EffectGroup
-    ) {
-        val activeEffect = group.activeEffect ?: return
-        val currentLevel = activeEffect.groupDetails?.level ?: 1
-        val selector = "#ActiveEffects #EffectList[$index]"
-
-        commandBuilder.set("$selector #ItemLabel.Text", activeEffect.displayName)
-        commandBuilder.set("$selector #ItemText.TooltipText", activeEffect.displayName)
-        commandBuilder.set("$selector #ItemDescription.Text", activeEffect.description ?: "")
-
-        commandBuilder.set("$selector #ItemCost.Text", "5")
-        commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
-
-        commandBuilder.set("$selector #IncreaseLevelButton.Visible", group.learnedEffects.size > 1)
-        commandBuilder.set("$selector #DecreaseLevelButton.Visible", group.learnedEffects.size > 1)
-        commandBuilder.set("$selector #IncreaseLevelButton.Disabled", currentLevel >= group.learnedEffects.size)
-        commandBuilder.set("$selector #DecreaseLevelButton.Disabled", currentLevel <= 1)
-
-        val quality = ItemQuality.getAssetMap().getAsset(activeEffect.qualityIndex)
-        if (quality != null) {
-            val colorHex = String.format(
-                "#%02X%02X%02X",
-                quality.textColor.red,
-                quality.textColor.green,
-                quality.textColor.blue
-            )
-            commandBuilder.set("$selector #ItemLabel.Style.TextColor", colorHex)
-            commandBuilder.setObject(
-                "$selector #Item.Background", PatchStyle(
-                    Value.of("Borders/Border${quality.id}.png"),
-                    Value.of(20)
+                applyLearnedEffectElement(
+                    commandBuilder,
+                    eventBuilder,
+                    activeGroups,
+                    learnedGroups,
+                    group,
+                    learnedGroups.size - 1
                 )
-            )
-        }
-
-        val icon = activeEffect.icon
-        if (icon != null) {
-            commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
-        }
-
-        val currentIndex = activeGroups.indexOf(group)
-        eventBuilder.addEventBinding(
-            CustomUIEventBindingType.Activating,
-            "$selector #IncreaseLevelButton",
-            EventData.of(
-                "EventType", EventType.INCREASE_LEVEL.name
-            ).append(
-                "TargetIndex", currentIndex.toString()
-            )
-        )
-
-        eventBuilder.addEventBinding(
-            CustomUIEventBindingType.Activating,
-            "$selector #DecreaseLevelButton",
-            EventData.of(
-                "EventType", EventType.DECREASE_LEVEL.name
-            ).append(
-                "TargetIndex", currentIndex.toString()
-            )
-        )
-    }
-
-    private fun applyLearnedEffectElement(
-        commandBuilder: UICommandBuilder,
-        eventBuilder: UIEventBuilder,
-        index: Int,
-        group: EffectGroup
-    ) {
-        val selector = "#LearnedEffects #Content[$index]"
-
-        commandBuilder.set("$selector #ItemLabel.Text", group.name)
-        commandBuilder.set("$selector #ItemLabel.TooltipText", group.name)
-
-
-        var costRange = group.minCost.toString()
-        if (group.minCost != group.maxCost) {
-            costRange = "${group.minCost} - ${group.maxCost}"
-        }
-        commandBuilder.set("$selector #ItemCostRange.Text", costRange)
-
-        val icon = group.icon
-        if (icon != null) {
-            commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
+            }
         }
     }
 
@@ -207,31 +137,119 @@ class FlaskEffectSelectionPage(
     ) {
         super.handleDataEvent(ref, store, data)
         val commandBuilder = UICommandBuilder()
+        val eventBuilder = UIEventBuilder()
 
-        if (data.eventType == EventType.INCREASE_LEVEL || data.eventType == EventType.DECREASE_LEVEL) {
-            val targetGroup = activeGroups[data.targetIndex]
-            val activeEffect = targetGroup.activeEffect
 
-            if (activeEffect != null) {
-                val activeIndex = activeEffect.groupDetails?.level ?: 1
-
-                val nextLevel = if (data.eventType === EventType.INCREASE_LEVEL) {
-                    targetGroup.learnedEffects.higherEntry(activeIndex)
-                } else {
-                    targetGroup.learnedEffects.lowerEntry(activeIndex)
-                }
-
-                if (nextLevel != null) {
-                    targetGroup.activeEffect = nextLevel.value
-                }
-            } else {
-                targetGroup.activeEffect = targetGroup.learnedEffects.firstEntry().value
+        val command = when (data.eventType) {
+            INCREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
+                IncreaseLevelCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
             }
 
-            applyActiveEffectElement(commandBuilder, UIEventBuilder(), data.targetIndex, targetGroup)
+            DECREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
+                DecreaseLevelCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
+            }
+        }
+
+        if (command != null) {
+            initiator.execute(command)
         }
 
         sendUpdate(commandBuilder)
+    }
+
+    companion object {
+        fun applyActiveEffectElement(
+            commandBuilder: UICommandBuilder,
+            eventBuilder: UIEventBuilder,
+            activeGroups: List<EffectGroup>,
+            learnedGroups: List<EffectGroup>,
+            group: EffectGroup,
+            index: Int
+        ) {
+            val activeEffect = group.activeEffect ?: return
+            val currentLevel = activeEffect.groupDetails?.level ?: 1
+            val selector = "#ActiveEffects #EffectList[$index]"
+
+            commandBuilder.set("$selector #ItemLabel.Text", activeEffect.displayName)
+            commandBuilder.set("$selector #ItemText.TooltipText", activeEffect.displayName)
+            commandBuilder.set("$selector #ItemDescription.Text", activeEffect.description ?: "")
+
+            commandBuilder.set("$selector #ItemCost.Text", "5")
+            commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
+
+            commandBuilder.set("$selector #IncreaseLevelButton.Visible", group.learnedEffects.size > 1)
+            commandBuilder.set("$selector #DecreaseLevelButton.Visible", group.learnedEffects.size > 1)
+            commandBuilder.set("$selector #IncreaseLevelButton.Disabled", currentLevel >= group.learnedEffects.size)
+            commandBuilder.set("$selector #DecreaseLevelButton.Disabled", currentLevel <= 1)
+
+            val quality = ItemQuality.getAssetMap().getAsset(activeEffect.qualityIndex)
+            if (quality != null) {
+                val colorHex = String.format(
+                    "#%02X%02X%02X",
+                    quality.textColor.red,
+                    quality.textColor.green,
+                    quality.textColor.blue
+                )
+                commandBuilder.set("$selector #ItemLabel.Style.TextColor", colorHex)
+                commandBuilder.setObject(
+                    "$selector #Item.Background", PatchStyle(
+                        Value.of("Borders/Border${quality.id}.png"),
+                        Value.of(20)
+                    )
+                )
+            }
+
+            val icon = activeEffect.icon
+            if (icon != null) {
+                commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
+            }
+
+            eventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "$selector #IncreaseLevelButton",
+                EventData.of(
+                    "EventType", INCREASE_LEVEL.name
+                ).append(
+                    "GroupName", group.name
+                )
+            )
+
+            eventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "$selector #DecreaseLevelButton",
+                EventData.of(
+                    "EventType", DECREASE_LEVEL.name
+                ).append(
+                    "GroupName", group.name
+                )
+            )
+        }
+
+        fun applyLearnedEffectElement(
+            commandBuilder: UICommandBuilder,
+            eventBuilder: UIEventBuilder,
+            activeGroups: List<EffectGroup>,
+            learnedGroups: List<EffectGroup>,
+            group: EffectGroup,
+            index: Int
+        ) {
+            val selector = "#LearnedEffects #Content[$index]"
+
+            commandBuilder.set("$selector #ItemLabel.Text", group.name)
+            commandBuilder.set("$selector #ItemLabel.TooltipText", group.name)
+
+
+            var costRange = group.minCost.toString()
+            if (group.minCost != group.maxCost) {
+                costRange = "${group.minCost} - ${group.maxCost}"
+            }
+            commandBuilder.set("$selector #ItemCostRange.Text", costRange)
+
+            val icon = group.icon
+            if (icon != null) {
+                commandBuilder.set("$selector #ItemIcon.AssetPath", icon)
+            }
+        }
     }
 
     class EffectGroup(
@@ -249,7 +267,7 @@ class FlaskEffectSelectionPage(
     }
 
     class FlaskEffectSelectionEventData {
-        var targetIndex: Int = 0
+        lateinit var groupName: String
         lateinit var eventType: EventType
 
         companion object {
@@ -263,12 +281,12 @@ class FlaskEffectSelectionPage(
 
                 builder
                     .append(
-                        KeyedCodec("TargetIndex", Codec.STRING),
+                        KeyedCodec("GroupName", Codec.STRING),
                         { data: FlaskEffectSelectionEventData, value: String ->
-                            data.targetIndex = value.toInt()
+                            data.groupName = value
                         },
                         { data: FlaskEffectSelectionEventData ->
-                            data.targetIndex.toString()
+                            data.groupName
                         }
                     )
                     .addValidator(Validators.nonNull())
