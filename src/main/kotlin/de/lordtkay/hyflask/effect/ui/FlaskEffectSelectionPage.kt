@@ -20,13 +20,12 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
-import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.DECREASE_LEVEL
-import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.INCREASE_LEVEL
+import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.*
 import de.lordtkay.hyflask.effect.ui.event.ActivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelCommand
 import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelCommand
-import de.lordtkay.hyflask.utility.command.CommandManager
+import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
 
 // TODO: Texts need to be in the server.lang
@@ -41,7 +40,7 @@ class FlaskEffectSelectionPage(
     FlaskEffectSelectionEventData.CODEC
 ) {
 
-    private val initiator = CommandManager()
+    private val initiator = UiCommandManager()
     private var activeGroups: MutableList<EffectGroup> = mutableListOf()
     private var learnedGroups: MutableList<EffectGroup> = mutableListOf()
 
@@ -140,22 +139,24 @@ class FlaskEffectSelectionPage(
 
         val command = when (data.eventType) {
             INCREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
-                IncreaseLevelCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
-            }
-            DECREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
-                DecreaseLevelCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
-            }
-            EventType.ACTIVATE_EFFECT -> learnedGroups.find { it.name == data.groupName }?.let {
-                ActivateEffectCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
+                IncreaseLevelCommand(activeGroups, learnedGroups, it)
             }
 
-            EventType.DEACTIVATE_EFFECT -> activeGroups.find { it.name == data.groupName }?.let {
-                DeactivateEffectCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, it)
+            DECREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
+                DecreaseLevelCommand(activeGroups, learnedGroups, it)
+            }
+
+            ACTIVATE_EFFECT -> learnedGroups.find { it.name == data.groupName }?.let {
+                ActivateEffectCommand(activeGroups, learnedGroups, it)
+            }
+
+            DEACTIVATE_EFFECT -> activeGroups.find { it.name == data.groupName }?.let {
+                DeactivateEffectCommand(activeGroups, learnedGroups, it)
             }
         }
 
         if (command != null) {
-            initiator.execute(command)
+            initiator.execute(commandBuilder, eventBuilder, command)
         }
 
         sendUpdate(commandBuilder, eventBuilder, false)
@@ -233,7 +234,7 @@ class FlaskEffectSelectionPage(
                 CustomUIEventBindingType.Activating,
                 "$selector #RemoveButton",
                 EventData.of(
-                    "EventType", EventType.DEACTIVATE_EFFECT.name
+                    "EventType", DEACTIVATE_EFFECT.name
                 ).append(
                     "GroupName", group.name
                 )
@@ -268,7 +269,7 @@ class FlaskEffectSelectionPage(
                 CustomUIEventBindingType.Activating,
                 "$selector #AddButton",
                 EventData.of(
-                    "EventType", EventType.ACTIVATE_EFFECT.name
+                    "EventType", ACTIVATE_EFFECT.name
                 ).append(
                     "GroupName", group.name
                 )

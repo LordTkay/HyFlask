@@ -3,20 +3,18 @@ package de.lordtkay.hyflask.effect.ui.event
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
-import de.lordtkay.hyflask.utility.command.Command
+import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
 class DeactivateEffectCommand(
-    val commandBuilder: UICommandBuilder,
-    val eventBuilder: UIEventBuilder,
     val activeGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
     val learnedGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup,
     var newIndex: Int = learnedGroups.size
-) : Command {
+) : UiCommand {
 
     private var previousIndex: Int = -1
 
-    override fun execute(): Boolean {
+    override fun execute(commandBuilder: UICommandBuilder, eventBuilder: UIEventBuilder): Boolean {
         if (group.activeEffect == null) return false
 
         group.activeEffect = null
@@ -38,7 +36,7 @@ class DeactivateEffectCommand(
         return true
     }
 
-    override fun undo(): Command {
-        return ActivateEffectCommand(commandBuilder, eventBuilder, activeGroups, learnedGroups, group, previousIndex)
+    override fun undo(): UiCommand {
+        return ActivateEffectCommand(activeGroups, learnedGroups, group, previousIndex)
     }
 }

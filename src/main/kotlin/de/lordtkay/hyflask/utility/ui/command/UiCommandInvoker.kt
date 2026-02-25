@@ -1,4 +1,7 @@
-package de.lordtkay.hyflask.utility.command
+package de.lordtkay.hyflask.utility.ui.command
+
+import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder
+import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder
 
 /**
  * Interface for managing the execution and history of commands in the Command Pattern.
@@ -6,7 +9,7 @@ package de.lordtkay.hyflask.utility.command
  * The CommandInvoker is responsible for executing commands, as well as supporting undo and redo functionality by maintaining
  * a history of executed commands. This enables reversible and re-executable operations in systems that implement this pattern.
  */
-interface CommandInvoker {
+interface UiCommandInvoker {
     /**
      * Executes the given command.
      *
@@ -17,7 +20,11 @@ interface CommandInvoker {
      * @param command The command to be executed. The command should encapsulate a specific action
      *                that can be performed, undone, and possibly redone.
      */
-    fun execute(command: Command)
+    fun execute(
+        commandBuilder: UICommandBuilder,
+        eventBuilder: UIEventBuilder,
+        command: UiCommand
+    )
 
     /**
      * Undoes the most recently executed command in the command history.
@@ -31,7 +38,10 @@ interface CommandInvoker {
      *
      * @throws Exception if an error occurs while undoing the command or its inverse operation.
      */
-    fun undo()
+    fun undo(
+        commandBuilder: UICommandBuilder,
+        eventBuilder: UIEventBuilder
+    )
 
     /**
      * Re-executes the most recently undone command in the redo history.
@@ -44,5 +54,8 @@ interface CommandInvoker {
      *
      * @throws Exception if an error occurs while re-executing the command.
      */
-    fun redo()
+    fun redo(
+        commandBuilder: UICommandBuilder,
+        eventBuilder: UIEventBuilder
+    )
 }

@@ -1,11 +1,14 @@
-package de.lordtkay.hyflask.utility.command
+package de.lordtkay.hyflask.utility.ui.command
+
+import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder
+import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder
 
 /**
  * Interface for a command in the Command Pattern.
  * 
- * Commands are executed by a [CommandInvoker] and stored in a history to enable undo/redo functionality.
+ * Commands are executed by a [UiCommandInvoker] and stored in a history to enable undo/redo functionality.
  */
-interface Command {
+interface UiCommand {
     /**
      * Executes the command.
      *
@@ -15,7 +18,10 @@ interface Command {
      *
      * @return true if the command was executed successfully; false otherwise.
      */
-    fun execute(): Boolean
+    fun execute(
+        commandBuilder: UICommandBuilder,
+        eventBuilder: UIEventBuilder
+    ): Boolean
 
     /**
      * Reverts the changes made by the command when it was executed.
@@ -26,5 +32,5 @@ interface Command {
      *
      * @return a new command representing the inverse operation of the undo action, or null if no further action is required.
      */
-    fun undo(): Command?
+    fun undo(): UiCommand?
 }
