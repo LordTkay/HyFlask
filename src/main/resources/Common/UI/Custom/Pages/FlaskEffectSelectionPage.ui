@@ -47,30 +47,37 @@ $C.@PageOverlay {
 
       #Content {
         LayoutMode: Top;
+        Padding: (Full: 0);
+        Background: #000000(0.0);
 
         Group #EffectList {
           LayoutMode: TopScrolling;
           ScrollbarStyle: $C.@DefaultScrollbarStyle;
+          Padding: $C.@ContentPadding;
           KeepScrollPosition: true;
           FlexWeight: 1;
+          Background: (TexturePath: "../Borders/ContainerPatchMiddle.png", Border: 23);
         }
 
         Group #Details {
           LayoutMode: Left;
-          Label {
-            Text: "Capacity 10/10";
-          }
+          Padding: (Bottom: $C.@FullPaddingValue, Horizontal: $C.@FullPaddingValue, Top: $C.@FullPaddingValue - $C.@InnerPaddingValue);
+          Background: (TexturePath: "../Borders/ContainerFooterNoRunes.png", HorizontalBorder: 35, VerticalBorder: 0);
 
           $C.@SecondaryTextButton #UndoButton {
-            Anchor: (Width: 30);
-            Padding: (Full: 2);
+            Anchor: (Width: 30, Height: 30);
             Text: "<";
+            TooltipText: "Undo";
+          }
+
+          Group {
+            Anchor: (Width: 5);
           }
 
           $C.@SecondaryTextButton #RedoButton {
-            Anchor: (Width: 30);
-            Padding: (Full: 2);
+            Anchor: (Width: 30, Height: 30);
             Text: ">";
+            TooltipText: "Redo";
           }
         }
       }
