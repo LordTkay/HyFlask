@@ -70,6 +70,14 @@ class FlaskEffectSelectionPage(
             )
         )
 
+        eventBuilder.addEventBinding(
+            CustomUIEventBindingType.Activating,
+            "#ApplyButton",
+            EventData.of(
+                "EventType", APPLY.name
+            )
+        )
+
         val groups = groupEffects()
 
         groups.values.forEach { group ->
@@ -179,6 +187,16 @@ class FlaskEffectSelectionPage(
                 initiator.redo(commandBuilder, eventBuilder)
                 null
             }
+
+            APPLY -> {
+                flaskEffectComponent.deactivateAllEffect()
+
+                activeGroups.forEach { group ->
+                    flaskEffectComponent.activateEffect(group.activeEffect!!.id)
+                }
+
+                null
+            }
         }
 
         if (command != null) {
@@ -187,6 +205,7 @@ class FlaskEffectSelectionPage(
 
         commandBuilder.set("#RedoButton.Disabled", !initiator.hasRedoHistory)
         commandBuilder.set("#UndoButton.Disabled", !initiator.hasHistory)
+        commandBuilder.set("#ApplyButton.Disabled", !initiator.hasHistory || data.eventType == APPLY)
 
         sendUpdate(commandBuilder, eventBuilder, false)
     }
@@ -321,7 +340,8 @@ class FlaskEffectSelectionPage(
         ACTIVATE_EFFECT,
         DEACTIVATE_EFFECT,
         UNDO,
-        REDO
+        REDO,
+        APPLY
     }
 
     class FlaskEffectSelectionEventData {

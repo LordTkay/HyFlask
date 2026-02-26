@@ -81,6 +81,18 @@ $C.@PageOverlay {
             TooltipText: "Redo";
             Disabled: true;
           }
+
+          Group {
+            LayoutMode: Right;
+            FlexWeight: 1;
+
+            $C.@TextButton #ApplyButton {
+              Anchor: (Height: 30);
+              Text: "Apply";
+              Padding: (Horizontal: 40);
+              Disabled: true;
+            }
+          }
         }
       }
     }

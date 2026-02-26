@@ -184,6 +184,11 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return DeactivateResult.Success(asset)
     }
 
+    fun deactivateAllEffect() {
+        activeEffects.clear()
+        logger.atFine().log("Player deactivated all flask effect")
+    }
+
 
     /**
      * Executes all the active flask effects associated with the player.
