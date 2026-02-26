@@ -68,6 +68,7 @@ $C.@PageOverlay {
             Anchor: (Width: 30, Height: 30);
             Text: "<";
             TooltipText: "Undo";
+            Disabled: true;
           }
 
           Group {
@@ -78,6 +79,7 @@ $C.@PageOverlay {
             Anchor: (Width: 30, Height: 30);
             Text: ">";
             TooltipText: "Redo";
+            Disabled: true;
           }
         }
       }

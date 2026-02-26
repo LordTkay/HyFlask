@@ -185,6 +185,9 @@ class FlaskEffectSelectionPage(
             initiator.execute(commandBuilder, eventBuilder, command)
         }
 
+        commandBuilder.set("#RedoButton.Disabled", !initiator.hasRedoHistory)
+        commandBuilder.set("#UndoButton.Disabled", !initiator.hasHistory)
+
         sendUpdate(commandBuilder, eventBuilder, false)
     }
 

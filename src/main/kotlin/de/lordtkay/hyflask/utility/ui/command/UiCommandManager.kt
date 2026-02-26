@@ -7,6 +7,9 @@ class UiCommandManager : UiCommandInvoker {
     private val history: MutableList<UiCommand> = ArrayList()
     private val redoHistory: MutableList<UiCommand> = ArrayList()
 
+    val hasHistory get() = history.isNotEmpty()
+    val hasRedoHistory get() = redoHistory.isNotEmpty()
+
     override fun execute(commandBuilder: UICommandBuilder, eventBuilder: UIEventBuilder, command: UiCommand) {
         try {
             val successful = command.execute(commandBuilder, eventBuilder)
