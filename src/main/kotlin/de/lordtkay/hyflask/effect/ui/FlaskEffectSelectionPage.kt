@@ -6,10 +6,13 @@ import com.hypixel.hytale.codec.builder.BuilderCodec
 import com.hypixel.hytale.codec.validation.Validators
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.component.Store
+import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
+import com.hypixel.hytale.server.core.modules.entitystats.asset.EntityStatType
 import com.hypixel.hytale.server.core.ui.PatchStyle
 import com.hypixel.hytale.server.core.ui.Value
 import com.hypixel.hytale.server.core.ui.builder.EventData
@@ -33,7 +36,8 @@ import java.util.*
 
 class FlaskEffectSelectionPage(
     playerRef: PlayerRef,
-    val flaskEffectComponent: FlaskEffectComponent
+    val flaskEffectComponent: FlaskEffectComponent,
+    val entityStatMap: EntityStatMap
 ) : InteractiveCustomUIPage<FlaskEffectSelectionPage.FlaskEffectSelectionEventData>(
     playerRef,
     CustomPageLifetime.CanDismiss,
@@ -43,6 +47,12 @@ class FlaskEffectSelectionPage(
     private val initiator = UiCommandManager()
     private var activeGroups: MutableList<EffectGroup> = mutableListOf()
     private var learnedGroups: MutableList<EffectGroup> = mutableListOf()
+    private var capacityIndex: Int
+
+    init {
+        val assetMap = EntityStatType.getAssetMap()
+        capacityIndex = assetMap.getIndex(ENTITY_STAT_NAME)
+    }
 
     override fun build(
         ref: Ref<EntityStore?>,
@@ -102,6 +112,8 @@ class FlaskEffectSelectionPage(
                 )
             }
         }
+
+        applyCost(commandBuilder)
     }
 
     private fun groupEffects(): Map<String, EffectGroup> {
@@ -156,6 +168,22 @@ class FlaskEffectSelectionPage(
         return groups.toMap()
     }
 
+    fun applyCost(commandBuilder: UICommandBuilder) {
+        val totalCost = activeGroups.sumOf { it.activeEffect?.cost ?: 0 }
+        var capacity = 0.0f
+        val capacityStat = entityStatMap.get(capacityIndex)
+
+        if (capacityStat != null) {
+            capacity = capacityStat.max
+        } else {
+            logger.atWarning().log("Could not find entity stat $ENTITY_STAT_NAME with Index $capacityIndex")
+
+        }
+
+        commandBuilder.set("#Capacity.Text", "$totalCost / ${capacity.toInt()}")
+        commandBuilder.set("#CapacityProgressBar.Value", totalCost / capacity)
+    }
+
     override fun handleDataEvent(
         ref: Ref<EntityStore?>,
         store: Store<EntityStore?>,
@@ -164,7 +192,6 @@ class FlaskEffectSelectionPage(
         super.handleDataEvent(ref, store, data)
         val commandBuilder = UICommandBuilder()
         val eventBuilder = UIEventBuilder()
-
 
         val command = when (data.eventType) {
             INCREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
@@ -212,10 +239,15 @@ class FlaskEffectSelectionPage(
         commandBuilder.set("#UndoButton.Disabled", !initiator.hasHistory)
         commandBuilder.set("#ApplyButton.Disabled", !initiator.hasHistory || data.eventType == APPLY)
 
+        applyCost(commandBuilder)
+
         sendUpdate(commandBuilder, eventBuilder, false)
     }
 
     companion object {
+        const val ENTITY_STAT_NAME = "HyFlask_Capacity"
+        private var logger = HytaleLogger.forEnclosingClass()
+
         fun getActiveEffectSelector(index: Int): String = "#ActiveEffects #EffectList[$index]"
         fun getLearnedEffectSelector(index: Int): String = "#LearnedEffects #Content[$index]"
 

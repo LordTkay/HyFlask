@@ -85,15 +85,44 @@ $C.@PageOverlay {
           }
 
           Group {
-            LayoutMode: Right;
+            LayoutMode: Left;
             FlexWeight: 1;
+            Padding: (Horizontal: 10);
 
-            $C.@TextButton #ApplyButton {
-              Anchor: (Height: 30);
-              Text: "Apply";
-              Padding: (Horizontal: 40);
-              Disabled: true;
+            ProgressBar #CapacityProgressBar {
+              FlexWeight: 1;
+              Value: 0.5;
+              Anchor: (Height: 15);
+              Background: "../Common/ProgressBar.png";
+              BarTexturePath: "../Common/ProgressBarFill.png";
             }
+
+            Group {
+              LayoutMode: Right;
+              Padding: (Left: 5);
+              Anchor: (Width: 60);
+
+              Label #Capacity {
+                Text: "0 / 0";
+                Style: (FontSize: 12, TextColor: #ffd700, VerticalAlignment: Center);
+                Padding: (Right: 5);
+              }
+
+              Group {
+                AssetImage {
+                  AssetPath: "UI/Custom/Common/SliderHandle.png";
+                  Anchor: (Width: 12, Height: 12);
+                }
+              }
+            }
+          }
+
+
+          $C.@TextButton #ApplyButton {
+            Anchor: (Height: 30);
+            Text: "Apply";
+            Padding: (Horizontal: 40);
+            Disabled: true;
           }
         }
       }

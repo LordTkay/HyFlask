@@ -6,6 +6,7 @@ import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.command.system.CommandContext
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractTargetPlayerCommand
 import com.hypixel.hytale.server.core.entity.entities.Player
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
@@ -28,6 +29,12 @@ class SelectEffectCommand : AbstractTargetPlayerCommand("select", "server.hyflas
     ) {
         val player = store.ensureAndGetComponent(ref1, Player.getComponentType())
         val flaskEffectComponent = store.ensureAndGetComponent(ref1, FlaskEffectComponent.componentType)
-        player.pageManager.openCustomPage(ref1, store, FlaskEffectSelectionPage(playerRef, flaskEffectComponent))
+        val entityStatMap = store.ensureAndGetComponent(ref1, EntityStatMap.getComponentType())
+
+        player.pageManager.openCustomPage(
+            ref1,
+            store,
+            FlaskEffectSelectionPage(playerRef, flaskEffectComponent, entityStatMap)
+        )
     }
 }
