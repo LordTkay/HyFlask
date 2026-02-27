@@ -122,16 +122,21 @@ class FlaskEffectSelectionPage(
 
             if (effectGroup == null) {
                 groupId = asset.id
-                entry = EffectGroup(asset.displayName, asset.icon, 5, 5)
+                entry = EffectGroup(asset.displayName, asset.icon, asset.cost, asset.cost)
             } else {
                 val group = FlaskEffectGroup.assetMap.getAsset(effectGroup.id) ?: return@forEach
                 groupId = group.id
 
                 if (groupId !in groups) {
-                    entry = EffectGroup(group.displayName, group.icon, 5, 5)
+                    entry = EffectGroup(group.displayName, group.icon, asset.cost, asset.cost)
                 } else {
                     entry = groups[groupId]!!
-                    entry.maxCost = 10
+
+                    if (asset.cost < entry.minCost) {
+                        entry.minCost = asset.cost
+                    } else if (asset.cost > entry.maxCost) {
+                        entry.maxCost = asset.cost
+                    }
                 }
 
                 val activeLevel = entry.activeEffect?.groupDetails?.level ?: 1
@@ -228,7 +233,7 @@ class FlaskEffectSelectionPage(
             commandBuilder.set("$selector #ItemText.TooltipText", activeEffect.displayName)
             commandBuilder.set("$selector #ItemDescription.Text", activeEffect.description ?: "")
 
-            commandBuilder.set("$selector #ItemCost.Text", "5")
+            commandBuilder.set("$selector #ItemCost.Text", activeEffect.cost.toString())
             commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
 
             commandBuilder.set("$selector #IncreaseLevelButton.Visible", group.learnedEffects.size > 1)
