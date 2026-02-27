@@ -114,6 +114,16 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
                 .documentation("A Group is used when the effect has multiple levels. It will group all effects together that use the same ID.")
                 .add()
 
+            builder
+                .appendInherited(
+                    KeyedCodec("Cost", Codec.INTEGER),
+                    { asset, value -> asset.cost = value },
+                    { asset -> asset.cost },
+                    { asset, parent -> asset.cost = parent.cost }
+                )
+                .documentation("The capacity cost required to equip this effect.")
+                .add()
+
             builder.afterDecode(FlaskEffect::processConfig)
 
             CODEC = builder.build()
@@ -148,6 +158,8 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
     var interactionVars: MutableMap<String, String> = mutableMapOf()
         private set
     var groupDetails: FlaskEffectGroupDetails? = null
+        private set
+    var cost: Int = 0
         private set
 
     constructor()
