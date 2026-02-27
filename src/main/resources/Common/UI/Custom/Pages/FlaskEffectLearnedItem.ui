@@ -17,8 +17,8 @@ Group {
 
     Label #ItemLabel {
       FlexWeight: 1;
-      Text: "Unknown Item";
-      TooltipText: "Unknown Item";
+      Text: %server.hyflask.ui.effectSelection.item.unknown;
+      TooltipText: %server.hyflask.ui.effectSelection.item.unknown;
       TextTooltipShowDelay: 1;
       TextTooltipStyle: $C.@DefaultTextTooltipStyle;
       Style: (VerticalAlignment: Center);
@@ -48,6 +48,8 @@ Group {
       Anchor: (Width: 30);
       Padding: (Full: 2);
       Text: "+";
+      TooltipText: %server.hyflask.ui.effectSelection.learnedEffect.item.addEffect.tooltip;
+      TextTooltipStyle: $C.@DefaultTextTooltipStyle;
     }
 
   }

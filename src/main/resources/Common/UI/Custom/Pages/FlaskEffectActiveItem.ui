@@ -20,17 +20,17 @@ Group {
       Padding: (Left: 10, Right: 5);
       Anchor: (Width: 300);
 
-      TooltipText: "Unknown Item";
+      TooltipText: %server.hyflask.ui.effectSelection.item.unknown;
       TextTooltipShowDelay: 1;
       TextTooltipStyle: $C.@DefaultTextTooltipStyle;
 
       Label #ItemLabel {
-        Text: "Unknown Item";
+        Text: %server.hyflask.ui.effectSelection.item.unknown;
         Style: (VerticalAlignment: Center, TextColor: #c9d2dd);
       }
 
       Label #ItemDescription {
-        Text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At ";
+        Text: "";
         Style: (VerticalAlignment: Center, FontSize: 10, Wrap: true);
       }
     }
@@ -43,14 +43,14 @@ Group {
       $C.@SmallSecondaryTextButton #DecreaseLevelButton {
         Anchor: (Width: 25, Height: 25);
         Text: "-";
-        TooltipText: "Decrease Effect Level";
+        TooltipText: %server.hyflask.ui.effectSelection.activeEffect.item.decreaseLevel.tooltip;
         TextTooltipStyle: $C.@DefaultTextTooltipStyle;
         Visible: false;
         Disabled: true;
       }
 
       Label #ItemLevel {
-        Text: "LV 99/99";
+        Text: "LV 0/0";
         FlexWeight: 1;
         Padding: (Horizontal: 5);
         Style: (Alignment: Center, FontSize: 10, TextColor: #ffd700);
@@ -59,7 +59,7 @@ Group {
       $C.@SmallSecondaryTextButton #IncreaseLevelButton {
         Anchor: (Width: 25, Height: 25);
         Text: "+";
-        TooltipText: "Increase Effect Level";
+        TooltipText: %server.hyflask.ui.effectSelection.activeEffect.item.increaseLevel.tooltip;
         TextTooltipStyle: $C.@DefaultTextTooltipStyle;
         Visible: false;
         Disabled: true;
@@ -89,7 +89,7 @@ Group {
       Anchor: (Width: 30);
       Padding: (Full: 2);
       Text: "-";
-      TooltipText: "Remove Effect";
+      TooltipText: %server.hyflask.ui.effectSelection.activeEffect.item.removeEffect.tooltip;
       TextTooltipStyle: $C.@DefaultTextTooltipStyle;
     }
   }

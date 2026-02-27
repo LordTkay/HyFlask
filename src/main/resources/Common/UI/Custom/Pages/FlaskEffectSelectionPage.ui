@@ -15,7 +15,7 @@ $C.@PageOverlay {
       #Title {
         Group {
           $C.@Title {
-            @Text = "Learned Effects";
+            @Text = %server.hyflask.ui.effectSelection.learnedEffects.title;
           }
           $C.@HeaderSearch {}
         }
@@ -39,7 +39,7 @@ $C.@PageOverlay {
       #Title {
         Group {
           $C.@Title {
-            @Text = "Active Effects";
+            @Text = %server.hyflask.ui.effectSelection.activeEffects.title;
           }
           $C.@HeaderSearch {}
         }
@@ -67,7 +67,7 @@ $C.@PageOverlay {
           $C.@SecondaryTextButton #UndoButton {
             Anchor: (Width: 30, Height: 30);
             Text: "<";
-            TooltipText: "Undo";
+            TooltipText: %server.hyflask.ui.effectSelection.undo.tooltip;
             TextTooltipStyle: $C.@DefaultTextTooltipStyle;
             Disabled: true;
           }
@@ -79,7 +79,7 @@ $C.@PageOverlay {
           $C.@SecondaryTextButton #RedoButton {
             Anchor: (Width: 30, Height: 30);
             Text: ">";
-            TooltipText: "Redo";
+            TooltipText: %server.hyflask.ui.effectSelection.redo.tooltip;
             TextTooltipStyle: $C.@DefaultTextTooltipStyle;
             Disabled: true;
           }
@@ -120,7 +120,7 @@ $C.@PageOverlay {
 
           $C.@TextButton #ApplyButton {
             Anchor: (Height: 30);
-            Text: "Apply";
+            Text: %server.hyflask.ui.effectSelection.apply.title;
             Padding: (Horizontal: 40);
             Disabled: true;
           }

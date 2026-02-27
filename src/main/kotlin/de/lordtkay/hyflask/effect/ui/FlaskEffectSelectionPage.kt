@@ -9,6 +9,7 @@ import com.hypixel.hytale.component.Store
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType
+import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
@@ -21,6 +22,7 @@ import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+import com.hypixel.hytale.server.core.util.MessageUtil
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
@@ -29,10 +31,9 @@ import de.lordtkay.hyflask.effect.ui.event.ActivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelCommand
 import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelCommand
+import de.lordtkay.hyflask.enumeration.EntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
-
-// TODO: Texts need to be in the server.lang
 
 class FlaskEffectSelectionPage(
     playerRef: PlayerRef,
@@ -50,11 +51,11 @@ class FlaskEffectSelectionPage(
     private var learnedGroups: MutableList<EffectGroup> = mutableListOf()
 
     init {
-        val assetMap = EntityStatType.getAssetMap()
-        val capacityIndex = assetMap.getIndex(ENTITY_STAT_NAME)
+        val capacityIndex = HyFlaskEntityStat.CAPACITY.getIndex()
         val capacityStat = entityStatMap.get(capacityIndex)
         if (capacityStat == null) {
-            logger.atWarning().log("Could not find entity stat $ENTITY_STAT_NAME with Index $capacityIndex")
+            logger.atWarning()
+                .log("Could not find entity stat ${HyFlaskEntityStat.CAPACITY.id} with Index $capacityIndex")
         }
         this.capacityStat = capacityStat!!
     }
@@ -241,7 +242,6 @@ class FlaskEffectSelectionPage(
     }
 
     companion object {
-        const val ENTITY_STAT_NAME = "HyFlask_Capacity"
         private var logger = HytaleLogger.forEnclosingClass()
 
         fun getActiveEffectSelector(index: Int): String = "#ActiveEffects #EffectList[$index]"
@@ -257,12 +257,15 @@ class FlaskEffectSelectionPage(
             val currentLevel = activeEffect.groupDetails?.level ?: 1
             val selector = getActiveEffectSelector(index)
 
+            val levelMessage = Message.translation("server.hyflask.ui.effectSelection.level.title")
+            val level = MessageUtil.toAnsiString(levelMessage).toString()
+
             commandBuilder.set("$selector #ItemLabel.Text", activeEffect.displayName)
             commandBuilder.set("$selector #ItemText.TooltipText", activeEffect.displayName)
             commandBuilder.set("$selector #ItemDescription.Text", activeEffect.description ?: "")
 
             commandBuilder.set("$selector #ItemCost.Text", activeEffect.cost.toString())
-            commandBuilder.set("$selector #ItemLevel.Text", "LV $currentLevel")
+            commandBuilder.set("$selector #ItemLevel.Text", "$level $currentLevel")
 
             commandBuilder.set("$selector #IncreaseLevelButton.Visible", group.learnedEffects.size > 1)
             commandBuilder.set("$selector #DecreaseLevelButton.Visible", group.learnedEffects.size > 1)

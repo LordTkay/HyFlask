@@ -3,6 +3,20 @@
 
 # === ui ====
 
+hyflask.ui.effectSelection.learnedEffects.title=Learned Effects
+hyflask.ui.effectSelection.activeEffects.title=Active Effects
+hyflask.ui.effectSelection.apply.title=Apply
+hyflask.ui.effectSelection.undo.tooltip=Undo
+hyflask.ui.effectSelection.redo.tooltip=Redo
+hyflask.ui.effectSelection.level.title=LV
+
+hyflask.ui.effectSelection.item.unknown=Unknown Item
+
+hyflask.ui.effectSelection.learnedEffect.item.addEffect.tooltip=Activate Effect
+
+hyflask.ui.effectSelection.activeEffect.item.increaseLevel.tooltip=Increase Effect Level
+hyflask.ui.effectSelection.activeEffect.item.decreaseLevel.tooltip=Decrease Effect Level
+hyflask.ui.effectSelection.activeEffect.item.removeEffect.tooltip=Deactivate Effect
 
 # === items ===
 
