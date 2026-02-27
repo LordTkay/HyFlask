@@ -33,12 +33,11 @@ import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
 
 // TODO: Texts need to be in the server.lang
-// TODO: Effects of the same family/group need to be put together and their family/group content should be displayed
 
 class FlaskEffectSelectionPage(
     playerRef: PlayerRef,
     val flaskEffectComponent: FlaskEffectComponent,
-    val entityStatMap: EntityStatMap
+    entityStatMap: EntityStatMap
 ) : InteractiveCustomUIPage<FlaskEffectSelectionPage.FlaskEffectSelectionEventData>(
     playerRef,
     CustomPageLifetime.CanDismiss,
