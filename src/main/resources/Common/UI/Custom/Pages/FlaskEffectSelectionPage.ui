@@ -68,6 +68,7 @@ $C.@PageOverlay {
             Anchor: (Width: 30, Height: 30);
             Text: "<";
             TooltipText: "Undo";
+            TextTooltipStyle: $C.@DefaultTextTooltipStyle;
             Disabled: true;
           }
 
@@ -79,6 +80,7 @@ $C.@PageOverlay {
             Anchor: (Width: 30, Height: 30);
             Text: ">";
             TooltipText: "Redo";
+            TextTooltipStyle: $C.@DefaultTextTooltipStyle;
             Disabled: true;
           }
 

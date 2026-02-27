@@ -20,12 +20,7 @@ Group {
       Text: "Unknown Item";
       TooltipText: "Unknown Item";
       TextTooltipShowDelay: 1;
-      TextTooltipStyle: (
-        MaxWidth: 400,
-        LabelStyle: (Wrap: true, FontSize: 16),
-        Padding: 10,
-        Background: (TexturePath: "../Common/SecondaryButton.png", Border: 12)
-      );
+      TextTooltipStyle: $C.@DefaultTextTooltipStyle;
       Style: (VerticalAlignment: Center);
       Padding: (Left: 10, Right: 5);
     }

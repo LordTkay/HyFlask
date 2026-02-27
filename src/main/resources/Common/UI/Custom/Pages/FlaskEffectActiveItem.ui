@@ -22,12 +22,7 @@ Group {
 
       TooltipText: "Unknown Item";
       TextTooltipShowDelay: 1;
-      TextTooltipStyle: (
-        MaxWidth: 400,
-        LabelStyle: (Wrap: true, FontSize: 16),
-        Padding: 10,
-        Background: (TexturePath: "../Common/SecondaryButton.png", Border: 12)
-      );
+      TextTooltipStyle: $C.@DefaultTextTooltipStyle;
 
       Label #ItemLabel {
         Text: "Unknown Item";
@@ -49,6 +44,7 @@ Group {
         Anchor: (Width: 25, Height: 25);
         Text: "-";
         TooltipText: "Decrease Effect Level";
+        TextTooltipStyle: $C.@DefaultTextTooltipStyle;
         Visible: false;
         Disabled: true;
       }
@@ -64,6 +60,7 @@ Group {
         Anchor: (Width: 25, Height: 25);
         Text: "+";
         TooltipText: "Increase Effect Level";
+        TextTooltipStyle: $C.@DefaultTextTooltipStyle;
         Visible: false;
         Disabled: true;
       }
@@ -93,6 +90,7 @@ Group {
       Padding: (Full: 2);
       Text: "-";
       TooltipText: "Remove Effect";
+      TextTooltipStyle: $C.@DefaultTextTooltipStyle;
     }
   }
 }
