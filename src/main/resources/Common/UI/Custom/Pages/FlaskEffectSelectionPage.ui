@@ -92,9 +92,19 @@ $C.@PageOverlay {
             ProgressBar #CapacityProgressBar {
               FlexWeight: 1;
               Value: 0.5;
-              Anchor: (Height: 15);
-              Background: "../Common/ProgressBar.png";
-              BarTexturePath: "../Common/ProgressBarFill.png";
+              Anchor: (Height: 14);
+              Background: "../Borders/ProgressBar.png";
+              BarTexturePath: "../Borders/ProgressBarFill.png";
+              Visible: true;
+            }
+
+            ProgressBar #CapacityErrorProgressBar {
+              FlexWeight: 1;
+              Value: 1;
+              Anchor: (Height: 14);
+              Background: "../Borders/ProgressBar.png";
+              BarTexturePath: "../Borders/ProgressBarFillError.png";
+              Visible: false;
             }
 
             Group {

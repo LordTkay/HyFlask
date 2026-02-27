@@ -180,6 +180,9 @@ class FlaskEffectSelectionPage(
         commandBuilder.set("#Capacity.Text", "$totalCost / ${capacity.toInt()}")
         commandBuilder.set("#CapacityProgressBar.Value", totalCost / capacity)
         commandBuilder.set("#ApplyButton.Disabled", applyButtonDisabled || totalCost > capacity)
+
+        commandBuilder.set("#CapacityProgressBar.Visible", totalCost <= capacity)
+        commandBuilder.set("#CapacityErrorProgressBar.Visible", totalCost > capacity)
     }
 
     override fun handleDataEvent(
