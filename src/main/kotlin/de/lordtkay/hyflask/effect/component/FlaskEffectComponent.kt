@@ -4,17 +4,20 @@ import com.hypixel.hytale.codec.Codec
 import com.hypixel.hytale.codec.KeyedCodec
 import com.hypixel.hytale.codec.builder.BuilderCodec
 import com.hypixel.hytale.component.Component
+import com.hypixel.hytale.component.ComponentAccessor
 import com.hypixel.hytale.component.ComponentType
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.protocol.InteractionType
 import com.hypixel.hytale.server.core.entity.InteractionContext
 import com.hypixel.hytale.server.core.entity.InteractionManager
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.RootInteraction
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.HyFlaskPlugin
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.protocol.FlaskEffectInteractionType.Consumption
+import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 
 class FlaskEffectComponent : Component<EntityStore?> {
 
@@ -141,7 +144,11 @@ class FlaskEffectComponent : Component<EntityStore?> {
      *         - [ActivateResult.AlreadyActive]: If the effect is already active.
      *         - [ActivateResult.Success]: If the effect was successfully activated.
      */
-    fun activateEffect(assetId: String): ActivateResult {
+    fun activateEffect(
+        assetId: String,
+        ref: Ref<EntityStore?>,
+        componentAccessor: ComponentAccessor<EntityStore?>
+    ): ActivateResult {
         val normalizedAssetId = normalizeAssetId(assetId)
         val asset = getEffectAsset(normalizedAssetId) ?: return ActivateResult.UnknownAsset
 
@@ -157,6 +164,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
 
         activeEffects.add(normalizedAssetId)
         logger.atFine().log("Player activated flask effect '${asset.displayNameWithId}'")
+        applyCapacity(ref, componentAccessor)
         return ActivateResult.Success(asset)
     }
 
@@ -170,7 +178,11 @@ class FlaskEffectComponent : Component<EntityStore?> {
      *         - [DeactivateResult.NotActive] if the effect is not currently active.
      *         - [DeactivateResult.Success] if the effect was successfully deactivated.
      */
-    fun deactivateEffect(assetId: String): DeactivateResult {
+    fun deactivateEffect(
+        assetId: String,
+        ref: Ref<EntityStore?>,
+        componentAccessor: ComponentAccessor<EntityStore?>
+    ): DeactivateResult {
         val normalizedAssetId = normalizeAssetId(assetId)
         val asset = getEffectAsset(normalizedAssetId) ?: return DeactivateResult.UnknownAsset
 
@@ -181,14 +193,30 @@ class FlaskEffectComponent : Component<EntityStore?> {
 
         activeEffects.remove(normalizedAssetId)
         logger.atFine().log("Player deactivated flask effect '${asset.displayNameWithId}'")
+        applyCapacity(ref, componentAccessor)
         return DeactivateResult.Success(asset)
     }
 
-    fun deactivateAllEffect() {
+    fun deactivateAllEffect(ref: Ref<EntityStore?>, componentAccessor: ComponentAccessor<EntityStore?>) {
         activeEffects.clear()
         logger.atFine().log("Player deactivated all flask effect")
+        applyCapacity(ref, componentAccessor)
     }
 
+    private fun applyCapacity(ref: Ref<EntityStore?>, componentAccessor: ComponentAccessor<EntityStore?>) {
+        val entityStatMap = componentAccessor.ensureAndGetComponent(ref, EntityStatMap.getComponentType())
+        val capacityIndex = HyFlaskEntityStat.CAPACITY.getIndex()
+
+        val capacityStat = entityStatMap.get(capacityIndex)
+        if (capacityStat == null) {
+            logger.atWarning()
+                .log("Could not find entity stat ${HyFlaskEntityStat.CAPACITY.id} with Index $capacityIndex")
+            return
+        }
+
+        val totalCost = activeEffects.mapNotNull { getEffectAsset(it) }.sumOf { it.cost }
+        entityStatMap.setStatValue(capacityIndex, totalCost.toFloat())
+    }
 
     /**
      * Executes all the active flask effects associated with the player.

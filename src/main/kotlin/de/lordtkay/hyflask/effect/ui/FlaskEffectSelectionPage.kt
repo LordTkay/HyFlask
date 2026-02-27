@@ -14,7 +14,6 @@ import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue
-import com.hypixel.hytale.server.core.modules.entitystats.asset.EntityStatType
 import com.hypixel.hytale.server.core.ui.PatchStyle
 import com.hypixel.hytale.server.core.ui.Value
 import com.hypixel.hytale.server.core.ui.builder.EventData
@@ -31,7 +30,7 @@ import de.lordtkay.hyflask.effect.ui.event.ActivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectCommand
 import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelCommand
 import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelCommand
-import de.lordtkay.hyflask.enumeration.EntityStat
+import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
 
@@ -220,10 +219,10 @@ class FlaskEffectSelectionPage(
             }
 
             APPLY -> {
-                flaskEffectComponent.deactivateAllEffect()
+                flaskEffectComponent.deactivateAllEffect(ref, store)
 
                 activeGroups.forEach { group ->
-                    flaskEffectComponent.activateEffect(group.activeEffect!!.id)
+                    flaskEffectComponent.activateEffect(group.activeEffect!!.id, ref, store)
                 }
 
                 null

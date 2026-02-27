@@ -38,7 +38,8 @@ class DeactivateEffectCommand :
 
         val effectId = effectIdArg.get(commandContext)
 
-        val message = when (val result = flaskEffectComponent.deactivateEffect(effectId)) {
+        val message =
+            when (val result = flaskEffectComponent.deactivateEffect(effectId, playerRef.reference!!, store)) {
             is FlaskEffectComponent.DeactivateResult.Success ->
                 Message.translation("server.hyflask.commands.effects.deactivate.success")
                     .param("name", result.asset.displayNameWithId)

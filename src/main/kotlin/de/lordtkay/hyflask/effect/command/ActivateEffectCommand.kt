@@ -37,7 +37,7 @@ class ActivateEffectCommand : AbstractTargetPlayerCommand("activate", "server.hy
 
         val effectId = effectIdArg.get(commandContext)
 
-        val message = when (val result = flaskEffectComponent.activateEffect(effectId)) {
+        val message = when (val result = flaskEffectComponent.activateEffect(effectId, playerRef.reference!!, store)) {
             is FlaskEffectComponent.ActivateResult.Success ->
                 Message.translation("server.hyflask.commands.effects.activate.success")
                     .param("name", result.asset.displayNameWithId)
