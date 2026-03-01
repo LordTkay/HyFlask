@@ -16,7 +16,6 @@ import com.hypixel.hytale.codec.schema.metadata.ui.UIEditorSectionStart
 import com.hypixel.hytale.codec.schema.metadata.ui.UIRebuildCaches
 import com.hypixel.hytale.codec.validation.ValidatorCache
 import com.hypixel.hytale.server.core.Message
-import com.hypixel.hytale.server.core.asset.common.CommonAssetValidator
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemQuality
 import com.hypixel.hytale.server.core.asset.type.item.config.ItemTranslationProperties
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.RootInteraction
@@ -52,7 +51,7 @@ class FlaskEffect : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffect
                     { asset -> asset.icon },
                     { asset, parent -> asset.icon = parent.icon }
                 )
-                .addValidator(CommonAssetValidator.ICON_ITEM)
+                .addValidator(FlaskEffectAssetValidator.ICON_EFFECT)
                 .metadata(UIEditor(UIEditor.Icon("Icons/Items/FlaskEffects/{assetId}.png", 64, 64)))
                 .metadata(UIRebuildCaches(UIRebuildCaches.ClientCache.ITEM_ICONS))
                 .add()
