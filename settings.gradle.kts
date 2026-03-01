@@ -1,6 +1,6 @@
 import dev.scaffoldit.hytale.wire.HytaleManifest
 
-rootProject.name = "hyflask"
+rootProject.name = "HyFlask"
 
 pluginManagement {
     plugins {
