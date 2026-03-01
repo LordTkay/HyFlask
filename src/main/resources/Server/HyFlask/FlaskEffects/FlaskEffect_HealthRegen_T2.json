@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.healthRegen.t2.name",
+    "Description": "server.hyflask.flaskEffects.healthRegen.t2.description"
+  },
+  "Quality": "Uncommon",
+  "Icon": "Icons/FlaskEffects/HealthRegen/Small.png",
+  "Cost": 2,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_HealthRegen_T2"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_HealthRegen",
+    "Level": 2
+  }
+}

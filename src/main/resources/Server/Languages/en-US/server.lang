@@ -20,6 +20,17 @@ hyflask.ui.effectSelection.activeEffect.item.removeEffect.tooltip=Deactivate Eff
 
 # === items ===
 
+# === flask effects ===
+hyflask.flaskEffectGroups.healthRegen.name=Health Regeneration
+hyflask.flaskEffects.healthRegen.t1.name=Lesser Health Regeneration
+hyflask.flaskEffects.healthRegen.t1.description=Heals 100 health over the course of 60 seconds.
+hyflask.flaskEffects.healthRegen.t2.name=Greater Health Regeneration
+hyflask.flaskEffects.healthRegen.t2.description=Heals 150 health over the course of 60 seconds.
+hyflask.flaskEffects.healthRegen.t3.name=Superior Health Regeneration
+hyflask.flaskEffects.healthRegen.t3.description=Heals 150 % of the maximum health over the course of 60 seconds.
+hyflask.flaskEffects.healthRegen.t4.name=Mythic Health Regeneration
+hyflask.flaskEffects.healthRegen.t4.description=Heals 225 % of the maximum health over the course of 90 seconds.
+
 
 # === commands ===
 hyflask.commands=Commands for HyFlask.

@@ -1,0 +1,10 @@
+{
+  "StatModifiers": {
+    "Health": 2.5
+  },
+  "ValueType": "Percent",
+  "OverlapBehavior": "Overwrite",
+  "Duration": 90,
+  "DamageCalculatorCooldown": 1,
+  "StatusEffectIcon": "Icons/FlaskEffects/HealthRegen/Large.png"
+}
