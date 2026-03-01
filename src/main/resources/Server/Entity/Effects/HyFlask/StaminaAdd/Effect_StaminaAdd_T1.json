@@ -1,0 +1,13 @@
+{
+  "Duration": 60,
+  "StatusEffectIcon": "Icons/FlaskEffects/StaminaAdd/Tiny.png",
+  "RawStatModifiers": {
+    "Stamina": [
+      {
+        "CalculationType": "Additive",
+        "Amount": 5
+      }
+    ]
+  },
+  "OverlapBehavior": "Overwrite"
+}

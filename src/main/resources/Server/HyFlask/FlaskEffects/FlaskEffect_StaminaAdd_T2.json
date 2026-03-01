@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.staminaAdd.t2.name",
+    "Description": "server.hyflask.flaskEffects.staminaAdd.t2.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/StaminaAdd/Small.png",
+  "Cost": 2,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_StaminaAdd_T2"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_StaminaAdd",
+    "Level": 2
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.staminaAdd.t3.name",
+    "Description": "server.hyflask.flaskEffects.staminaAdd.t3.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/StaminaAdd/Medium.png",
+  "Cost": 3,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_StaminaAdd_T3"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_StaminaAdd",
+    "Level": 3
+  }
+}

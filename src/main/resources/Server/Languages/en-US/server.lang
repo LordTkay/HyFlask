@@ -31,6 +31,14 @@ hyflask.flaskEffects.healthRegen.t3.description=Heals 150 % of the maximum healt
 hyflask.flaskEffects.healthRegen.t4.name=Mythic Health Regeneration
 hyflask.flaskEffects.healthRegen.t4.description=Heals 225 % of the maximum health over the course of 90 seconds.
 
+hyflask.flaskEffectGroups.staminaAdd.name=Stamina Improvement
+hyflask.flaskEffects.staminaAdd.t1.name=Greater Stamina Improvement
+hyflask.flaskEffects.staminaAdd.t1.description=Increase your maximum stamina by 5 for 60 seconds.
+hyflask.flaskEffects.staminaAdd.t2.name=Superior Health Regeneration
+hyflask.flaskEffects.staminaAdd.t2.description=Increase your maximum stamina by 10 for 60 seconds.
+hyflask.flaskEffects.staminaAdd.t3.name=Mythic Health Regeneration
+hyflask.flaskEffects.staminaAdd.t3.description=Increase your maximum stamina by 10 for 120 seconds.
+
 
 # === commands ===
 hyflask.commands=Commands for HyFlask.
