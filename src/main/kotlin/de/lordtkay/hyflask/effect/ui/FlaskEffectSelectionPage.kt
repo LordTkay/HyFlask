@@ -34,6 +34,8 @@ import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
 
+// TODO: Implement the search functionality
+
 class FlaskEffectSelectionPage(
     playerRef: PlayerRef,
     val flaskEffectComponent: FlaskEffectComponent,
