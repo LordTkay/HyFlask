@@ -1,0 +1,19 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.recall.name",
+    "Description": "server.hyflask.flaskEffects.recall.description"
+  },
+  "Quality": "Uncommon",
+  "Icon": "Icons/FlaskEffects/Recall.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Recall"
+        }
+      ]
+    }
+  }
+}

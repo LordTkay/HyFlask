@@ -1,0 +1,29 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 5,
+  "StatusEffectIcon": "Icons/FlaskEffects/Recall.png",
+  "Tags": {
+    "HyFlask_Effect": [
+      "Recall"
+    ]
+  },
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "PlayerSpawn_Spawn",
+        "PositionOffset": {
+          "Y": 0.1
+        },
+        "Scale": 0.5,
+        "DetachedFromModel": true
+      }
+    ],
+    "FirstPersonParticles": [
+      {
+        "SystemId": "PlayerSpawn_Spawn",
+        "DetachedFromModel": false,
+        "Scale": 0.5
+      }
+    ]
+  }
+}

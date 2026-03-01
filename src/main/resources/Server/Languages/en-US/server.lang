@@ -39,6 +39,8 @@ hyflask.flaskEffects.staminaAdd.t2.description=Increase your maximum stamina by 
 hyflask.flaskEffects.staminaAdd.t3.name=Mythic Health Regeneration
 hyflask.flaskEffects.staminaAdd.t3.description=Increase your maximum stamina by 10 for 120 seconds.
 
+hyflask.flaskEffects.recall.name=Recall
+hyflask.flaskEffects.recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
 
 # === commands ===
 hyflask.commands=Commands for HyFlask.

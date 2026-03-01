@@ -13,8 +13,11 @@ import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
+import de.lordtkay.hyflask.effect.content.recall.RecallComponent
+import de.lordtkay.hyflask.effect.content.recall.RecallSystem
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
+import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -39,10 +42,15 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
         registerAssetStores()
         registerComponents()
         registerInteractions()
+        registerSystems()
         registerPages()
         commandRegistry.registerCommand(HyFlaskCommandCollection())
 
         logger.atInfo().log("[$name] Setup complete!")
+    }
+
+    private fun registerSystems() {
+        entityStoreRegistry.registerSystem(RecallSystem())
     }
 
     private fun registerAssetStores() {
@@ -85,6 +93,13 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             FlaskEffectComponent.CODEC
         )
         FlaskEffectComponent.componentType = flaskEffectComponent
+
+        val recallComponent = entityStoreRegistry.registerComponent(
+            RecallComponent::class.java,
+            HyFlaskComponent.RECALL.id,
+            RecallComponent.CODEC
+        )
+        RecallComponent.componentType = recallComponent
     }
 
     private fun registerInteractions() {
