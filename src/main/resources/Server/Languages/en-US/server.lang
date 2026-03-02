@@ -74,9 +74,10 @@ hyflask.commands.effects.learn.success=Flask effect '{name}' learned successfull
 hyflask.commands.effects.learn.all.success=All {count} flask effects were learned successfully.
 
 hyflask.commands.effects.forget=Forget a flask effect by asset ID.
-hyflask.commands.effects.forget.effectId=The flask effect asset ID of the effect to forget.
+hyflask.commands.effects.forget.effectId=The flask effect asset ID of the effect to forget. Write 'ALL' to forget all learned flask effects.
 hyflask.commands.effects.forget.notLearned=Flask effect '{name}' not learned.
 hyflask.commands.effects.forget.success=Flask effect '{name}' forgotten successfully.
+hyflask.commands.effects.forget.all.success=All {count} learned effects were forgotten successfully.
 
 hyflask.commands.effects.activate=Activate a flask effect.
 hyflask.commands.effects.activate.effectId=The flask effect asset ID of the effect to activate.

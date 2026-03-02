@@ -37,24 +37,40 @@ class ForgetEffectCommand : AbstractTargetPlayerCommand("forget", "server.hyflas
 
         val effectId = effectIdArg.get(commandContext)
 
-        val message = when (val result = flaskEffectComponent.forgetEffect(effectId)) {
-            is FlaskEffectComponent.ForgetResult.Success ->
-                Message.translation("server.hyflask.commands.effects.forget.success")
-                    .param("name", result.asset.displayNameWithId)
-
-            is FlaskEffectComponent.ForgetResult.NotLearned ->
-                Message.translation("server.hyflask.commands.effects.forget.notLearned")
-                    .param("name", result.asset.displayNameWithId)
-
-            FlaskEffectComponent.ForgetResult.SuccessUnknownAsset ->
-                Message.translation("server.hyflask.commands.effects.forget.success")
-                    .param("name", effectId)
-
-            FlaskEffectComponent.ForgetResult.UnknownAsset ->
-                Message.translation("server.hyflask.commands.effects.invalidEffectId")
-                    .param("id", effectId)
+        val message: Message = if (effectId.uppercase() != "ALL") {
+            forgetSingleEffect(flaskEffectComponent, effectId)
+        } else {
+            forgetAllEffects(flaskEffectComponent)
         }
 
         playerRef.sendMessage(message)
+    }
+
+    private fun forgetAllEffects(flaskEffectComponent: FlaskEffectComponent): Message {
+        val learnedEffects = flaskEffectComponent.learnedEffects.toList()
+        learnedEffects.forEach { flaskEffectComponent.forgetEffect(it) }
+        return Message.translation("server.hyflask.commands.effects.forget.all.success")
+            .param("count", learnedEffects.size)
+    }
+
+    private fun forgetSingleEffect(
+        flaskEffectComponent: FlaskEffectComponent,
+        effectId: String
+    ): Message = when (val result = flaskEffectComponent.forgetEffect(effectId)) {
+        is FlaskEffectComponent.ForgetResult.Success ->
+            Message.translation("server.hyflask.commands.effects.forget.success")
+                .param("name", result.asset.displayNameWithId)
+
+        is FlaskEffectComponent.ForgetResult.NotLearned ->
+            Message.translation("server.hyflask.commands.effects.forget.notLearned")
+                .param("name", result.asset.displayNameWithId)
+
+        FlaskEffectComponent.ForgetResult.SuccessUnknownAsset ->
+            Message.translation("server.hyflask.commands.effects.forget.success")
+                .param("name", effectId)
+
+        FlaskEffectComponent.ForgetResult.UnknownAsset ->
+            Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                .param("id", effectId)
     }
 }
