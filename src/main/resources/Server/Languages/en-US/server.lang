@@ -39,6 +39,14 @@ hyflask.flaskEffects.staminaAdd.t2.description=Increase your maximum stamina by 
 hyflask.flaskEffects.staminaAdd.t3.name=Mythic Health Regeneration
 hyflask.flaskEffects.staminaAdd.t3.description=Increase your maximum stamina by 10 for 120 seconds.
 
+hyflask.flaskEffectGroups.waterBreathing.name=Water Breathing
+hyflask.flaskEffects.waterBreathing.t1.name=Lesser Water Breathing
+hyflask.flaskEffects.waterBreathing.t1.description=Increases your maximum oxygen by 100 for 5 minutes.
+hyflask.flaskEffects.waterBreathing.t2.name=Superior Water Breathing
+hyflask.flaskEffects.waterBreathing.t2.description=Allows you to breathe underwater for 5 minutes.
+hyflask.flaskEffects.waterBreathing.t3.name=Mythic Water Breathing
+hyflask.flaskEffects.waterBreathing.t3.description=Allows you to breathe underwater for 10 minutes.
+
 hyflask.flaskEffects.recall.name=Recall
 hyflask.flaskEffects.recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
 

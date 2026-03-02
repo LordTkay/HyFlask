@@ -1,0 +1,16 @@
+{
+  "_BaseAssetPath": "Server/Entity/Stats/Oxygen.json",
+  "Regenerating": [
+    {
+      "_index": 2,
+      "_op": "merge",
+      "Conditions": [
+        {
+          "_op": "add",
+          "Id": "HyFlask_WaterBreathing",
+          "Inverse": true
+        }
+      ]
+    }
+  ]
+}

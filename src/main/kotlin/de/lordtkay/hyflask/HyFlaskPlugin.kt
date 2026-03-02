@@ -3,6 +3,7 @@ package de.lordtkay.hyflask
 import com.hypixel.hytale.assetstore.map.IndexedAssetMap
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.asset.HytaleAssetStore
+import com.hypixel.hytale.server.core.modules.entitystats.asset.condition.Condition
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.server.OpenCustomUIInteraction
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
@@ -15,9 +16,11 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.content.recall.RecallComponent
 import de.lordtkay.hyflask.effect.content.recall.RecallSystem
+import de.lordtkay.hyflask.effect.content.waterbreathing.WaterBreathingCondition
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
 import de.lordtkay.hyflask.enumeration.HyFlaskComponent
+import de.lordtkay.hyflask.enumeration.HyFlaskCondition
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -44,9 +47,18 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
         registerInteractions()
         registerSystems()
         registerPages()
+        registerConditions()
         commandRegistry.registerCommand(HyFlaskCommandCollection())
 
         logger.atInfo().log("[$name] Setup complete!")
+    }
+
+    private fun registerConditions() {
+        getCodecRegistry(Condition.CODEC).register(
+            HyFlaskCondition.WATER_BREATHING.id,
+            WaterBreathingCondition::class.java,
+            WaterBreathingCondition.CODEC
+        )
     }
 
     private fun registerSystems() {

@@ -1,0 +1,10 @@
+{
+  "Tags": {
+    "HyFlask_Effect": [
+      "WaterBreathing"
+    ]
+  },
+  "Duration": 300,
+  "StatusEffectIcon": "Icons/FlaskEffects/WaterBreathing/T2.png",
+  "OverlapBehavior": "Overwrite"
+}

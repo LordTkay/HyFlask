@@ -1,0 +1,13 @@
+{
+  "Duration": 300,
+  "StatusEffectIcon": "Icons/FlaskEffects/WaterBreathing/T1.png",
+  "RawStatModifiers": {
+    "Oxygen": [
+      {
+        "CalculationType": "Additive",
+        "Amount": 100
+      }
+    ]
+  },
+  "OverlapBehavior": "Overwrite"
+}

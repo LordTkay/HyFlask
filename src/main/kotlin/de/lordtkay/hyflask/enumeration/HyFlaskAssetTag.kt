@@ -4,6 +4,7 @@ import com.hypixel.hytale.assetstore.AssetExtraInfo
 import com.hypixel.hytale.assetstore.AssetRegistry
 
 enum class HyFlaskAssetTag(vararg val ids: String) {
+    WATER_BREATHING("HyFlask_Effect", "WaterBreathing"),
     RECALL("HyFlask_Effect", "Recall");
 
     /**

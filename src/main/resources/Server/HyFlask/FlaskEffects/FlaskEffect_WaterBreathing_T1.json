@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.waterBreathing.t1.name",
+    "Description": "server.hyflask.flaskEffects.waterBreathing.t1.description"
+  },
+  "Quality": "Common",
+  "Icon": "Icons/FlaskEffects/WaterBreathing/T1.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_WaterBreathing_T1"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_WaterBreathing",
+    "Level": 1
+  }
+}
