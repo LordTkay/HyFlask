@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.fireResistance.t2.name",
+    "Description": "server.hyflask.flaskEffects.fireResistance.t2.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/FireResistance/T2.png",
+  "Cost": 2,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_FireResistance_T2"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_FireResistance",
+    "Level": 2
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 120,
+  "StatusEffectIcon": "Icons/FlaskEffects/FireResistance/T2.png",
+  "DamageResistance": {
+    "Fire": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.20
+      }
+    ]
+  }
+}

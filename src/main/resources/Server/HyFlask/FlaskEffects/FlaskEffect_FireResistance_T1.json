@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.fireResistance.t1.name",
+    "Description": "server.hyflask.flaskEffects.fireResistance.t1.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/FireResistance/T1.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_FireResistance_T1"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_FireResistance",
+    "Level": 1
+  }
+}

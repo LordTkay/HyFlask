@@ -47,6 +47,12 @@ hyflask.flaskEffects.waterBreathing.t2.description=Allows you to breathe underwa
 hyflask.flaskEffects.waterBreathing.t3.name=Mythic Water Breathing
 hyflask.flaskEffects.waterBreathing.t3.description=Allows you to breathe underwater for 10 minutes.
 
+hyflask.flaskEffectGroups.fireResistance.name=Fire Resistance
+hyflask.flaskEffects.fireResistance.t1.name=Lesser Fire Resistance
+hyflask.flaskEffects.fireResistance.t1.description=Increases your fire resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.fireResistance.t2.name=Greater Fire Resistance
+hyflask.flaskEffects.fireResistance.t2.description=Increases your fire resistance by 20 % for 2 minutes.
+
 hyflask.flaskEffects.recall.name=Recall
 hyflask.flaskEffects.recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
 
