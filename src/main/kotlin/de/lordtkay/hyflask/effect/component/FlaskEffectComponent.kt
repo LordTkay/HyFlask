@@ -281,7 +281,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
             return ExecuteResult.NoEffectsExecuted
         }
 
-        logger.atFine().log("Executed $successfullyExecutions/$${activeEffects.size} flask effects")
+        logger.atFine().log("Executed $successfullyExecutions/${activeEffects.size} flask effects")
         return ExecuteResult.Success(successfullyExecutions, activeEffects.size)
     }
 

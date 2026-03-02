@@ -46,10 +46,10 @@ class FlaskEffectSelectionPage(
     FlaskEffectSelectionEventData.CODEC
 ) {
 
-    private var capacityStat: EntityStatValue
+    private val capacityStat: EntityStatValue
     private val initiator = UiCommandManager()
-    private var activeGroups: MutableList<EffectGroup> = mutableListOf()
-    private var learnedGroups: MutableList<EffectGroup> = mutableListOf()
+    private val activeGroups: MutableList<EffectGroup> = mutableListOf()
+    private val learnedGroups: MutableList<EffectGroup> = mutableListOf()
 
     init {
         val capacityIndex = HyFlaskEntityStat.CAPACITY.getIndex()
@@ -175,7 +175,7 @@ class FlaskEffectSelectionPage(
         return groups.toMap()
     }
 
-    fun applyCost(commandBuilder: UICommandBuilder, applyButtonDisabled: Boolean = true) {
+    private fun applyCost(commandBuilder: UICommandBuilder, applyButtonDisabled: Boolean = true) {
         val totalCost = activeGroups.sumOf { it.activeEffect?.cost ?: 0 }
         val capacity = capacityStat.max
 
