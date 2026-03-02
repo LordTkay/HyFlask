@@ -67,9 +67,11 @@ hyflask.commands.effects.get=Get the active and learned flask effects of a playe
 hyflask.commands.effects.get.success=Active:\n{activeEffects}\n\nLearned:\n{learnedEffects}
 
 hyflask.commands.effects.learn=Learn a flask effect by asset ID.
-hyflask.commands.effects.learn.effectId=The flask effect asset ID of the effect to learn.
+hyflask.commands.effects.learn.effectId=The flask effect asset ID of the effect to learn. Write 'ALL' to learn all available flask effects.
+
 hyflask.commands.effects.learn.alreadyLearned=Flask effect '{name}' already learned.
 hyflask.commands.effects.learn.success=Flask effect '{name}' learned successfully.
+hyflask.commands.effects.learn.all.success=All {count} flask effects were learned successfully.
 
 hyflask.commands.effects.forget=Forget a flask effect by asset ID.
 hyflask.commands.effects.forget.effectId=The flask effect asset ID of the effect to forget.
