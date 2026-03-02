@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.iceResistance.t2.name",
+    "Description": "server.hyflask.flaskEffects.iceResistance.t2.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/IceResistance/T2.png",
+  "Cost": 2,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_IceResistance_T2"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_IceResistance",
+    "Level": 2
+  }
+}

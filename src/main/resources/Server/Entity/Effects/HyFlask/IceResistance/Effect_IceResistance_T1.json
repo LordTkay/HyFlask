@@ -1,0 +1,13 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 120,
+  "StatusEffectIcon": "Icons/FlaskEffects/IceResistance/T1.png",
+  "DamageResistance": {
+    "Ice": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.10
+      }
+    ]
+  }
+}
