@@ -1,0 +1,13 @@
+{
+  "Duration": 60,
+  "StatusEffectIcon": "Icons/FlaskEffects/HealthAdd/T2.png",
+  "RawStatModifiers": {
+    "Health": [
+      {
+        "CalculationType": "Additive",
+        "Amount": 50
+      }
+    ]
+  },
+  "OverlapBehavior": "Overwrite"
+}

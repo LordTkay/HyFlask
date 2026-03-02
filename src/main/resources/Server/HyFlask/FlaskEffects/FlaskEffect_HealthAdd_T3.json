@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.healthAdd.t3.name",
+    "Description": "server.hyflask.flaskEffects.healthAdd.t3.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/HealthAdd/T3.png",
+  "Cost": 3,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_HealthAdd_T3"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_HealthAdd",
+    "Level": 3
+  }
+}
