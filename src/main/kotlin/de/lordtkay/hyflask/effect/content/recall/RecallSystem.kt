@@ -73,7 +73,7 @@ class RecallSystem : EntityTickingSystem<EntityStore>() {
                 commandBuffer.removeComponent(ref, RecallComponent.componentType)
             }
 
-            if (!effect.isInfinite && effect.getRemainingDuration() <= duration) {
+            if (!effect.isInfinite && effect.remainingDuration <= duration) {
                 logger.atFine().log("Player will be recalled")
                 handleRecall(store, ref, commandBuffer)
             }
