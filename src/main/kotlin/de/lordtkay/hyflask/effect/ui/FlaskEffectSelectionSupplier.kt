@@ -14,8 +14,6 @@ import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 class FlaskEffectSelectionSupplier : CustomPageSupplier {
 
     companion object {
-        const val ID = "HyFlask_FlaskEffectSelection"
-
         val CODEC: BuilderCodec<FlaskEffectSelectionSupplier?>
 
         init {

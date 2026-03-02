@@ -22,7 +22,6 @@ import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 class FlaskEffectComponent : Component<EntityStore?> {
 
     companion object {
-        const val ID = "HyFlask_FlaskEffect"
         private var logger = HytaleLogger.forEnclosingClass()
 
         lateinit var componentType: ComponentType<EntityStore?, FlaskEffectComponent>

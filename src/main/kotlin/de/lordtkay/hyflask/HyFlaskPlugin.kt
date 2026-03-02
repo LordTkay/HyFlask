@@ -21,6 +21,8 @@ import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
 import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 import de.lordtkay.hyflask.enumeration.HyFlaskCondition
+import de.lordtkay.hyflask.enumeration.HyFlaskInteraction
+import de.lordtkay.hyflask.enumeration.HyFlaskPage
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -101,7 +103,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     private fun registerComponents() {
         val flaskEffectComponent = entityStoreRegistry.registerComponent(
             FlaskEffectComponent::class.java,
-            FlaskEffectComponent.ID,
+            HyFlaskComponent.FLASK_EFFECT.id,
             FlaskEffectComponent.CODEC
         )
         FlaskEffectComponent.componentType = flaskEffectComponent
@@ -116,7 +118,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
 
     private fun registerInteractions() {
         getCodecRegistry(Interaction.CODEC).register(
-            FlaskEffectApplyInteraction.ID,
+            HyFlaskInteraction.APPLY_EFFECT.id,
             FlaskEffectApplyInteraction::class.java,
             FlaskEffectApplyInteraction.CODEC
         )
@@ -124,7 +126,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
 
     private fun registerPages() {
         getCodecRegistry(OpenCustomUIInteraction.PAGE_CODEC).register(
-            FlaskEffectSelectionSupplier.ID,
+            HyFlaskPage.FLASK_EFFECT_SELECTION.id,
             FlaskEffectSelectionSupplier::class.java,
             FlaskEffectSelectionSupplier.CODEC
         )
