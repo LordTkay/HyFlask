@@ -4,7 +4,7 @@
     "Description": "server.hyflask.flaskEffects.staminaAdd.t3.description"
   },
   "Quality": "Epic",
-  "Icon": "Icons/FlaskEffects/StaminaAdd/Medium.png",
+  "Icon": "Icons/FlaskEffects/StaminaAdd/T3.png",
   "Cost": 3,
   "Interactions": {
     "Consumption": {

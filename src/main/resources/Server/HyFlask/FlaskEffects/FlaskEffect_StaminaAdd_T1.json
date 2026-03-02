@@ -4,7 +4,7 @@
     "Description": "server.hyflask.flaskEffects.staminaAdd.t1.description"
   },
   "Quality": "Uncommon",
-  "Icon": "Icons/FlaskEffects/StaminaAdd/Tiny.png",
+  "Icon": "Icons/FlaskEffects/StaminaAdd/T1.png",
   "Cost": 1,
   "Interactions": {
     "Consumption": {

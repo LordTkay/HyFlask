@@ -6,5 +6,5 @@
   "OverlapBehavior": "Overwrite",
   "Duration": 60,
   "DamageCalculatorCooldown": 1,
-  "StatusEffectIcon": "Icons/FlaskEffects/HealthRegen/Tiny.png"
+  "StatusEffectIcon": "Icons/FlaskEffects/HealthRegen/T1.png"
 }

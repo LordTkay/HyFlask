@@ -4,7 +4,7 @@
     "Description": "server.hyflask.flaskEffects.healthRegen.t1.description"
   },
   "Quality": "Common",
-  "Icon": "Icons/FlaskEffects/HealthRegen/Tiny.png",
+  "Icon": "Icons/FlaskEffects/HealthRegen/T1.png",
   "Cost": 1,
   "Interactions": {
     "Consumption": {

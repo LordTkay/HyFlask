@@ -4,7 +4,7 @@
     "Description": "server.hyflask.flaskEffects.healthRegen.t4.description"
   },
   "Quality": "Epic",
-  "Icon": "Icons/FlaskEffects/HealthRegen/Large.png",
+  "Icon": "Icons/FlaskEffects/HealthRegen/T4.png",
   "Cost": 4,
   "Interactions": {
     "Consumption": {
