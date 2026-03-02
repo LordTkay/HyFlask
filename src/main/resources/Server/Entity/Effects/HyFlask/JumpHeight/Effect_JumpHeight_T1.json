@@ -1,0 +1,10 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 300,
+  "StatusEffectIcon": "Icons/FlaskEffects/JumpHeight/T1.png",
+  "Tags": {
+    "HyFlask_Effect": [
+      "JumpHeight_1"
+    ]
+  }
+}

@@ -14,6 +14,8 @@ import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
+import de.lordtkay.hyflask.effect.content.jumpheight.JumpHeightComponent
+import de.lordtkay.hyflask.effect.content.jumpheight.JumpHeightSystem
 import de.lordtkay.hyflask.effect.content.recall.RecallComponent
 import de.lordtkay.hyflask.effect.content.recall.RecallSystem
 import de.lordtkay.hyflask.effect.content.waterbreathing.WaterBreathingCondition
@@ -65,6 +67,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
 
     private fun registerSystems() {
         entityStoreRegistry.registerSystem(RecallSystem())
+        entityStoreRegistry.registerSystem(JumpHeightSystem())
     }
 
     private fun registerAssetStores() {
@@ -114,6 +117,13 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             RecallComponent.CODEC
         )
         RecallComponent.componentType = recallComponent
+
+        val jumpHeightComponent = entityStoreRegistry.registerComponent(
+            JumpHeightComponent::class.java,
+            HyFlaskComponent.JUMP_HEIGHT.id,
+            JumpHeightComponent.CODEC
+        )
+        JumpHeightComponent.componentType = jumpHeightComponent
     }
 
     private fun registerInteractions() {

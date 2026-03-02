@@ -56,6 +56,12 @@ hyflask.flaskEffects.waterBreathing.t2.description=Allows you to breathe underwa
 hyflask.flaskEffects.waterBreathing.t3.name=Mythic Water Breathing
 hyflask.flaskEffects.waterBreathing.t3.description=Allows you to breathe underwater for 10 minutes.
 
+hyflask.flaskEffectGroups.jumpHeight.name=Jump Height
+hyflask.flaskEffects.jumpHeight.t1.name=Superior Jump
+hyflask.flaskEffects.jumpHeight.t1.description=Increases your jump height by one block for 5 minutes.
+hyflask.flaskEffects.jumpHeight.t2.name=Mythic Jump
+hyflask.flaskEffects.jumpHeight.t2.description=Increases your jump height by two blocks for 5 minutes.
+
 hyflask.flaskEffectGroups.fireResistance.name=Fire Resistance
 hyflask.flaskEffects.fireResistance.t1.name=Lesser Fire Resistance
 hyflask.flaskEffects.fireResistance.t1.description=Increases your fire resistance by 10 % for 2 minutes.
