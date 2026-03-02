@@ -1,0 +1,13 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 120,
+  "StatusEffectIcon": "Icons/FlaskEffects/PoisonResistance/T1.png",
+  "DamageResistance": {
+    "Poison": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.10
+      }
+    ]
+  }
+}

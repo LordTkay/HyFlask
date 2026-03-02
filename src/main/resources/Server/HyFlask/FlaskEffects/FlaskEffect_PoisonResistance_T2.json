@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.poisonResistance.t2.name",
+    "Description": "server.hyflask.flaskEffects.poisonResistance.t2.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/PoisonResistance/T2.png",
+  "Cost": 2,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_PoisonResistance_T2"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_PoisonResistance",
+    "Level": 2
+  }
+}
