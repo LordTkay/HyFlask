@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.physicalResistance.t1.name",
+    "Description": "server.hyflask.flaskEffects.physicalResistance.t1.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/PhysicalResistance/T1.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_PhysicalResistance_T1"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_PhysicalResistance",
+    "Level": 1
+  }
+}

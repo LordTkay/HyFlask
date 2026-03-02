@@ -1,0 +1,13 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 120,
+  "StatusEffectIcon": "Icons/FlaskEffects/PhysicalResistance/T2.png",
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.20
+      }
+    ]
+  }
+}
