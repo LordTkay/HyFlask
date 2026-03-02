@@ -35,6 +35,7 @@ import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
 
 // TODO: Implement the search functionality
+// TODO: Undo/Redo on Apply should also work
 
 class FlaskEffectSelectionPage(
     playerRef: PlayerRef,
