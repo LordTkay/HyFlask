@@ -41,7 +41,8 @@ hytale {
         )
         IncludesAssetPack = true
         Dependencies = mapOf(
-            "Hytale:Beds" to "*"
+            "Hytale:Beds" to "*",
+            "com.hypersonicsharkz:Hytalor" to "2.2"
         )
     }
 }
