@@ -53,6 +53,30 @@ hyflask.flaskEffects.fireResistance.t1.description=Increases your fire resistanc
 hyflask.flaskEffects.fireResistance.t2.name=Greater Fire Resistance
 hyflask.flaskEffects.fireResistance.t2.description=Increases your fire resistance by 20 % for 2 minutes.
 
+hyflask.flaskEffectGroups.iceResistance.name=Ice Resistance
+hyflask.flaskEffects.iceResistance.t1.name=Lesser Ice Resistance
+hyflask.flaskEffects.iceResistance.t1.description=Increases your ice resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.iceResistance.t2.name=Greater Ice Resistance
+hyflask.flaskEffects.iceResistance.t2.description=Increases your ice resistance by 20 % for 2 minutes.
+
+hyflask.flaskEffectGroups.physicalResistance.name=Physical Resistance
+hyflask.flaskEffects.physicalResistance.t1.name=Lesser Physical Resistance
+hyflask.flaskEffects.physicalResistance.t1.description=Increases your physical resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.physicalResistance.t2.name=Greater Physical Resistance
+hyflask.flaskEffects.physicalResistance.t2.description=Increases your physical resistance by 20 % for 2 minutes.
+
+hyflask.flaskEffectGroups.projectileResistance.name=Projectile Resistance
+hyflask.flaskEffects.projectileResistance.t1.name=Lesser Projectile Resistance
+hyflask.flaskEffects.projectileResistance.t1.description=Increases your projectile resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.projectileResistance.t2.name=Greater Projectile Resistance
+hyflask.flaskEffects.projectileResistance.t2.description=Increases your projectile resistance by 20 % for 2 minutes.
+
+hyflask.flaskEffectGroups.poisonResistance.name=Poison Resistance
+hyflask.flaskEffects.poisonResistance.t1.name=Lesser Poison Resistance
+hyflask.flaskEffects.poisonResistance.t1.description=Increases your poison resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.poisonResistance.t2.name=Greater Poison Resistance
+hyflask.flaskEffects.poisonResistance.t2.description=Increases your poison resistance by 20 % for 2 minutes.
+
 hyflask.flaskEffects.recall.name=Recall
 hyflask.flaskEffects.recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
 
