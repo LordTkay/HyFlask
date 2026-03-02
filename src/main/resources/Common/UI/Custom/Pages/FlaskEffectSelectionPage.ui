@@ -111,6 +111,8 @@ $C.@PageOverlay {
               LayoutMode: Right;
               Padding: (Left: 5);
               Anchor: (Width: 60);
+              TooltipText: %server.hyflask.ui.effectSelection.capacity.tooltip;
+              TextTooltipStyle: $C.@DefaultTextTooltipStyle;
 
               Label #Capacity {
                 Text: "0 / 0";

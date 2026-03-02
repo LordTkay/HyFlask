@@ -8,6 +8,7 @@ hyflask.ui.effectSelection.activeEffects.title=Active Effects
 hyflask.ui.effectSelection.apply.title=Apply
 hyflask.ui.effectSelection.undo.tooltip=Undo
 hyflask.ui.effectSelection.redo.tooltip=Redo
+hyflask.ui.effectSelection.capacity.tooltip=This shows your flask maximum capacity and of the current activated effects. You can't activate effects that in total exceed your flask capacity.
 hyflask.ui.effectSelection.level.title=LV
 
 hyflask.ui.effectSelection.item.unknown=Unknown Item
