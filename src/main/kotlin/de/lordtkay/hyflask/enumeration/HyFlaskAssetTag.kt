@@ -4,10 +4,8 @@ import com.hypixel.hytale.assetstore.AssetExtraInfo
 import com.hypixel.hytale.assetstore.AssetRegistry
 
 enum class HyFlaskAssetTag(vararg val ids: String) {
-    HYFLASK_EFFECT("HyFlask_Effect"),
     WATER_BREATHING("HyFlask_Effect", "WaterBreathing"),
-    RECALL("HyFlask_Effect", "Recall"),
-    JUMP_HEIGHT("HyFlask_Effect", "JumpHeight");
+    RECALL("HyFlask_Effect", "Recall");
 
     /**
      * Checks whether the given data contains a tag sequence that matches the tag identifiers defined in this asset tag.
