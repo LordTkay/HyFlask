@@ -89,28 +89,44 @@ $C.@PageOverlay {
             FlexWeight: 1;
             Padding: (Horizontal: 10);
 
-            ProgressBar #CapacityProgressBar {
+            Group #CapacityProgress {
               FlexWeight: 1;
-              Value: 0.5;
-              Anchor: (Height: 14);
-              Background: "../Borders/ProgressBar.png";
-              BarTexturePath: "../Borders/ProgressBarFill.png";
+              Anchor: (Height: 12);
+              Background: "../ProgressBar/YellowProgressBarBackground.png";
               Visible: true;
+
+              ProgressBar #CapacityProgressBar {
+                Value: 0.5;
+                BarTexturePath: "../ProgressBar/YellowProgressBarFill.png";
+              }
+
+              ProgressBar #CapacityProgressBarEffect {
+                Value: 0.5;
+                BarTexturePath: "../ProgressBar/ProgressBarEffect.png";
+              }
             }
 
-            ProgressBar #CapacityErrorProgressBar {
+            Group #CapacityErrorProgress {
               FlexWeight: 1;
-              Value: 1;
-              Anchor: (Height: 14);
-              Background: "../Borders/ProgressBar.png";
-              BarTexturePath: "../Borders/ProgressBarFillError.png";
+              Anchor: (Height: 12);
+              Background: "../ProgressBar/RedProgressBarBackground.png";
               Visible: false;
+
+              ProgressBar {
+                Value: 1;
+                BarTexturePath: "../ProgressBar/RedProgressBarFill.png";
+              }
+
+              ProgressBar {
+                Value: 1;
+                BarTexturePath: "../ProgressBar/ProgressBarEffect.png";
+              }
             }
 
             Group {
               LayoutMode: Right;
               Padding: (Left: 5);
-              Anchor: (Width: 60);
+              Anchor: (Width: 65);
               TooltipText: %server.hyflask.ui.effectSelection.capacity.tooltip;
               TextTooltipStyle: $C.@DefaultTextTooltipStyle;
 
