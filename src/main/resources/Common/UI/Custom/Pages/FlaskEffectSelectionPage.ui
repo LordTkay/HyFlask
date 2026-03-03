@@ -130,11 +130,34 @@ $C.@PageOverlay {
               TooltipText: %server.hyflask.ui.effectSelection.capacity.tooltip;
               TextTooltipStyle: $C.@DefaultTextTooltipStyle;
 
-              Label #Capacity {
-                Text: "0 / 0";
-                Style: (FontSize: 12, TextColor: #ffd700, VerticalAlignment: Center);
+              Group {
+                LayoutMode: Left;
                 Padding: (Right: 5);
+
+                Label #CapacityCurrent {
+                  Text: "0";
+                  Style: (FontSize: 12, TextColor: #ffd700, VerticalAlignment: Center);
+                  Visible: true;
+                }
+
+                Label #CapacityErrorCurrent {
+                  Text: "0";
+                  Style: (FontSize: 12, TextColor: #F73567, VerticalAlignment: Center);
+                  Visible: false;
+                }
+
+                Label {
+                  Text: " / ";
+                  Style: (FontSize: 12, TextColor: #ffd700, VerticalAlignment: Center);
+                }
+
+                Label #CapacityMax {
+                  Text: "0";
+                  Style: (FontSize: 12, TextColor: #ffd700, VerticalAlignment: Center);
+                }
               }
+
+
 
               Group {
                 AssetImage {

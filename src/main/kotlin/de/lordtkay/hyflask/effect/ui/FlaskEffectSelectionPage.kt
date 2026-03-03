@@ -180,13 +180,18 @@ class FlaskEffectSelectionPage(
         val totalCost = activeGroups.sumOf { it.activeEffect?.cost ?: 0 }
         val capacity = capacityStat.max
 
-        commandBuilder.set("#Capacity.Text", "$totalCost / ${capacity.toInt()}")
+        commandBuilder.set("#CapacityCurrent.Text", totalCost.toString())
+        commandBuilder.set("#CapacityErrorCurrent.Text", totalCost.toString())
+        commandBuilder.set("#CapacityMax.Text", capacity.toInt().toString())
+
         commandBuilder.set("#CapacityProgressBar.Value", totalCost / capacity)
         commandBuilder.set("#CapacityProgressBarEffect.Value", totalCost / capacity)
         commandBuilder.set("#ApplyButton.Disabled", applyButtonDisabled || totalCost > capacity)
 
         commandBuilder.set("#CapacityProgress.Visible", totalCost <= capacity)
+        commandBuilder.set("#CapacityCurrent.Visible", totalCost <= capacity)
         commandBuilder.set("#CapacityErrorProgress.Visible", totalCost > capacity)
+        commandBuilder.set("#CapacityErrorCurrent.Visible", totalCost > capacity)
     }
 
     override fun handleDataEvent(
