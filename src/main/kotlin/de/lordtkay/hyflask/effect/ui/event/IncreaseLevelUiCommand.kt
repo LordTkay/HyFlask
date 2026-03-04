@@ -5,7 +5,7 @@ import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
 import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
-class DecreaseLevelCommand(
+class IncreaseLevelUiCommand(
     val activeGroups: List<FlaskEffectSelectionPage.EffectGroup>,
     val learnedGroups: List<FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup
@@ -15,9 +15,9 @@ class DecreaseLevelCommand(
         val activeEffect = group.activeEffect ?: return false
 
         val level = activeEffect.groupDetails?.level ?: 1
-        val previousLevel = group.learnedEffects.lowerEntry(level) ?: return false
+        val nextLevel = group.learnedEffects.higherEntry(level) ?: return false
 
-        group.activeEffect = previousLevel.value
+        group.activeEffect = nextLevel.value
         val index = activeGroups.indexOf(group)
 
         FlaskEffectSelectionPage.applyActiveEffectElement(
@@ -30,6 +30,6 @@ class DecreaseLevelCommand(
     }
 
     override fun undo(): UiCommand {
-        return IncreaseLevelCommand(activeGroups, learnedGroups, group)
+        return DecreaseLevelUiCommand(activeGroups, learnedGroups, group)
     }
 }

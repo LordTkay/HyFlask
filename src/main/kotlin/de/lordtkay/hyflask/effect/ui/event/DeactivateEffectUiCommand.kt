@@ -6,7 +6,7 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
 import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
-class DeactivateEffectCommand(
+class DeactivateEffectUiCommand(
     val activeGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
     val learnedGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup,
@@ -48,6 +48,6 @@ class DeactivateEffectCommand(
     }
 
     override fun undo(): UiCommand {
-        return ActivateEffectCommand(activeGroups, learnedGroups, group, previousIndex, previousActiveEffect)
+        return ActivateEffectUiCommand(activeGroups, learnedGroups, group, previousIndex, previousActiveEffect)
     }
 }

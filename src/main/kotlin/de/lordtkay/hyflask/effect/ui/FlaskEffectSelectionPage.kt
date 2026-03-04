@@ -26,10 +26,10 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.*
-import de.lordtkay.hyflask.effect.ui.event.ActivateEffectCommand
-import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectCommand
-import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelCommand
-import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelCommand
+import de.lordtkay.hyflask.effect.ui.event.ActivateEffectUiCommand
+import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectUiCommand
+import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelUiCommand
+import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelUiCommand
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
@@ -210,19 +210,19 @@ class FlaskEffectSelectionPage(
 
         val command = when (data.eventType) {
             INCREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
-                IncreaseLevelCommand(activeGroups, learnedGroups, it)
+                IncreaseLevelUiCommand(activeGroups, learnedGroups, it)
             }
 
             DECREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
-                DecreaseLevelCommand(activeGroups, learnedGroups, it)
+                DecreaseLevelUiCommand(activeGroups, learnedGroups, it)
             }
 
             ACTIVATE_EFFECT -> learnedGroups.find { it.name == data.groupName }?.let {
-                ActivateEffectCommand(activeGroups, learnedGroups, it)
+                ActivateEffectUiCommand(activeGroups, learnedGroups, it)
             }
 
             DEACTIVATE_EFFECT -> activeGroups.find { it.name == data.groupName }?.let {
-                DeactivateEffectCommand(activeGroups, learnedGroups, it)
+                DeactivateEffectUiCommand(activeGroups, learnedGroups, it)
             }
 
             UNDO -> {
