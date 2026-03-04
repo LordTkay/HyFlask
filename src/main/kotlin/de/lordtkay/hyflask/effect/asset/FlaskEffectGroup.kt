@@ -22,7 +22,7 @@ import com.hypixel.hytale.server.core.util.MessageUtil
 class FlaskEffectGroup : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskEffectGroup>> {
 
     companion object {
-        const val ASSET_PATH = "HyFlask/FlaskEffectsGroup"
+        const val ASSET_PATH = "HyFlask/FlaskEffectGroups"
         val CODEC: AssetBuilderCodec<String, FlaskEffectGroup>
         val VALIDATOR_CACHE: ValidatorCache<String>
         private var ASSET_STORE: AssetStore<String, FlaskEffectGroup, IndexedAssetMap<String, FlaskEffectGroup>>? = null
