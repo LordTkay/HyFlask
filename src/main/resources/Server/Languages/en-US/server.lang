@@ -43,9 +43,9 @@ hyflask.flaskEffects.healthAdd.t3.description=Increase your maximum health by 50
 hyflask.flaskEffectGroups.staminaAdd.name=Stamina Improvement
 hyflask.flaskEffects.staminaAdd.t1.name=Greater Stamina Improvement
 hyflask.flaskEffects.staminaAdd.t1.description=Increase your maximum stamina by 5 for 60 seconds.
-hyflask.flaskEffects.staminaAdd.t2.name=Superior Health Regeneration
+hyflask.flaskEffects.staminaAdd.t2.name=Superior Stamina Improvement
 hyflask.flaskEffects.staminaAdd.t2.description=Increase your maximum stamina by 10 for 60 seconds.
-hyflask.flaskEffects.staminaAdd.t3.name=Mythic Health Regeneration
+hyflask.flaskEffects.staminaAdd.t3.name=Mythic Stamina Improvement
 hyflask.flaskEffects.staminaAdd.t3.description=Increase your maximum stamina by 10 for 120 seconds.
 
 hyflask.flaskEffectGroups.waterBreathing.name=Water Breathing
