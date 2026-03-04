@@ -1,0 +1,8 @@
+{
+  "OverlapBehavior": "Overwrite",
+  "Duration": 300,
+  "StatusEffectIcon": "Icons/FlaskEffects/Speed/T1.png",
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 1.25
+  }
+}

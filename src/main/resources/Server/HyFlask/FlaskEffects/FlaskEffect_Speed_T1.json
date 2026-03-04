@@ -1,0 +1,23 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.speed.t1.name",
+    "Description": "server.hyflask.flaskEffects.speed.t1.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/Speed/T1.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Speed_T1"
+        }
+      ]
+    }
+  },
+  "GroupDetails": {
+    "GroupId": "FlaskEffectGroup_Speed",
+    "Level": 1
+  }
+}
