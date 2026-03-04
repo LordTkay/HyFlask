@@ -30,7 +30,6 @@ class UiCommandManager : UiCommandInvoker {
 
     override fun redo(commandBuilder: UICommandBuilder, eventBuilder: UIEventBuilder) {
         if (redoHistory.isEmpty()) return
-        redoHistory[redoHistory.size - 1]
 
         val redoCommand = redoHistory.removeAt(redoHistory.size - 1)
         redoCommand.execute(commandBuilder, eventBuilder)
