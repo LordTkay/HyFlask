@@ -179,13 +179,18 @@ class FlaskEffectSelectionPage(
     private fun applyCost(commandBuilder: UICommandBuilder, applyButtonDisabled: Boolean = true) {
         val totalCost = activeGroups.sumOf { it.activeEffect?.cost ?: 0 }
         val capacity = capacityStat.max
+        val percentage = if (capacity > 0) {
+            totalCost / capacity
+        } else {
+            0f
+        }
 
         commandBuilder.set("#CapacityCurrent.Text", totalCost.toString())
         commandBuilder.set("#CapacityErrorCurrent.Text", totalCost.toString())
         commandBuilder.set("#CapacityMax.Text", capacity.toInt().toString())
 
-        commandBuilder.set("#CapacityProgressBar.Value", totalCost / capacity)
-        commandBuilder.set("#CapacityProgressBarEffect.Value", totalCost / capacity)
+        commandBuilder.set("#CapacityProgressBar.Value", percentage)
+        commandBuilder.set("#CapacityProgressBarEffect.Value", percentage)
         commandBuilder.set("#ApplyButton.Disabled", applyButtonDisabled || totalCost > capacity)
 
         commandBuilder.set("#CapacityProgress.Visible", totalCost <= capacity)
