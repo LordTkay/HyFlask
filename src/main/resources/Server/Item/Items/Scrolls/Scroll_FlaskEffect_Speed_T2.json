@@ -25,6 +25,24 @@
       -12
     ]
   },
+  "Recipe": {
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "HyFlask_ResearchTable",
+        "Categories": [
+          "HyFlask_ResearchTable_Utility"
+        ]
+      }
+    ],
+    "TimeSeconds": 5,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Bolt_Wool",
+        "Quantity": 2
+      }
+    ]
+  },
   "Interactions": {
     "Secondary": {
       "Interactions": [
