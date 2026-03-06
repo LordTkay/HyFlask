@@ -40,6 +40,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Fire_Essence",
+        "Quantity": 25
+      },
+      {
+        "ItemId": "Bench_Campfire",
+        "Quantity": 1
       }
     ]
   },

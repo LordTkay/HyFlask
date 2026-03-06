@@ -40,6 +40,10 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "*Container_Bucket_State_Filled_Milk",
+        "Quantity": 3
       }
     ]
   },

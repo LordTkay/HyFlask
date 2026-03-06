@@ -32,7 +32,8 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Utility"
-        ]
+        ],
+        "RequiredTierLevel": 2
       }
     ],
     "TimeSeconds": 5,
@@ -40,8 +41,17 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Life_Essence",
+        "Quantity": 50
+      },
+      {
+        "ItemId": "Ingredient_Feathers_Light",
+        "Quantity": 25
       }
-    ]
+    ],
+    "RequiredMemoriesLevel": 4
   },
   "Interactions": {
     "Secondary": {

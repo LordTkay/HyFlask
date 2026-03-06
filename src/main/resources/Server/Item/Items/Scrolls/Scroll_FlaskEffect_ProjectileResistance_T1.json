@@ -40,6 +40,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Leather_Medium",
+        "Quantity": 8
+      },
+      {
+        "ItemId": "Weapon_Shield_Copper",
+        "Quantity": 1
       }
     ]
   },

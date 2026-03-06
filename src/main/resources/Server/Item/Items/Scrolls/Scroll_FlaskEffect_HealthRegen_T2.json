@@ -32,14 +32,24 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Resources"
-        ]
+        ],
+        "RequiredTierLevel": 2
       }
     ],
+    "RequiredMemoriesLevel": 2,
     "TimeSeconds": 5,
     "Input": [
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Plant_Crop_Lettuce_Item",
+        "Quantity": 15
+      },
+      {
+        "ResourceTypeId": "Mushrooms",
+        "Quantity": 12
       }
     ]
   },

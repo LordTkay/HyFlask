@@ -32,14 +32,28 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Resources"
-        ]
+        ],
+        "RequiredTierLevel": 3
       }
     ],
     "TimeSeconds": 5,
+    "RequiredMemoriesLevel": 3,
     "Input": [
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Life_Essence",
+        "Quantity": 75
+      },
+      {
+        "ItemId": "Plant_Crop_Health2",
+        "Quantity": 15
+      },
+      {
+        "ItemId": "Plant_Crop_Health3",
+        "Quantity": 20
       }
     ]
   },

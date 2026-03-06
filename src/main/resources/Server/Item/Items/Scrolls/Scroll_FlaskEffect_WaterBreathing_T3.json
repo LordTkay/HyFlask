@@ -32,14 +32,20 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Utility"
-        ]
+        ],
+        "RequiredTierLevel": 3
       }
     ],
+    "RequiredMemoriesLevel": 3,
     "TimeSeconds": 5,
     "Input": [
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ResourceTypeId": "Fish_Legendary",
+        "Quantity": 1
       }
     ]
   },

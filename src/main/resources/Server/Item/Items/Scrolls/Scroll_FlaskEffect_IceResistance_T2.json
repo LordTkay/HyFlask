@@ -32,7 +32,8 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Resistance"
-        ]
+        ],
+        "RequiredTierLevel": 2
       }
     ],
     "TimeSeconds": 5,
@@ -40,6 +41,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Fire_Essence",
+        "Quantity": 50
+      },
+      {
+        "ItemId": "Rock_Ice",
+        "Quantity": 100
       }
     ]
   },

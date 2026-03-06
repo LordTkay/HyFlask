@@ -40,6 +40,10 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Wood_Bamboo_Trunk",
+        "Quantity": 25
       }
     ]
   },

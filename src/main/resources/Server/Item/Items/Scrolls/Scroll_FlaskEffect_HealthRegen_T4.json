@@ -32,13 +32,31 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Resources"
-        ]
+        ],
+        "RequiredTierLevel": 3
       }
     ],
     "TimeSeconds": 5,
+    "RequiredMemoriesLevel": 4,
     "Input": [
       {
         "ItemId": "Ingredient_Bolt_Wool",
+        "Quantity": 2
+      },
+      {
+        "Quantity": 10,
+        "ItemId": "Food_Cheese"
+      },
+      {
+        "ResourceTypeId": "Meats",
+        "Quantity": 30
+      },
+      {
+        "ItemId": "Ingredient_Salt",
+        "Quantity": 5
+      },
+      {
+        "ItemId": "Ingredient_Spices",
         "Quantity": 2
       }
     ]
