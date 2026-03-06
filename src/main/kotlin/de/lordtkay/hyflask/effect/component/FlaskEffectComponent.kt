@@ -294,6 +294,17 @@ class FlaskEffectComponent : Component<EntityStore?> {
         return normalizeAssetId(assetId) in activeEffects
     }
 
+    /**
+     * Checks whether the flask effect associated with the given asset ID is known.
+     * The asset ID is normalized internally before checking against the learned effects.
+     *
+     * @param assetId The ID of the flask effect to check.
+     * @return True if the flask effect has been learned, false otherwise.
+     */
+    fun isKnown(assetId: String): Boolean {
+        return normalizeAssetId(assetId) in learnedEffects
+    }
+
     private fun getEffectAsset(assetId: String): FlaskEffect? {
         val asset = FlaskEffect.assetMap.getAsset(assetId)
 
