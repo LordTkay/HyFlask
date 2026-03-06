@@ -29,11 +29,15 @@
     "Secondary": {
       "Interactions": [
         {
-          "Type": "HyFlask_LearnEffect",
-          "EffectId": "FlaskEffect_HealthRegen_T3",
+          "Type": "HyFlask_RequireEffect",
+          "EffectId": "FlaskEffect_HealthRegen_T2",
           "Next": {
-            "Type": "ModifyInventory",
-            "AdjustHeldItemQuantity": -1
+            "Type": "HyFlask_LearnEffect",
+            "EffectId": "FlaskEffect_HealthRegen_T3",
+            "Next": {
+              "Type": "ModifyInventory",
+              "AdjustHeldItemQuantity": -1
+            }
           }
         }
       ]
