@@ -21,6 +21,7 @@ import de.lordtkay.hyflask.effect.content.recall.RecallComponent
 import de.lordtkay.hyflask.effect.content.recall.RecallSystem
 import de.lordtkay.hyflask.effect.content.waterbreathing.WaterBreathingCondition
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
+import de.lordtkay.hyflask.effect.interaction.FlaskEffectLearnInteraction
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
 import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 import de.lordtkay.hyflask.enumeration.HyFlaskCondition
@@ -134,6 +135,11 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             FlaskEffectApplyInteraction.CODEC
         )
 
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.LEARN_EFFECT.id,
+            FlaskEffectLearnInteraction::class.java,
+            FlaskEffectLearnInteraction.CODEC
+        )
         getCodecRegistry(Interaction.CODEC).register(
             HyFlaskInteraction.MODIFY_JUMP_HEIGHT.id,
             ModifyJumpHeightInteraction::class.java,

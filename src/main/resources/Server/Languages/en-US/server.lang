@@ -1,6 +1,12 @@
 # === general ===
 
 
+# === notification ====
+hyflask.notification.flaskEffect.unknown=Flask effect '{name}' was not found.
+
+hyflask.notification.flaskEffect.learned.success=Flask effect '{name}' learned.
+hyflask.notification.flaskEffect.learned.alreadyKnown=Flask effect '{name}' is already known.
+
 # === ui ====
 
 hyflask.ui.effectSelection.learnedEffects.title=Learned Effects
