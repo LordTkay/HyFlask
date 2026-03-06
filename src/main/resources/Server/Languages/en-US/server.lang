@@ -7,6 +7,9 @@ hyflask.notification.flaskEffect.unknown=Flask effect '{name}' was not found.
 hyflask.notification.flaskEffect.learned.success=Flask effect '{name}' learned.
 hyflask.notification.flaskEffect.learned.alreadyKnown=Flask effect '{name}' is already known.
 
+hyflask.notification.flaskEffect.forgotten.success=Flask effect '{name}' forgotten.
+hyflask.notification.flaskEffect.forgotten.notLearned=Flask effect '{name}' not learned.
+
 # === ui ====
 
 hyflask.ui.effectSelection.learnedEffects.title=Learned Effects
