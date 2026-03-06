@@ -60,6 +60,8 @@ class FlaskEffectGroup : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskE
                 .metadata(UIRebuildCaches(UIRebuildCaches.ClientCache.ITEM_ICONS))
                 .add()
 
+            builder.afterDecode(FlaskEffectGroup::processConfig)
+
             CODEC = builder.build()
             VALIDATOR_CACHE = ValidatorCache(AssetKeyValidator(FlaskEffectGroup::assetStore))
         }
@@ -84,6 +86,7 @@ class FlaskEffectGroup : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskE
         private set
     var icon: String? = null
         private set
+    var effects: List<FlaskEffect> = listOf()
 
     constructor()
 
@@ -133,4 +136,16 @@ class FlaskEffectGroup : JsonAssetWithMap<String, IndexedAssetMap<String, FlaskE
 
             return null
         }
+
+    private fun processConfig() {
+        val list = mutableListOf<FlaskEffect>()
+
+        FlaskEffect.assetMap.assetMap.values.forEach {
+            val group = it.groupDetails ?: return@forEach
+            if (group.id != id) return@forEach
+            list.add(it)
+        }
+
+        effects = list
+    }
 }
