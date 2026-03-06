@@ -29,11 +29,15 @@
     "Secondary": {
       "Interactions": [
         {
-          "Type": "HyFlask_LearnEffect",
-          "EffectId": "FlaskEffect_FireResistance_T2",
+          "Type": "HyFlask_RequireEffect",
+          "EffectId": "FlaskEffect_FireResistance_T1",
           "Next": {
-            "Type": "ModifyInventory",
-            "AdjustHeldItemQuantity": -1
+            "Type": "HyFlask_LearnEffect",
+            "EffectId": "FlaskEffect_FireResistance_T2",
+            "Next": {
+              "Type": "ModifyInventory",
+              "AdjustHeldItemQuantity": -1
+            }
           }
         }
       ]

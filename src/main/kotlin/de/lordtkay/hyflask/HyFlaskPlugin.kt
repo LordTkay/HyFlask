@@ -23,6 +23,7 @@ import de.lordtkay.hyflask.effect.content.waterbreathing.WaterBreathingCondition
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectForgetInteraction
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectLearnInteraction
+import de.lordtkay.hyflask.effect.interaction.FlaskEffectRequireInteraction
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionSupplier
 import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 import de.lordtkay.hyflask.enumeration.HyFlaskCondition
@@ -146,6 +147,12 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskInteraction.FORGET_EFFECT.id,
             FlaskEffectForgetInteraction::class.java,
             FlaskEffectForgetInteraction.CODEC
+        )
+
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.REQUIRE_EFFECT.id,
+            FlaskEffectRequireInteraction::class.java,
+            FlaskEffectRequireInteraction.CODEC
         )
 
         getCodecRegistry(Interaction.CODEC).register(
