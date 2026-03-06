@@ -3,7 +3,7 @@
     "Name": "server.hyflask.flaskEffects.recall.name",
     "Description": "server.hyflask.flaskEffects.recall.description"
   },
-  "Quality": "Uncommon",
+  "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/Recall.png",
   "Cost": 1,
   "Interactions": {

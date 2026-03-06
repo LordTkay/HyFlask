@@ -29,6 +29,73 @@ hyflask.ui.effectSelection.activeEffect.item.decreaseLevel.tooltip=Decrease Effe
 hyflask.ui.effectSelection.activeEffect.item.removeEffect.tooltip=Deactivate Effect
 
 # === items ===
+hyflask.items.Scroll_FlaskEffect_FireResistance_T1.name=Learn: Lesser Fire Resistance
+hyflask.items.Scroll_FlaskEffect_FireResistance_T1.description=Teaches the Lesser Fire Resistance effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_FireResistance_T2.name=Learn: Greater Fire Resistance
+hyflask.items.Scroll_FlaskEffect_FireResistance_T2.description=Teaches the Greater Fire Resistance effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_HealthAdd_T1.name=Learn: Lesser Health Improvement
+hyflask.items.Scroll_FlaskEffect_HealthAdd_T1.description=Teaches the Lesser Health Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_HealthAdd_T2.name=Learn: Greater Health Improvement
+hyflask.items.Scroll_FlaskEffect_HealthAdd_T2.description=Teaches the Greater Health Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_HealthAdd_T3.name=Learn: Superior Health Improvement
+hyflask.items.Scroll_FlaskEffect_HealthAdd_T3.description=Teaches the Superior Health Improvement effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T1.name=Learn: Lesser Health Regeneration
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T1.description=Teaches the Lesser Health Regeneration effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T2.name=Learn: Greater Health Regeneration
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T2.description=Teaches the Greater Health Regeneration effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T3.name=Learn: Superior Health Regeneration
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T3.description=Teaches the Superior Health Regeneration effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T4.name=Learn: Mythic Health Regeneration
+hyflask.items.Scroll_FlaskEffect_HealthRegen_T4.description=Teaches the Mythic Health Regeneration effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_IceResistance_T1.name=Learn: Lesser Ice Resistance
+hyflask.items.Scroll_FlaskEffect_IceResistance_T1.description=Teaches the Lesser Ice Resistance effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_IceResistance_T2.name=Learn: Greater Ice Resistance
+hyflask.items.Scroll_FlaskEffect_IceResistance_T2.description=Teaches the Greater Ice Resistance effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_JumpHeight_T1.name=Learn: Superior Jump
+hyflask.items.Scroll_FlaskEffect_JumpHeight_T1.description=Teaches the Superior Jump effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_JumpHeight_T2.name=Learn: Mythic Jump
+hyflask.items.Scroll_FlaskEffect_JumpHeight_T2.description=Teaches the Mythic Jump effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_PhysicalResistance_T1.name=Learn: Lesser Physical Resistance
+hyflask.items.Scroll_FlaskEffect_PhysicalResistance_T1.description=Teaches the Lesser Physical Resistance effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_PhysicalResistance_T2.name=Learn: Greater Physical Resistance
+hyflask.items.Scroll_FlaskEffect_PhysicalResistance_T2.description=Teaches the Greater Physical Resistance effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_PoisonResistance_T1.name=Learn: Lesser Poison Resistance
+hyflask.items.Scroll_FlaskEffect_PoisonResistance_T1.description=Teaches the Lesser Poison Resistance effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_PoisonResistance_T2.name=Learn: Greater Poison Resistance
+hyflask.items.Scroll_FlaskEffect_PoisonResistance_T2.description=Teaches the Greater Poison Resistance effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_ProjectileResistance_T1.name=Learn: Lesser Projectile Resistance
+hyflask.items.Scroll_FlaskEffect_ProjectileResistance_T1.description=Teaches the Lesser Projectile Resistance effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_ProjectileResistance_T2.name=Learn: Greater Projectile Resistance
+hyflask.items.Scroll_FlaskEffect_ProjectileResistance_T2.description=Teaches the Greater Projectile Resistance effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_Speed_T1.name=Learn: Lesser Speed
+hyflask.items.Scroll_FlaskEffect_Speed_T1.description=Teaches the Lesser Speed effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Speed_T2.name=Learn: Greater Speed
+hyflask.items.Scroll_FlaskEffect_Speed_T2.description=Teaches the Greater Speed effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T1.name=Learn: Greater Stamina Improvement
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T1.description=Teaches the Greater Stamina Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T2.name=Learn: Superior Stamina Improvement
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T2.description=Teaches the Superior Stamina Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.name=Learn: Mythic Stamina Improvement
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.description=Teaches the Mythic Stamina Improvement effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_WaterBreathing_T1.name=Learn: Lesser Water Breathing
+hyflask.items.Scroll_FlaskEffect_WaterBreathing_T1.description=Teaches the Lesser Water Breathing effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_WaterBreathing_T2.name=Learn: Superior Water Breathing
+hyflask.items.Scroll_FlaskEffect_WaterBreathing_T2.description=Teaches the Superior Water Breathing effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_WaterBreathing_T3.name=Learn: Mythic Water Breathing
+hyflask.items.Scroll_FlaskEffect_WaterBreathing_T3.description=Teaches the Mythic Water Breathing effect for the HyFlask.
+
+hyflask.items.Scroll_FlaskEffect_Recall.name=Learn: Recall
+hyflask.items.Scroll_FlaskEffect_Recall.description=Teaches the Recall effect for the HyFlask.
 
 # === flask effects ===
 hyflask.flaskEffectGroups.healthRegen.name=Health Regeneration

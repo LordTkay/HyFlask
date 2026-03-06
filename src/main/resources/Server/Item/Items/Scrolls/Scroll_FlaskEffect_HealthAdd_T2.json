@@ -1,0 +1,52 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.items.Scroll_FlaskEffect_HealthAdd_T2.name",
+    "Description": "server.hyflask.items.Scroll_FlaskEffect_HealthAdd_T2.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Quality": "Rare",
+  "MaxStack": 99,
+  "ItemLevel": 30,
+  "Categories": [
+    "Items.Recipes"
+  ],
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.6,
+    "Rotation": [
+      22.5,
+      158,
+      22.5
+    ],
+    "Translation": [
+      -9,
+      -12
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "HyFlask_LearnEffect",
+          "EffectId": "FlaskEffect_HealthAdd_T2",
+          "Next": {
+            "Type": "ModifyInventory",
+            "AdjustHeldItemQuantity": -1
+          }
+        }
+      ]
+    }
+  },
+  "Consumable": true,
+  "Tags": {
+    "Family": [
+      "HyFlask",
+      "FlaskEffect"
+    ],
+    "Type": [
+      "Upgrade"
+    ]
+  }
+}
