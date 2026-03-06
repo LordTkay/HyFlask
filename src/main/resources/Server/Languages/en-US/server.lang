@@ -1,5 +1,9 @@
 # === general ===
 
+hyflask.benchCategories.resources=Resources
+hyflask.benchCategories.resistance=Resistance
+hyflask.benchCategories.utility=Utility
+hyflask.benchCategories.misc=Misc
 
 # === notification ====
 hyflask.notification.flaskEffect.unknown=Flask effect '{name}' was not found.

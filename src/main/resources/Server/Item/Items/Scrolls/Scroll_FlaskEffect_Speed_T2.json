@@ -8,7 +8,7 @@
   "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
   "Quality": "Epic",
   "MaxStack": 99,
-  "ItemLevel": 30,
+  "ItemLevel": 40,
   "Categories": [
     "Items.Recipes"
   ],
