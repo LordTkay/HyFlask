@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.recall.name",
-    "Description": "server.hyflask.flaskEffects.recall.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Recall.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Recall.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/Recall.png",

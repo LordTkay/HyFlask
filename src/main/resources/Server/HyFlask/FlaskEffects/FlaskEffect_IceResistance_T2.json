@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.iceResistance.t2.name",
-    "Description": "server.hyflask.flaskEffects.iceResistance.t2.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_IceResistance_T2.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_IceResistance_T2.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/IceResistance/T2.png",

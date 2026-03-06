@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.jumpHeight.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_JumpHeight.name"
   },
   "Icon": "Icons/FlaskEffects/JumpHeight/Group.png"
 }

@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.staminaAdd.t1.name",
-    "Description": "server.hyflask.flaskEffects.staminaAdd.t1.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.description"
   },
   "Quality": "Uncommon",
   "Icon": "Icons/FlaskEffects/StaminaAdd/T1.png",

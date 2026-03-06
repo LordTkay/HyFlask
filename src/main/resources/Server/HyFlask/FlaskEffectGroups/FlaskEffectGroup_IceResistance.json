@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.iceResistance.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_IceResistance.name"
   },
   "Icon": "Icons/FlaskEffects/IceResistance/Group.png"
 }

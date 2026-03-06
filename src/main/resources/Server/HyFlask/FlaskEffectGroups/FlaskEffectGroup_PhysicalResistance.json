@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.physicalResistance.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_PhysicalResistance.name"
   },
   "Icon": "Icons/FlaskEffects/PhysicalResistance/Group.png"
 }

@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.poisonResistance.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_PoisonResistance.name"
   },
   "Icon": "Icons/FlaskEffects/PoisonResistance/Group.png"
 }

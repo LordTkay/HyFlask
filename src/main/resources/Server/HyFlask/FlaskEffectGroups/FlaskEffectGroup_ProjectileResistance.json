@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.projectileResistance.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_ProjectileResistance.name"
   },
   "Icon": "Icons/FlaskEffects/ProjectileResistance/Group.png"
 }

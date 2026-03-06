@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.speed.t1.name",
-    "Description": "server.hyflask.flaskEffects.speed.t1.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Speed_T1.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Speed_T1.description"
   },
   "Quality": "Rare",
   "Icon": "Icons/FlaskEffects/Speed/T1.png",

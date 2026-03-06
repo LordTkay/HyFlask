@@ -100,84 +100,84 @@ hyflask.items.Scroll_FlaskEffect_Recall.name=Learn: Recall
 hyflask.items.Scroll_FlaskEffect_Recall.description=Teaches the Recall effect for the HyFlask.
 
 # === flask effects ===
-hyflask.flaskEffectGroups.healthRegen.name=Health Regeneration
-hyflask.flaskEffects.healthRegen.t1.name=Lesser Health Regeneration
-hyflask.flaskEffects.healthRegen.t1.description=Heals 100 health over the course of 60 seconds.
-hyflask.flaskEffects.healthRegen.t2.name=Greater Health Regeneration
-hyflask.flaskEffects.healthRegen.t2.description=Heals 150 health over the course of 60 seconds.
-hyflask.flaskEffects.healthRegen.t3.name=Superior Health Regeneration
-hyflask.flaskEffects.healthRegen.t3.description=Heals 150 % of the maximum health over the course of 60 seconds.
-hyflask.flaskEffects.healthRegen.t4.name=Mythic Health Regeneration
-hyflask.flaskEffects.healthRegen.t4.description=Heals 225 % of the maximum health over the course of 90 seconds.
+hyflask.flaskEffectGroups.FlaskEffectGroup_HealthRegen.name=Health Regeneration
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T1.name=Lesser Health Regeneration
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T1.description=Heals 100 health over the course of 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T2.name=Greater Health Regeneration
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T2.description=Heals 150 health over the course of 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T3.name=Superior Health Regeneration
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T3.description=Heals 150 % of the maximum health over the course of 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T4.name=Mythic Health Regeneration
+hyflask.flaskEffects.FlaskEffect_HealthRegen_T4.description=Heals 225 % of the maximum health over the course of 90 seconds.
 
-hyflask.flaskEffectGroups.healthAdd.name=Health Improvement
-hyflask.flaskEffects.healthAdd.t1.name=Lesser Health Improvement
-hyflask.flaskEffects.healthAdd.t1.description=Increase your maximum health by 25 for 60 seconds.
-hyflask.flaskEffects.healthAdd.t2.name=Greater Health Improvement
-hyflask.flaskEffects.healthAdd.t2.description=Increase your maximum health by 50 for 60 seconds.
-hyflask.flaskEffects.healthAdd.t3.name=Superior Health Improvement
-hyflask.flaskEffects.healthAdd.t3.description=Increase your maximum health by 50 for 120 seconds.
+hyflask.flaskEffectGroups.FlaskEffectGroup_HealthAdd.name=Health Improvement
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T1.name=Lesser Health Improvement
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T1.description=Increase your maximum health by 25 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.name=Greater Health Improvement
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.description=Increase your maximum health by 50 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.name=Superior Health Improvement
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.description=Increase your maximum health by 50 for 120 seconds.
 
-hyflask.flaskEffectGroups.staminaAdd.name=Stamina Improvement
-hyflask.flaskEffects.staminaAdd.t1.name=Greater Stamina Improvement
-hyflask.flaskEffects.staminaAdd.t1.description=Increase your maximum stamina by 5 for 60 seconds.
-hyflask.flaskEffects.staminaAdd.t2.name=Superior Stamina Improvement
-hyflask.flaskEffects.staminaAdd.t2.description=Increase your maximum stamina by 10 for 60 seconds.
-hyflask.flaskEffects.staminaAdd.t3.name=Mythic Stamina Improvement
-hyflask.flaskEffects.staminaAdd.t3.description=Increase your maximum stamina by 10 for 120 seconds.
+hyflask.flaskEffectGroups.FlaskEffectGroup_StaminaAdd.name=Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.name=Greater Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.description=Increase your maximum stamina by 5 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.name=Superior Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.description=Increase your maximum stamina by 10 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.name=Mythic Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.description=Increase your maximum stamina by 10 for 120 seconds.
 
-hyflask.flaskEffectGroups.waterBreathing.name=Water Breathing
-hyflask.flaskEffects.waterBreathing.t1.name=Lesser Water Breathing
-hyflask.flaskEffects.waterBreathing.t1.description=Increases your maximum oxygen by 100 for 5 minutes.
-hyflask.flaskEffects.waterBreathing.t2.name=Superior Water Breathing
-hyflask.flaskEffects.waterBreathing.t2.description=Allows you to breathe underwater for 5 minutes.
-hyflask.flaskEffects.waterBreathing.t3.name=Mythic Water Breathing
-hyflask.flaskEffects.waterBreathing.t3.description=Allows you to breathe underwater for 10 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_WaterBreathing.name=Water Breathing
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.name=Lesser Water Breathing
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.description=Increases your maximum oxygen by 100 for 5 minutes.
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T2.name=Superior Water Breathing
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T2.description=Allows you to breathe underwater for 5 minutes.
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T3.name=Mythic Water Breathing
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T3.description=Allows you to breathe underwater for 10 minutes.
 
-hyflask.flaskEffectGroups.jumpHeight.name=Jump Height
-hyflask.flaskEffects.jumpHeight.t1.name=Superior Jump
-hyflask.flaskEffects.jumpHeight.t1.description=Increases your jump height by one block for 5 minutes.
-hyflask.flaskEffects.jumpHeight.t2.name=Mythic Jump
-hyflask.flaskEffects.jumpHeight.t2.description=Increases your jump height by two blocks for 5 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_JumpHeight.name=Jump Height
+hyflask.flaskEffects.FlaskEffect_JumpHeight_T1.name=Superior Jump
+hyflask.flaskEffects.FlaskEffect_JumpHeight_T1.description=Increases your jump height by one block for 5 minutes.
+hyflask.flaskEffects.FlaskEffect_JumpHeight_T2.name=Mythic Jump
+hyflask.flaskEffects.FlaskEffect_JumpHeight_T2.description=Increases your jump height by two blocks for 5 minutes.
 
-hyflask.flaskEffectGroups.speed.name=Speed
-hyflask.flaskEffects.speed.t1.name=Lesser Speed
-hyflask.flaskEffects.speed.t1.description=Increases your movement speed by 25 % for 5 minutes.
-hyflask.flaskEffects.speed.t2.name=Greater Speed
-hyflask.flaskEffects.speed.t2.description=Increases your movement speed by 50 % for 5 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_Speed.name=Speed
+hyflask.flaskEffects.FlaskEffect_Speed_T1.name=Lesser Speed
+hyflask.flaskEffects.FlaskEffect_Speed_T1.description=Increases your movement speed by 25 % for 5 minutes.
+hyflask.flaskEffects.FlaskEffect_Speed_T2.name=Greater Speed
+hyflask.flaskEffects.FlaskEffect_Speed_T2.description=Increases your movement speed by 50 % for 5 minutes.
 
-hyflask.flaskEffectGroups.fireResistance.name=Fire Resistance
-hyflask.flaskEffects.fireResistance.t1.name=Lesser Fire Resistance
-hyflask.flaskEffects.fireResistance.t1.description=Increases your fire resistance by 10 % for 2 minutes.
-hyflask.flaskEffects.fireResistance.t2.name=Greater Fire Resistance
-hyflask.flaskEffects.fireResistance.t2.description=Increases your fire resistance by 20 % for 2 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_FireResistance.name=Fire Resistance
+hyflask.flaskEffects.FlaskEffect_FireResistance_T1.name=Lesser Fire Resistance
+hyflask.flaskEffects.FlaskEffect_FireResistance_T1.description=Increases your fire resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.FlaskEffect_FireResistance_T2.name=Greater Fire Resistance
+hyflask.flaskEffects.FlaskEffect_FireResistance_T2.description=Increases your fire resistance by 20 % for 2 minutes.
 
-hyflask.flaskEffectGroups.iceResistance.name=Ice Resistance
-hyflask.flaskEffects.iceResistance.t1.name=Lesser Ice Resistance
-hyflask.flaskEffects.iceResistance.t1.description=Increases your ice resistance by 10 % for 2 minutes.
-hyflask.flaskEffects.iceResistance.t2.name=Greater Ice Resistance
-hyflask.flaskEffects.iceResistance.t2.description=Increases your ice resistance by 20 % for 2 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_IceResistance.name=Ice Resistance
+hyflask.flaskEffects.FlaskEffect_IceResistance_T1.name=Lesser Ice Resistance
+hyflask.flaskEffects.FlaskEffect_IceResistance_T1.description=Increases your ice resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.FlaskEffect_IceResistance_T2.name=Greater Ice Resistance
+hyflask.flaskEffects.FlaskEffect_IceResistance_T2.description=Increases your ice resistance by 20 % for 2 minutes.
 
-hyflask.flaskEffectGroups.physicalResistance.name=Physical Resistance
-hyflask.flaskEffects.physicalResistance.t1.name=Lesser Physical Resistance
-hyflask.flaskEffects.physicalResistance.t1.description=Increases your physical resistance by 10 % for 2 minutes.
-hyflask.flaskEffects.physicalResistance.t2.name=Greater Physical Resistance
-hyflask.flaskEffects.physicalResistance.t2.description=Increases your physical resistance by 20 % for 2 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_PhysicalResistance.name=Physical Resistance
+hyflask.flaskEffects.FlaskEffect_PhysicalResistance_T1.name=Lesser Physical Resistance
+hyflask.flaskEffects.FlaskEffect_PhysicalResistance_T1.description=Increases your physical resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.FlaskEffect_PhysicalResistance_T2.name=Greater Physical Resistance
+hyflask.flaskEffects.FlaskEffect_PhysicalResistance_T2.description=Increases your physical resistance by 20 % for 2 minutes.
 
-hyflask.flaskEffectGroups.projectileResistance.name=Projectile Resistance
-hyflask.flaskEffects.projectileResistance.t1.name=Lesser Projectile Resistance
-hyflask.flaskEffects.projectileResistance.t1.description=Increases your projectile resistance by 10 % for 2 minutes.
-hyflask.flaskEffects.projectileResistance.t2.name=Greater Projectile Resistance
-hyflask.flaskEffects.projectileResistance.t2.description=Increases your projectile resistance by 20 % for 2 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_ProjectileResistance.name=Projectile Resistance
+hyflask.flaskEffects.FlaskEffect_ProjectileResistance_T1.name=Lesser Projectile Resistance
+hyflask.flaskEffects.FlaskEffect_ProjectileResistance_T1.description=Increases your projectile resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.FlaskEffect_ProjectileResistance_T2.name=Greater Projectile Resistance
+hyflask.flaskEffects.FlaskEffect_ProjectileResistance_T2.description=Increases your projectile resistance by 20 % for 2 minutes.
 
-hyflask.flaskEffectGroups.poisonResistance.name=Poison Resistance
-hyflask.flaskEffects.poisonResistance.t1.name=Lesser Poison Resistance
-hyflask.flaskEffects.poisonResistance.t1.description=Increases your poison resistance by 10 % for 2 minutes.
-hyflask.flaskEffects.poisonResistance.t2.name=Greater Poison Resistance
-hyflask.flaskEffects.poisonResistance.t2.description=Increases your poison resistance by 20 % for 2 minutes.
+hyflask.flaskEffectGroups.FlaskEffectGroup_PoisonResistance.name=Poison Resistance
+hyflask.flaskEffects.FlaskEffect_PoisonResistance_T1.name=Lesser Poison Resistance
+hyflask.flaskEffects.FlaskEffect_PoisonResistance_T1.description=Increases your poison resistance by 10 % for 2 minutes.
+hyflask.flaskEffects.FlaskEffect_PoisonResistance_T2.name=Greater Poison Resistance
+hyflask.flaskEffects.FlaskEffect_PoisonResistance_T2.description=Increases your poison resistance by 20 % for 2 minutes.
 
-hyflask.flaskEffects.recall.name=Recall
-hyflask.flaskEffects.recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
+hyflask.flaskEffects.FlaskEffect_Recall.name=Recall
+hyflask.flaskEffects.FlaskEffect_Recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
 
 # === commands ===
 hyflask.commands=Commands for HyFlask.

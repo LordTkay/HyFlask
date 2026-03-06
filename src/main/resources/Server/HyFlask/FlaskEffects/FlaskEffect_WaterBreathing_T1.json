@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.waterBreathing.t1.name",
-    "Description": "server.hyflask.flaskEffects.waterBreathing.t1.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.description"
   },
   "Quality": "Common",
   "Icon": "Icons/FlaskEffects/WaterBreathing/T1.png",

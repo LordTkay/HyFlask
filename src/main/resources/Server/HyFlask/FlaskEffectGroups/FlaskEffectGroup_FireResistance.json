@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.fireResistance.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_FireResistance.name"
   },
   "Icon": "Icons/FlaskEffects/FireResistance/Group.png"
 }

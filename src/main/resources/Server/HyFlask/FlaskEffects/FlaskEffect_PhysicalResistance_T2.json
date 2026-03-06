@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.physicalResistance.t2.name",
-    "Description": "server.hyflask.flaskEffects.physicalResistance.t2.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_PhysicalResistance_T2.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_PhysicalResistance_T2.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/PhysicalResistance/T2.png",

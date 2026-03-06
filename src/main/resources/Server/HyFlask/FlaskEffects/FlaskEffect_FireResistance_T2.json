@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.fireResistance.t2.name",
-    "Description": "server.hyflask.flaskEffects.fireResistance.t2.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_FireResistance_T2.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_FireResistance_T2.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/FireResistance/T2.png",

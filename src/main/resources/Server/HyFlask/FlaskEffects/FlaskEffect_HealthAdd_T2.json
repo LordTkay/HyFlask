@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.healthAdd.t2.name",
-    "Description": "server.hyflask.flaskEffects.healthAdd.t2.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.description"
   },
   "Quality": "Rare",
   "Icon": "Icons/FlaskEffects/HealthAdd/T2.png",

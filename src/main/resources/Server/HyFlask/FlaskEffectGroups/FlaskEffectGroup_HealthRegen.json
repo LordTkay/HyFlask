@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.healthRegen.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_HealthRegen.name"
   },
   "Icon": "Icons/FlaskEffects/HealthRegen/Group.png"
 }

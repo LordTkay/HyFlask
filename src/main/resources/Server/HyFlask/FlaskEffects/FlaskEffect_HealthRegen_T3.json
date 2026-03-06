@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.healthRegen.t3.name",
-    "Description": "server.hyflask.flaskEffects.healthRegen.t3.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_HealthRegen_T3.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_HealthRegen_T3.description"
   },
   "Quality": "Rare",
   "Icon": "Icons/FlaskEffects/HealthRegen/T3.png",

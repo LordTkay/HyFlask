@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.poisonResistance.t2.name",
-    "Description": "server.hyflask.flaskEffects.poisonResistance.t2.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_PoisonResistance_T2.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_PoisonResistance_T2.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/PoisonResistance/T2.png",

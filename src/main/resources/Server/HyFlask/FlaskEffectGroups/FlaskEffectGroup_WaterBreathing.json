@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.waterBreathing.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_WaterBreathing.name"
   },
   "Icon": "Icons/FlaskEffects/WaterBreathing/Group.png"
 }

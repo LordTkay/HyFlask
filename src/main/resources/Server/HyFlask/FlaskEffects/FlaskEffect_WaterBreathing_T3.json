@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.waterBreathing.t3.name",
-    "Description": "server.hyflask.flaskEffects.waterBreathing.t3.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_WaterBreathing_T3.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_WaterBreathing_T3.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/WaterBreathing/T3.png",

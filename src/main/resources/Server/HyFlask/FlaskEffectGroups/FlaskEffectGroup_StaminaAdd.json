@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffectGroups.staminaAdd.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_StaminaAdd.name"
   },
   "Icon": "Icons/FlaskEffects/StaminaAdd/Group.png"
 }

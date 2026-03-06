@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.healthRegen.t4.name",
-    "Description": "server.hyflask.flaskEffects.healthRegen.t4.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_HealthRegen_T4.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_HealthRegen_T4.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/HealthRegen/T4.png",

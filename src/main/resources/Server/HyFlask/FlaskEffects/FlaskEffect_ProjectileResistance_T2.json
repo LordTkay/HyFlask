@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.flaskEffects.projectileResistance.t2.name",
-    "Description": "server.hyflask.flaskEffects.projectileResistance.t2.description"
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_ProjectileResistance_T2.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_ProjectileResistance_T2.description"
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/ProjectileResistance/T2.png",
