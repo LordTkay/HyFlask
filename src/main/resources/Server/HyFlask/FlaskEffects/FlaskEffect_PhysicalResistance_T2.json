@@ -12,6 +12,10 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_PhysicalResistance_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_PhysicalResistance_T1"
         }
       ]
     }

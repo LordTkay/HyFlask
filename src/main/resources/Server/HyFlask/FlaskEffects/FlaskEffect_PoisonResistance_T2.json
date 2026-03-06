@@ -12,6 +12,10 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_PoisonResistance_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_PoisonResistance_T1"
         }
       ]
     }

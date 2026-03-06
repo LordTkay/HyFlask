@@ -12,6 +12,14 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_HealthAdd_T1"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_HealthAdd_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_HealthAdd_T3"
         }
       ]
     }

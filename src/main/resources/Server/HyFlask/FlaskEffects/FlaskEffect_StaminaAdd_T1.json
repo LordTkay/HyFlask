@@ -12,6 +12,14 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_StaminaAdd_T1"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_StaminaAdd_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_StaminaAdd_T3"
         }
       ]
     }

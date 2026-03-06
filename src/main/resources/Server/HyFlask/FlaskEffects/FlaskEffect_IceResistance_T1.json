@@ -12,6 +12,10 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_IceResistance_T1"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_IceResistance_T2"
         }
       ]
     }

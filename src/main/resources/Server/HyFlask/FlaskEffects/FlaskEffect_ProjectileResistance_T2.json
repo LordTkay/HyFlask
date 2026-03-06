@@ -12,6 +12,10 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_ProjectileResistance_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_ProjectileResistance_T1"
         }
       ]
     }

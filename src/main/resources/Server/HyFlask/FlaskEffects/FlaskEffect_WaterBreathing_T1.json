@@ -12,6 +12,14 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_WaterBreathing_T1"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_WaterBreathing_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_WaterBreathing_T3"
         }
       ]
     }

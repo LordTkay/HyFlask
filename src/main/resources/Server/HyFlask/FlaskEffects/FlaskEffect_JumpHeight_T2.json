@@ -17,6 +17,10 @@
           "Type": "HyFlask_ModifyJumpHeight",
           "JumpHeight": 5,
           "RemoveOnEffectId": "Effect_JumpHeight_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_JumpHeight_T1"
         }
       ]
     }

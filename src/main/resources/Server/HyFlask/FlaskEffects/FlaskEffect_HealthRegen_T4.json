@@ -12,6 +12,18 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_HealthRegen_T4"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_HealthRegen_T1"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_HealthRegen_T2"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_HealthRegen_T3"
         }
       ]
     }

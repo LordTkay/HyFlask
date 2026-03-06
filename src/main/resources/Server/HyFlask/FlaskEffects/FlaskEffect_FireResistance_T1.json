@@ -12,6 +12,10 @@
         {
           "Type": "ApplyEffect",
           "EffectId": "Effect_FireResistance_T1"
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "EntityEffectId": "Effect_FireResistance_T2"
         }
       ]
     }
