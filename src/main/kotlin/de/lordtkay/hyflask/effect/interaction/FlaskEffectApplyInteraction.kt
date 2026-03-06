@@ -12,7 +12,6 @@ import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 class FlaskEffectApplyInteraction : SimpleInstantInteraction() {
 
     companion object {
-        const val ID = "HyFlask_ApplyEffect"
         private var logger = HytaleLogger.forEnclosingClass()
 
         val CODEC: BuilderCodec<FlaskEffectApplyInteraction>
