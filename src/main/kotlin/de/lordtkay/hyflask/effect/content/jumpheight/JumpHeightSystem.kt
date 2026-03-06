@@ -62,6 +62,6 @@ class JumpHeightSystem : EntityTickingSystem<EntityStore>() {
     private fun applyModifier(movementManager: MovementManager, playerRef: PlayerRef, value: Float) {
         movementManager.settings.jumpForce += value
         movementManager.update(playerRef.packetHandler)
-        logger.atInfo().log("Player was added jump height modifier of $value")
+        logger.atInfo().log("Jump height modifier of $value applied to player")
     }
 }
