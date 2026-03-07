@@ -1,6 +1,6 @@
 {
   "TranslationProperties": {
-    "Name": "server.hyflask.FlaskEffectGroup_Speed.speed.name"
+    "Name": "server.hyflask.flaskEffectGroups.FlaskEffectGroup_Speed.name"
   },
   "Icon": "Icons/FlaskEffects/Speed/Group.png"
 }
