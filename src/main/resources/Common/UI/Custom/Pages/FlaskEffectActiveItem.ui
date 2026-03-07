@@ -12,7 +12,7 @@ Group {
     AssetImage #ItemIcon {
       AssetPath: "UI/Custom/Common/ContainerPanelPatch.png";
       Padding: (Full: 5);
-      Anchor: (Width: 32, Height: 32);
+      Anchor: (Width: 34, Height: 34);
     }
 
     Group #ItemText {
