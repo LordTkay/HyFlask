@@ -10,5 +10,6 @@ class UsesCommandCollection : AbstractCommandCollection("uses", "server.hyflask.
         addSubCommand(SetToMaxUsesCommand())
         addSubCommand(SetUsesCommand())
         addSubCommand(AddMaxUsesCommand())
+        addSubCommand(SetMaxUsesCommand())
     }
 }
