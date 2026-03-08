@@ -29,18 +29,18 @@ class ActivateEffectCommand(
 
     override fun execute(
         commandContext: CommandContext,
-        ref: Ref<EntityStore?>?,
-        ref1: Ref<EntityStore?>,
+        sourceRef: Ref<EntityStore?>?,
+        ref: Ref<EntityStore?>,
         playerRef: PlayerRef,
         world: World,
         store: Store<EntityStore?>
     ) {
         val flaskEffectComponent =
-            store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
+            store.ensureAndGetComponent(ref, FlaskEffectComponent.componentType)
 
         val effectId = effectIdArg.get(commandContext)
 
-        val message = when (val result = flaskEffectComponent.activateEffect(effectId, playerRef.reference!!, store)) {
+        val message = when (val result = flaskEffectComponent.activateEffect(effectId, ref, store)) {
             is FlaskEffectComponent.ActivateResult.Success ->
                 Message.translation("$translationKey.success")
                     .param("name", result.asset.displayNameWithId)
@@ -58,6 +58,6 @@ class ActivateEffectCommand(
                     .param("id", effectId)
         }
 
-        playerRef.sendMessage(message)
+        commandContext.sendMessage(message)
     }
 }

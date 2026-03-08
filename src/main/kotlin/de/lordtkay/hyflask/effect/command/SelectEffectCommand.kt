@@ -24,18 +24,18 @@ class SelectEffectCommand(
 
     override fun execute(
         commandContext: CommandContext,
-        ref: Ref<EntityStore?>?,
-        ref1: Ref<EntityStore?>,
+        sourceRef: Ref<EntityStore?>?,
+        ref: Ref<EntityStore?>,
         playerRef: PlayerRef,
         world: World,
         store: Store<EntityStore?>
     ) {
-        val player = store.ensureAndGetComponent(ref1, Player.getComponentType())
-        val flaskEffectComponent = store.ensureAndGetComponent(ref1, FlaskEffectComponent.componentType)
-        val entityStatMap = store.ensureAndGetComponent(ref1, EntityStatMap.getComponentType())
+        val player = store.ensureAndGetComponent(ref, Player.getComponentType())
+        val flaskEffectComponent = store.ensureAndGetComponent(ref, FlaskEffectComponent.componentType)
+        val entityStatMap = store.ensureAndGetComponent(ref, EntityStatMap.getComponentType())
 
         player.pageManager.openCustomPage(
-            ref1,
+            ref,
             store,
             FlaskEffectSelectionPage(playerRef, flaskEffectComponent, entityStatMap)
         )

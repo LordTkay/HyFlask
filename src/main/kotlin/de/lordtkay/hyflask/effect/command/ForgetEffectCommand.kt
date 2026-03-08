@@ -29,14 +29,14 @@ class ForgetEffectCommand(
 
     override fun execute(
         commandContext: CommandContext,
-        ref: Ref<EntityStore?>?,
-        ref1: Ref<EntityStore?>,
+        sourceRef: Ref<EntityStore?>?,
+        ref: Ref<EntityStore?>,
         playerRef: PlayerRef,
         world: World,
         store: Store<EntityStore?>
     ) {
         val flaskEffectComponent =
-            store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
+            store.ensureAndGetComponent(ref, FlaskEffectComponent.componentType)
 
         val effectId = effectIdArg.get(commandContext)
 
@@ -46,7 +46,7 @@ class ForgetEffectCommand(
             forgetAllEffects(flaskEffectComponent)
         }
 
-        playerRef.sendMessage(message)
+        commandContext.sendMessage(message)
     }
 
     private fun forgetAllEffects(flaskEffectComponent: FlaskEffectComponent): Message {

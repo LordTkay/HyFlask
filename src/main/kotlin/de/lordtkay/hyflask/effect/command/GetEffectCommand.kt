@@ -22,14 +22,14 @@ class GetEffectCommand(
 
     override fun execute(
         commandContext: CommandContext,
-        ref: Ref<EntityStore?>?,
-        ref1: Ref<EntityStore?>,
+        sourceRef: Ref<EntityStore?>?,
+        ref: Ref<EntityStore?>,
         playerRef: PlayerRef,
         world: World,
         store: Store<EntityStore?>
     ) {
         val flaskEffectComponent =
-            store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
+            store.ensureAndGetComponent(ref, FlaskEffectComponent.componentType)
 
         val activeEffects = flaskEffectComponent.activeEffectsDisplayNames
         val learnedEffects = flaskEffectComponent.learnedEffectsDisplayNames
@@ -38,6 +38,6 @@ class GetEffectCommand(
             .param("activeEffects", activeEffects.joinToString("\n") { "- $it" })
             .param("learnedEffects", learnedEffects.joinToString("\n") { "- $it" })
 
-        playerRef.sendMessage(message)
+        commandContext.sendMessage(message)
     }
 }

@@ -29,19 +29,19 @@ class DeactivateEffectCommand(
 
     override fun execute(
         commandContext: CommandContext,
-        ref: Ref<EntityStore?>?,
-        ref1: Ref<EntityStore?>,
+        sourceRef: Ref<EntityStore?>?,
+        ref: Ref<EntityStore?>,
         playerRef: PlayerRef,
         world: World,
         store: Store<EntityStore?>
     ) {
         val flaskEffectComponent =
-            store.ensureAndGetComponent(playerRef.reference!!, FlaskEffectComponent.componentType)
+            store.ensureAndGetComponent(ref, FlaskEffectComponent.componentType)
 
         val effectId = effectIdArg.get(commandContext)
 
         val message =
-            when (val result = flaskEffectComponent.deactivateEffect(effectId, playerRef.reference!!, store)) {
+            when (val result = flaskEffectComponent.deactivateEffect(effectId, ref, store)) {
             is FlaskEffectComponent.DeactivateResult.Success ->
                 Message.translation("$translationKey.success")
                     .param("name", result.asset.displayNameWithId)
@@ -55,6 +55,6 @@ class DeactivateEffectCommand(
                     .param("id", effectId)
         }
 
-        playerRef.sendMessage(message)
+        commandContext.sendMessage(message)
     }
 }

@@ -30,17 +30,17 @@ class SetUsesCommand(
 
     override fun execute(
         commandContext: CommandContext,
-        ref: Ref<EntityStore?>?,
-        ref1: Ref<EntityStore?>,
+        sourceRef: Ref<EntityStore?>?,
+        ref: Ref<EntityStore?>,
         playerRef: PlayerRef,
         world: World,
         store: Store<EntityStore?>
     ) {
-        val statMap = store.getComponent(playerRef.reference!!, EntityStatMap.getComponentType())
+        val statMap = store.getComponent(ref, EntityStatMap.getComponentType())
         if (statMap == null) {
             logger.atWarning()
                 .log("${EntityStatMap::class.simpleName} was not found on player reference.")
-            playerRef.sendMessage(Message.translation("server.hyflask.commands.error"))
+            commandContext.sendMessage(Message.translation("server.hyflask.commands.error"))
             return
         }
         val statIndex = USES.getIndex()
@@ -53,6 +53,6 @@ class SetUsesCommand(
         val message = Message.translation("$translationKey.success")
             .param("uses", currentUses)
             .param("max", currentMax)
-        playerRef.sendMessage(message)
+        commandContext.sendMessage(message)
     }
 }
