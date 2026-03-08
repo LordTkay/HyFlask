@@ -234,6 +234,8 @@ hyflask.commands.uses.set.amount=The amount of uses the flask will have.
 hyflask.commands.uses.set.success={uses} of {max} uses now.
 
 hyflask.commands.capacity=Display and manipulate capacity of a players flask.
+hyflask.commands.capacity.get=Get the current capacity of a players flask.
+hyflask.commands.capacity.get.success={current} of {max} capacity.
 hyflask.commands.capacity.addMax=Add amount to maximum capacity of players flask.
 hyflask.commands.capacity.addMax.amount=The amount that will be added or removed.
 hyflask.commands.capacity.addMax.success={max} is the new capacity.
