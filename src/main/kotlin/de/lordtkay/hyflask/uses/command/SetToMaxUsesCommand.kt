@@ -7,10 +7,10 @@ import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.command.system.CommandContext
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractTargetPlayerCommand
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
-import com.hypixel.hytale.server.core.modules.entitystats.asset.EntityStatType
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
 class SetToMaxUsesCommand : AbstractTargetPlayerCommand("settomax", "server.hyflask.commands.uses.settomax") {
     companion object {
@@ -32,10 +32,7 @@ class SetToMaxUsesCommand : AbstractTargetPlayerCommand("settomax", "server.hyfl
             playerRef.sendMessage(Message.translation("server.hyflask.commands.error"))
             return
         }
-        val assetMap = EntityStatType.getAssetMap()
-        // TODO: Magic string into enum
-        val statIndex = assetMap.getIndex("HyFlask_Uses")
-
+        val statIndex = USES.getIndex()
         val currentUses = statMap.resetStatValue(statIndex)
 
         val message = Message.translation("server.hyflask.commands.uses.settomax.success")

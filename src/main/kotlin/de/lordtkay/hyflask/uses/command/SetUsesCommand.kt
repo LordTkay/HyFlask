@@ -9,10 +9,10 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractTargetPlayerCommand
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
-import com.hypixel.hytale.server.core.modules.entitystats.asset.EntityStatType
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
 class SetUsesCommand : AbstractTargetPlayerCommand("set", "server.hyflask.commands.uses.set") {
     companion object {
@@ -40,9 +40,7 @@ class SetUsesCommand : AbstractTargetPlayerCommand("set", "server.hyflask.comman
             playerRef.sendMessage(Message.translation("server.hyflask.commands.error"))
             return
         }
-        val assetMap = EntityStatType.getAssetMap()
-        // TODO: Magic string into enum
-        val statIndex = assetMap.getIndex("HyFlask_Uses")
+        val statIndex = USES.getIndex()
         val usesStat = statMap.get(statIndex)
 
         val setUses = amountArg.get(commandContext)
