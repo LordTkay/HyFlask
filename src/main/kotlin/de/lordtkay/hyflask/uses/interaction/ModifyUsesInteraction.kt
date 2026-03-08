@@ -35,7 +35,6 @@ class ModifyUsesInteraction : SimpleInstantInteraction() {
                 .documentation("Amount by which 'Uses' gets modified. Positive values add and negative values remove 'Uses'.")
                 .addValidator(Validators.nonNull())
                 .add()
-
             CODEC = builder.build()
         }
     }
