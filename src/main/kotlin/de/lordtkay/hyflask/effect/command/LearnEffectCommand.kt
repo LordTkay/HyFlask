@@ -13,7 +13,10 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 
-class LearnEffectCommand : AbstractTargetPlayerCommand("learn", "server.hyflask.commands.effects.learn") {
+class LearnEffectCommand(
+    parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.learn"
+) : AbstractTargetPlayerCommand("learn", translationKey) {
 
     companion object {
         private var logger = HytaleLogger.forEnclosingClass()
@@ -21,7 +24,7 @@ class LearnEffectCommand : AbstractTargetPlayerCommand("learn", "server.hyflask.
 
     private val effectIdArg = this.withRequiredArg(
         "effectId",
-        "server.hyflask.commands.effects.learn.effectId",
+        "$translationKey.effectId",
         ArgTypes.STRING
     )
 
@@ -51,7 +54,7 @@ class LearnEffectCommand : AbstractTargetPlayerCommand("learn", "server.hyflask.
     private fun learnAllEffects(flaskEffectComponent: FlaskEffectComponent): Message {
         val values = FlaskEffect.assetMap.assetMap.values
         values.forEach { flaskEffectComponent.learnEffect(it.id) }
-        return Message.translation("server.hyflask.commands.effects.learn.all.success")
+        return Message.translation("$translationKey.all.success")
             .param("count", values.size)
     }
 
@@ -61,11 +64,11 @@ class LearnEffectCommand : AbstractTargetPlayerCommand("learn", "server.hyflask.
     ): Message {
         return when (val result = flaskEffectComponent.learnEffect(effectId)) {
             is FlaskEffectComponent.LearnResult.Success ->
-                Message.translation("server.hyflask.commands.effects.learn.success")
+                Message.translation("$translationKey.success")
                     .param("name", result.asset.displayNameWithId)
 
             is FlaskEffectComponent.LearnResult.AlreadyLearned ->
-                Message.translation("server.hyflask.commands.effects.learn.alreadyLearned")
+                Message.translation("$translationKey.alreadyLearned")
                     .param("name", result.asset.displayNameWithId)
 
             FlaskEffectComponent.LearnResult.UnknownAsset ->

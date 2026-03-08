@@ -12,7 +12,10 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
-class SetToMaxUsesCommand : AbstractTargetPlayerCommand("settomax", "server.hyflask.commands.uses.settomax") {
+class SetToMaxUsesCommand(
+    parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.settomax"
+) : AbstractTargetPlayerCommand("settomax", translationKey) {
     companion object {
         private val logger = HytaleLogger.forEnclosingClass()
     }
@@ -35,7 +38,7 @@ class SetToMaxUsesCommand : AbstractTargetPlayerCommand("settomax", "server.hyfl
         val statIndex = USES.getIndex()
         val currentUses = statMap.resetStatValue(statIndex)
 
-        val message = Message.translation("server.hyflask.commands.uses.settomax.success")
+        val message = Message.translation("$translationKey.success")
             .param("uses", currentUses)
             .param("max", currentUses)
         playerRef.sendMessage(message)

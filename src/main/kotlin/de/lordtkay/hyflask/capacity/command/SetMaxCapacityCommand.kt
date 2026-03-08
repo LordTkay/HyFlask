@@ -18,7 +18,10 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier.COMMAND_ADDITIVE
 
-class SetMaxCapacityCommand : AbstractTargetPlayerCommand("setMax", "server.hyflask.commands.capacity.setMax") {
+class SetMaxCapacityCommand(
+    parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.setMax"
+) : AbstractTargetPlayerCommand("setMax", translationKey) {
 
     companion object {
         private val logger = HytaleLogger.forEnclosingClass()
@@ -26,7 +29,7 @@ class SetMaxCapacityCommand : AbstractTargetPlayerCommand("setMax", "server.hyfl
 
     private val amountArg = this.withRequiredArg(
         "amount",
-        "server.hyflask.commands.capacity.setMax.amount",
+        "$translationKey.amount",
         ArgTypes.INTEGER
     )
 
@@ -65,7 +68,7 @@ class SetMaxCapacityCommand : AbstractTargetPlayerCommand("setMax", "server.hyfl
         statMap.putModifier(statIndex, COMMAND_ADDITIVE.id, newModifier)
 
         val message =
-            Message.translation("server.hyflask.commands.capacity.setMax.success").param("maxCapacity", amount)
+            Message.translation("$translationKey.success").param("maxCapacity", amount)
         playerRef.sendMessage(message)
     }
 }

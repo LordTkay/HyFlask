@@ -2,15 +2,18 @@ package de.lordtkay.hyflask.effect.command
 
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractCommandCollection
 
-class EffectsCommandCollection : AbstractCommandCollection("effects", "server.hyflask.commands.effects") {
+class EffectsCommandCollection(
+    parentTranslationKey: String,
+    translationKey: String = "$parentTranslationKey.effects"
+) : AbstractCommandCollection("effects", translationKey) {
 
     init {
-        addSubCommand(SelectEffectCommand())
-        addSubCommand(GetEffectCommand())
-        addSubCommand(LearnEffectCommand())
-        addSubCommand(ForgetEffectCommand())
-        addSubCommand(ActivateEffectCommand())
-        addSubCommand(DeactivateEffectCommand())
+        addSubCommand(SelectEffectCommand(translationKey))
+        addSubCommand(GetEffectCommand(translationKey))
+        addSubCommand(LearnEffectCommand(translationKey))
+        addSubCommand(ForgetEffectCommand(translationKey))
+        addSubCommand(ActivateEffectCommand(translationKey))
+        addSubCommand(DeactivateEffectCommand(translationKey))
     }
 
 }

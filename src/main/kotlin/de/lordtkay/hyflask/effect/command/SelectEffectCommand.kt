@@ -13,7 +13,10 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
 
-class SelectEffectCommand : AbstractTargetPlayerCommand("select", "server.hyflask.commands.effects.select") {
+class SelectEffectCommand(
+    parentTranslationKey: String,
+    translationKey: String = "$parentTranslationKey.select"
+) : AbstractTargetPlayerCommand("select", translationKey) {
 
     companion object {
         private var logger = HytaleLogger.forEnclosingClass()

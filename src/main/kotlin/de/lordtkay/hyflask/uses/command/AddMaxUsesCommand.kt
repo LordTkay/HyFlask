@@ -17,14 +17,17 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier.COMMAND_ADDITIVE
 
-class AddMaxUsesCommand : AbstractTargetPlayerCommand("addmax", "server.hyflask.commands.uses.addmax") {
+class AddMaxUsesCommand(
+    parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.addMax"
+) : AbstractTargetPlayerCommand("addMax", translationKey) {
     companion object {
         private val logger = HytaleLogger.forEnclosingClass()
     }
 
     private val amountArg: RequiredArg<Int> = this.withRequiredArg(
         "amount",
-        "server.hyflask.commands.uses.addmax.amount",
+        "$translationKey.amount",
         ArgTypes.INTEGER
     )
 
@@ -60,7 +63,7 @@ class AddMaxUsesCommand : AbstractTargetPlayerCommand("addmax", "server.hyflask.
         // Inform player
         val currentUses = usesStat?.get() ?: 0f
         val currentMax = usesStat?.max ?: 0f
-        val message = Message.translation("server.hyflask.commands.uses.addMax.success")
+        val message = Message.translation("$translationKey.success")
             .param("uses", currentUses)
             .param("max", currentMax)
         playerRef.sendMessage(message)

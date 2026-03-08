@@ -12,8 +12,10 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 
-class DeactivateEffectCommand :
-    AbstractTargetPlayerCommand("deactivate", "server.hyflask.commands.effects.deactivate") {
+class DeactivateEffectCommand(
+    private val parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.deactivate"
+) : AbstractTargetPlayerCommand("deactivate", translationKey) {
 
     companion object {
         private var logger = HytaleLogger.forEnclosingClass()
@@ -21,7 +23,7 @@ class DeactivateEffectCommand :
 
     private val effectIdArg = this.withRequiredArg(
         "effectId",
-        "server.hyflask.commands.effects.deactivate.effectId",
+        "$translationKey.effectId",
         ArgTypes.STRING
     )
 
@@ -41,15 +43,15 @@ class DeactivateEffectCommand :
         val message =
             when (val result = flaskEffectComponent.deactivateEffect(effectId, playerRef.reference!!, store)) {
             is FlaskEffectComponent.DeactivateResult.Success ->
-                Message.translation("server.hyflask.commands.effects.deactivate.success")
+                Message.translation("$translationKey.success")
                     .param("name", result.asset.displayNameWithId)
 
             is FlaskEffectComponent.DeactivateResult.NotActive ->
-                Message.translation("server.hyflask.commands.effects.deactivate.alreadyDeactivated")
+                Message.translation("$translationKey.alreadyDeactivated")
                     .param("name", result.asset.displayNameWithId)
 
             FlaskEffectComponent.DeactivateResult.UnknownAsset ->
-                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                Message.translation("$parentTranslationKey.invalidEffectId")
                     .param("id", effectId)
         }
 

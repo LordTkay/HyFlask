@@ -2,10 +2,13 @@ package de.lordtkay.hyflask.capacity.command
 
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractCommandCollection
 
-class CapacityCommandCollection : AbstractCommandCollection("capacity", "server.hyflask.commands.capacity") {
+class CapacityCommandCollection(
+    parentTranslationKey: String,
+    translationKey: String = "$parentTranslationKey.capacity"
+) : AbstractCommandCollection("capacity", translationKey) {
     init {
-        addSubCommand(AddMaxCapacityCommand())
-        addSubCommand(ResetMaxCapacityCommand())
-        addSubCommand(SetMaxCapacityCommand())
+        addSubCommand(AddMaxCapacityCommand(translationKey))
+        addSubCommand(ResetMaxCapacityCommand(translationKey))
+        addSubCommand(SetMaxCapacityCommand(translationKey))
     }
 }

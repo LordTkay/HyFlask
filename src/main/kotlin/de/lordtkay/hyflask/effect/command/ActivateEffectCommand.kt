@@ -12,7 +12,10 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 
-class ActivateEffectCommand : AbstractTargetPlayerCommand("activate", "server.hyflask.commands.effects.activate") {
+class ActivateEffectCommand(
+    private val parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.activate"
+) : AbstractTargetPlayerCommand("activate", translationKey) {
 
     companion object {
         private var logger = HytaleLogger.forEnclosingClass()
@@ -20,7 +23,7 @@ class ActivateEffectCommand : AbstractTargetPlayerCommand("activate", "server.hy
 
     private val effectIdArg = this.withRequiredArg(
         "effectId",
-        "server.hyflask.commands.effects.activate.effectId",
+        "$translationKey.effectId",
         ArgTypes.STRING
     )
 
@@ -39,19 +42,19 @@ class ActivateEffectCommand : AbstractTargetPlayerCommand("activate", "server.hy
 
         val message = when (val result = flaskEffectComponent.activateEffect(effectId, playerRef.reference!!, store)) {
             is FlaskEffectComponent.ActivateResult.Success ->
-                Message.translation("server.hyflask.commands.effects.activate.success")
+                Message.translation("$translationKey.success")
                     .param("name", result.asset.displayNameWithId)
 
             is FlaskEffectComponent.ActivateResult.AlreadyActive ->
-                Message.translation("server.hyflask.commands.effects.activate.alreadyActive")
+                Message.translation("$translationKey.alreadyActive")
                     .param("name", result.asset.displayNameWithId)
 
             is FlaskEffectComponent.ActivateResult.NotLearned ->
-                Message.translation("server.hyflask.commands.effects.activate.notLearned")
+                Message.translation("$translationKey.notLearned")
                     .param("name", result.asset.displayNameWithId)
 
             FlaskEffectComponent.ActivateResult.UnknownAsset ->
-                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                Message.translation("$parentTranslationKey.invalidEffectId")
                     .param("id", effectId)
         }
 

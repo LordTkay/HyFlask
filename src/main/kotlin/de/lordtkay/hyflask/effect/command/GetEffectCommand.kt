@@ -11,7 +11,10 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 
-class GetEffectCommand : AbstractTargetPlayerCommand("get", "server.hyflask.commands.effects.get") {
+class GetEffectCommand(
+    parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.get"
+) : AbstractTargetPlayerCommand("get", translationKey) {
 
     companion object {
         private var logger = HytaleLogger.forEnclosingClass()
@@ -31,7 +34,7 @@ class GetEffectCommand : AbstractTargetPlayerCommand("get", "server.hyflask.comm
         val activeEffects = flaskEffectComponent.activeEffectsDisplayNames
         val learnedEffects = flaskEffectComponent.learnedEffectsDisplayNames
 
-        val message = Message.translation("server.hyflask.commands.effects.get.success")
+        val message = Message.translation("$translationKey.success")
             .param("activeEffects", activeEffects.joinToString("\n") { "- $it" })
             .param("learnedEffects", learnedEffects.joinToString("\n") { "- $it" })
 

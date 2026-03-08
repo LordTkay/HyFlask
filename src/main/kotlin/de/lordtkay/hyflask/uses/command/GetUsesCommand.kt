@@ -12,7 +12,10 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
-class GetUsesCommand : AbstractTargetPlayerCommand("get", "server.hyflask.commands.uses.get") {
+class GetUsesCommand(
+    parentTranslationKey: String,
+    private val translationKey: String = "$parentTranslationKey.get"
+) : AbstractTargetPlayerCommand("get", translationKey) {
     companion object {
         private val logger = HytaleLogger.forEnclosingClass()
     }
@@ -35,7 +38,7 @@ class GetUsesCommand : AbstractTargetPlayerCommand("get", "server.hyflask.comman
         val usesStat = statMap.get(statIndex)
         val currentUses = usesStat?.get()?: 0f
         val currentMax = usesStat?.max?: 0f
-        val message = Message.translation("server.hyflask.commands.uses.get.success")
+        val message = Message.translation("$translationKey.success")
             .param("uses", currentUses)
             .param("max", currentMax)
         playerRef.sendMessage(message)
