@@ -30,6 +30,7 @@ import de.lordtkay.hyflask.enumeration.HyFlaskCondition
 import de.lordtkay.hyflask.enumeration.HyFlaskInteraction
 import de.lordtkay.hyflask.enumeration.HyFlaskPage
 import de.lordtkay.hyflask.uses.interaction.HasUsesInteraction
+import de.lordtkay.hyflask.uses.interaction.ModifyUsesInteraction
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -166,6 +167,12 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskInteraction.HAS_USES.id,
             HasUsesInteraction::class.java,
             HasUsesInteraction.CODEC
+        )
+
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.MODIFY_USES.id,
+            ModifyUsesInteraction::class.java,
+            ModifyUsesInteraction.CODEC
         )
     }
 
