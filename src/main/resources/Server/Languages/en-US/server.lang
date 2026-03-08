@@ -18,6 +18,7 @@ hyflask.commands.uses.add.success={uses} of {max} uses now.
 hyflask.commands.uses.addMax.success={uses} of {max} uses now.
 hyflask.commands.uses.get=Get remaining and maximum uses of players flask.
 hyflask.commands.uses.get.success={uses} of {max} uses remaining.
+hyflask.commands.uses.resetMax.success=Maximum reset. {uses} of {max} uses now.
 hyflask.commands.uses.settomax=Resets the amount of uses of players flask.
 hyflask.commands.uses.settomax.success={uses} of {max} uses reset.
 hyflask.commands.uses.setMax.success={uses} of {max} uses now.
