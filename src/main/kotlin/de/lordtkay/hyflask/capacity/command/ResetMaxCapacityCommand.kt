@@ -6,13 +6,12 @@ import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.command.system.CommandContext
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractTargetPlayerCommand
-import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
-import com.hypixel.hytale.server.core.modules.entitystats.asset.EntityStatType
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier.COMMAND_ADDITIVE
+import de.lordtkay.hyflask.utility.command.EntityStatUtility
 
 class ResetMaxCapacityCommand(
     parentTranslationKey: String,
@@ -31,23 +30,21 @@ class ResetMaxCapacityCommand(
         world: World,
         store: Store<EntityStore?>
     ) {
-        val statMap = store.getComponent(ref, EntityStatMap.getComponentType())
-        if (statMap == null) {
-            logger.atWarning()
-                .log("${EntityStatMap::class.simpleName} was not found on player reference.")
-            commandContext.sendMessage(Message.translation("server.hyflask.commands.error"))
-            return
+        val result = EntityStatUtility.removeModifier(
+            ref,
+            store,
+            HyFlaskEntityStat.CAPACITY,
+            COMMAND_ADDITIVE
+        )
+
+        val message = when (result) {
+            is EntityStatUtility.Result.ComponentMissing ->
+                Message.translation("server.hyflask.commands.error")
+
+            is EntityStatUtility.Result.Success ->
+                Message.translation("$translationKey.success").param("max", result.max)
         }
-        val assetMap = EntityStatType.getAssetMap()
-        val statIndex = assetMap.getIndex(HyFlaskEntityStat.CAPACITY.id)
 
-        statMap.removeModifier(statIndex, COMMAND_ADDITIVE.id)
-        val newMaxCapacity = statMap.get(statIndex)?.max ?: 0f
-
-        val message =
-            Message.translation("$translationKey.success")
-                .param("maxCapacity", newMaxCapacity)
         commandContext.sendMessage(message)
-
     }
 }

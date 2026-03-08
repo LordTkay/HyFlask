@@ -2,24 +2,20 @@ package de.lordtkay.hyflask.uses.command
 
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.component.Store
-import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.command.system.CommandContext
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractTargetPlayerCommand
-import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier.COMMAND_ADDITIVE
+import de.lordtkay.hyflask.utility.command.EntityStatUtility
 
 class ResetMaxUsesCommand(
     parentTranslationKey: String,
     private val translationKey: String = "$parentTranslationKey.resetMax"
 ) : AbstractTargetPlayerCommand("resetMax", translationKey) {
-    companion object {
-        private val logger = HytaleLogger.forEnclosingClass()
-    }
 
     override fun execute(
         commandContext: CommandContext,
@@ -29,27 +25,20 @@ class ResetMaxUsesCommand(
         world: World,
         store: Store<EntityStore?>
     ) {
-        val statMap = store.getComponent(ref, EntityStatMap.getComponentType())
-        if (statMap == null) {
-            logger.atWarning()
-                .log("${EntityStatMap::class.simpleName} was not found on player reference.")
-            commandContext.sendMessage(Message.translation("server.hyflask.commands.error"))
-            return
-        }
-        val statIndex = USES.getIndex()
-        val usesStat = statMap.get(statIndex)
+        val result = EntityStatUtility.removeModifier(ref, store, USES, COMMAND_ADDITIVE)
 
-        val modStat = usesStat?.getModifier(COMMAND_ADDITIVE.id)
-        if (modStat != null) {
-            statMap.removeModifier(statIndex, COMMAND_ADDITIVE.id)
+        val message = when (result) {
+            is EntityStatUtility.Result.ComponentMissing ->
+                Message.translation("server.hyflask.commands.error")
+
+            is EntityStatUtility.Result.Success -> {
+                val state = EntityStatUtility.get(ref, store, USES) as EntityStatUtility.Result.Success
+                Message.translation("$translationKey.success")
+                    .param("uses", state.amount)
+                    .param("max", state.max)
+            }
         }
 
-        // Inform player
-        val currentUses = usesStat?.get() ?: 0f
-        val currentMax = usesStat?.max ?: 0f
-        val message = Message.translation("$translationKey.success")
-            .param("uses", currentUses)
-            .param("max", currentMax)
         commandContext.sendMessage(message)
     }
 }

@@ -10,5 +10,6 @@ class CapacityCommandCollection(
         addSubCommand(AddMaxCapacityCommand(translationKey))
         addSubCommand(ResetMaxCapacityCommand(translationKey))
         addSubCommand(SetMaxCapacityCommand(translationKey))
+        addSubCommand(GetCapacityCommand(translationKey))
     }
 }
