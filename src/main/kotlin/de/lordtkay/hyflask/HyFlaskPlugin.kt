@@ -29,6 +29,7 @@ import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 import de.lordtkay.hyflask.enumeration.HyFlaskCondition
 import de.lordtkay.hyflask.enumeration.HyFlaskInteraction
 import de.lordtkay.hyflask.enumeration.HyFlaskPage
+import de.lordtkay.hyflask.uses.interaction.HasUsesInteraction
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -159,6 +160,12 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskInteraction.MODIFY_JUMP_HEIGHT.id,
             ModifyJumpHeightInteraction::class.java,
             ModifyJumpHeightInteraction.CODEC
+        )
+
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.HAS_USES.id,
+            HasUsesInteraction::class.java,
+            HasUsesInteraction.CODEC
         )
     }
 
