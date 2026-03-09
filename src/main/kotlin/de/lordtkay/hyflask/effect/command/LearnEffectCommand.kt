@@ -14,7 +14,7 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 
 class LearnEffectCommand(
-    parentTranslationKey: String,
+    private val parentTranslationKey: String,
     private val translationKey: String = "$parentTranslationKey.learn"
 ) : AbstractTargetPlayerCommand("learn", translationKey) {
 
@@ -72,7 +72,7 @@ class LearnEffectCommand(
                     .param("name", result.asset.displayNameWithId)
 
             FlaskEffectComponent.LearnResult.UnknownAsset ->
-                Message.translation("server.hyflask.commands.effects.invalidEffectId")
+                Message.translation("$parentTranslationKey.invalidEffectId")
                     .param("id", effectId)
         }
     }
