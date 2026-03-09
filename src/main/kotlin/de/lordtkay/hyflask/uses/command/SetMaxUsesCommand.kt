@@ -13,7 +13,7 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier.COMMAND_ADDITIVE
-import de.lordtkay.hyflask.utility.command.EntityStatUtility
+import de.lordtkay.hyflask.utility.EntityStatUtility
 
 class SetMaxUsesCommand(
     parentTranslationKey: String,
@@ -43,10 +43,9 @@ class SetMaxUsesCommand(
                 Message.translation("server.hyflask.commands.error")
 
             is EntityStatUtility.Result.Success -> {
-                val state = EntityStatUtility.get(ref, store, USES) as EntityStatUtility.Result.Success
                 Message.translation("$translationKey.success")
-                    .param("uses", state.amount)
-                    .param("max", state.max)
+                    .param("uses", result.current)
+                    .param("max", result.max)
             }
         }
 

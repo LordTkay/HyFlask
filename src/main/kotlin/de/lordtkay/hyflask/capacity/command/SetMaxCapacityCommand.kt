@@ -13,7 +13,7 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier.COMMAND_ADDITIVE
-import de.lordtkay.hyflask.utility.command.EntityStatUtility
+import de.lordtkay.hyflask.utility.EntityStatUtility
 
 class SetMaxCapacityCommand(
     parentTranslationKey: String,

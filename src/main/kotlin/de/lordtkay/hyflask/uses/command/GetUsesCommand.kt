@@ -9,7 +9,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
-import de.lordtkay.hyflask.utility.command.EntityStatUtility
+import de.lordtkay.hyflask.utility.EntityStatUtility
 
 class GetUsesCommand(
     parentTranslationKey: String,
@@ -30,7 +30,7 @@ class GetUsesCommand(
 
             is EntityStatUtility.Result.Success ->
                 Message.translation("$translationKey.success")
-                    .param("uses", result.amount)
+                    .param("uses", result.current)
                     .param("max", result.max)
         }
 

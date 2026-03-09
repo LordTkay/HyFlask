@@ -1,4 +1,4 @@
-package de.lordtkay.hyflask.utility.command
+package de.lordtkay.hyflask.utility
 
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.component.Store
@@ -7,7 +7,6 @@ import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue
 import com.hypixel.hytale.server.core.modules.entitystats.modifier.Modifier
 import com.hypixel.hytale.server.core.modules.entitystats.modifier.StaticModifier
-import com.hypixel.hytale.server.core.modules.entitystats.modifier.StaticModifier.CalculationType
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStatModifier
@@ -68,7 +67,7 @@ object EntityStatUtility {
         modifier: HyFlaskEntityStatModifier,
         value: Float,
         modifierTarget: Modifier.ModifierTarget,
-        modifierType: CalculationType = CalculationType.ADDITIVE
+        modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
     ): Result {
         val statContext = getStatContext(ref, store, targetStat)
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
@@ -87,7 +86,7 @@ object EntityStatUtility {
         )
 
         statContext.statMap.putModifier(statContext.index, modifier.id, modifiedModifier)
-        return Result.Success(value, statContext.min, statContext.max)
+        return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
     fun setAdditiveModifier(
@@ -110,12 +109,12 @@ object EntityStatUtility {
 
         val modifiedModifier = StaticModifier(
             modifierTarget,
-            CalculationType.ADDITIVE,
+            StaticModifier.CalculationType.ADDITIVE,
             modifierAmount
         )
 
         statContext.statMap.putModifier(statContext.index, modifier.id, modifiedModifier)
-        return Result.Success(value, statContext.min, statContext.max)
+        return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
     fun reset(
@@ -179,7 +178,7 @@ object EntityStatUtility {
     }
 
     sealed interface Result {
-        data class Success(val amount: Float, val min: Float, val max: Float) : Result
+        data class Success(val current: Float, val min: Float, val max: Float) : Result
         data class ComponentMissing(val component: Class<*>) : Result
     }
 

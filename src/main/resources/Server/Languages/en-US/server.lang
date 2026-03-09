@@ -12,7 +12,6 @@ hyflask.notification.flaskEffect.learned.success=Flask effect '{name}' learned.
 hyflask.notification.flaskEffect.learned.alreadyKnown=Flask effect '{name}' is already known.
 
 hyflask.notification.flaskEffect.forgotten.success=Flask effect '{name}' forgotten.
-hyflask.notification.flaskEffect.forgotten.notLearned=Flask effect '{name}' not learned.
 
 hyflask.notification.flaskEffect.required=Flask effect '{name}' needs to be learned first.
 
