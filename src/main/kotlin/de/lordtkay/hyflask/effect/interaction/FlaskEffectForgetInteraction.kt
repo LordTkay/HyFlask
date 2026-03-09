@@ -22,7 +22,7 @@ class FlaskEffectForgetInteraction : SimpleInstantInteraction() {
         val CODEC: BuilderCodec<FlaskEffectForgetInteraction>
 
         init {
-            var builder = BuilderCodec.builder(
+            val builder = BuilderCodec.builder(
                 FlaskEffectForgetInteraction::class.java,
                 ::FlaskEffectForgetInteraction,
                 SimpleInstantInteraction.CODEC

@@ -22,7 +22,7 @@ class FlaskEffectLearnInteraction : SimpleInstantInteraction() {
         val CODEC: BuilderCodec<FlaskEffectLearnInteraction>
 
         init {
-            var builder = BuilderCodec.builder(
+            val builder = BuilderCodec.builder(
                 FlaskEffectLearnInteraction::class.java,
                 ::FlaskEffectLearnInteraction,
                 SimpleInstantInteraction.CODEC

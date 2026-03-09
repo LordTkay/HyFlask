@@ -18,7 +18,7 @@ class ModifyJumpHeightInteraction : SimpleInstantInteraction() {
         val CODEC: BuilderCodec<ModifyJumpHeightInteraction>
 
         init {
-            var builder = BuilderCodec.builder(
+            val builder = BuilderCodec.builder(
                 ModifyJumpHeightInteraction::class.java,
                 ::ModifyJumpHeightInteraction,
                 SimpleInstantInteraction.CODEC

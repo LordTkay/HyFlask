@@ -17,7 +17,7 @@ class FlaskEffectApplyInteraction : SimpleInstantInteraction() {
         val CODEC: BuilderCodec<FlaskEffectApplyInteraction>
 
         init {
-            var builder = BuilderCodec.builder(
+            val builder = BuilderCodec.builder(
                 FlaskEffectApplyInteraction::class.java,
                 ::FlaskEffectApplyInteraction,
                 SimpleInstantInteraction.CODEC
