@@ -34,6 +34,9 @@ hyflask.ui.effectSelection.activeEffect.item.decreaseLevel.tooltip=Decrease Effe
 hyflask.ui.effectSelection.activeEffect.item.removeEffect.tooltip=Deactivate Effect
 
 # === items ===
+hyflask.items.Potion_Flask.name=Flask
+hyflask.items.Potion_Flask.description=A rechargeable potion flask that refills when you sleep. It can store multiple charges and allows you to switch between different potion effects.
+
 hyflask.items.Scroll_FlaskEffect_FireResistance_T1.name=Learn: Lesser Fire Resistance
 hyflask.items.Scroll_FlaskEffect_FireResistance_T1.description=Teaches the Lesser Fire Resistance effect for the HyFlask.
 hyflask.items.Scroll_FlaskEffect_FireResistance_T2.name=Learn: Greater Fire Resistance

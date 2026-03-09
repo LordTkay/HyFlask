@@ -1,0 +1,153 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.items.Potion_Flask.name",
+    "Description": "server.hyflask.items.Potion_Flask.description"
+  },
+  "ItemLevel": 10,
+  "PlayerAnimationsId": {
+    "Parent": "Item",
+    "Animations": {
+      "Consume": {
+        "FirstPerson": "Characters/Animations/Items/Main_Handed/Item/Attacks/Drink/Drink_FPS.blockyanim",
+        "ThirdPerson": "Characters/Animations/Items/Main_Handed/Item/Attacks/Drink/Drink.blockyanim",
+        "Speed": 1,
+        "Looping": true
+      }
+    }
+  },
+  "Categories": [
+    "Items.Potions"
+  ],
+  "Icon": "Icons/ItemsGenerated/HyFlask_Potion.png",
+  "IconProperties": {
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Scale": 0.8,
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Recipe": {
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Potion_Empty",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Crystal_Yellow",
+        "Quantity": 5
+      },
+      {
+        "ItemId": "Ingredient_Bar_Gold",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Potion_Health_Lesser",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Alchemybench",
+        "Type": "Crafting",
+        "Categories": [
+          "Alchemy_Potions"
+        ]
+      }
+    ],
+    "OutputQuantity": 1,
+    "TimeSeconds": 5
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "Condition",
+          "RequiredGameMode": "Adventure",
+          "Crouching": false,
+          "Next": {
+            "Type": "HyFlask_HasUses",
+            "Costs": 1,
+            "Next": "HyFlask_ConsumeFlask"
+          },
+          "Failed": "Block_Secondary"
+        }
+      ],
+      "RequireNewClick": true
+    }
+  },
+  "InteractionVars": {
+    "ConsumeSFX": {
+      "Interactions": [
+        {
+          "Parent": "Consume_SFX",
+          "Effects": {
+            "LocalSoundEventId": "SFX_Health_Potion_Low_Drink"
+          }
+        }
+      ]
+    },
+    "ConsumedSFX": {
+      "Interactions": [
+        {
+          "Parent": "Consumed_SFX",
+          "Effects": {
+            "LocalSoundEventId": "SFX_Potion_Drink_Success"
+          }
+        }
+      ]
+    }
+  },
+  "Utility": {
+    "Compatible": false
+  },
+  "BlockType": {
+    "BlockParticleSetId": "GlassSmall",
+    "BlockSoundSetId": "Glass",
+    "CustomModel": "Items/Consumables/Potions/HyFlask.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Consumables/Potions/Potion_Textures/HyFlask_Textures.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "DrawType": "Model",
+    "Flags": {
+      "IsUsable": true
+    },
+    "Gathering": {
+      "Harvest": {},
+      "Soft": {}
+    },
+    "HitboxType": "Potion",
+    "Material": "Empty",
+    "RandomRotation": "YawStep1",
+    "Opacity": "Transparent",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#ff3730",
+    "Light": {
+      "Color": "#522"
+    }
+  },
+  "Consumable": true,
+  "Tags": {
+    "Type": [
+      "Potion"
+    ]
+  },
+  "Scale": 1.8,
+  "MaxStack": 1,
+  "DropOnDeath": false
+}
