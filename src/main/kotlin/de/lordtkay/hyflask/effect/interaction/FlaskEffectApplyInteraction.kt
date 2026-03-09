@@ -44,7 +44,7 @@ class FlaskEffectApplyInteraction : SimpleInstantInteraction() {
         val effectData = commandBuffer.ensureAndGetComponent(playerStoreRef, FlaskEffectComponent.componentType)
 
         interactionContext.state.state =
-            when (val result = effectData.executeEffect(playerStoreRef, interactionManager)) {
+            when (effectData.executeEffect(playerStoreRef, interactionManager)) {
                 is FlaskEffectComponent.ExecuteResult.Success -> InteractionState.Finished
                 else -> InteractionState.Failed
             }
