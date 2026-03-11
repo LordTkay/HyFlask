@@ -1,0 +1,96 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.items.Bench_EffectsTable.name",
+    "Description": "server.hyflask.items.Bench_EffectsTable.description"
+  },
+  "Icon": "Icons/ItemsGenerated/HyFlask_EffectsTable.png",
+  "Categories": [
+    "Furniture.Benches"
+  ],
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Ingredient_Bar_Copper",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Crystal_Yellow",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Workbench",
+        "Type": "Crafting",
+        "Categories": [
+          "Workbench_Crafting"
+        ],
+        "RequiredTierLevel": 1
+      }
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "BlockSoundSetId": "Metal",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Benches/HyFlask_EffectsTable.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Benches/HyFlask_EffectsTable.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 1,
+    "HitboxType": "Block_Seven_Eighth",
+    "VariantRotation": "Wall",
+    "AmbientSoundEventId": "SFX_Cauldron_Bubbling_Small",
+    "Looping": true,
+    "Flags": {
+      "IsUsable": true
+    },
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "OpenCustomUI",
+            "Page": {
+              "Id": "HyFlask_FlaskEffectSelection"
+            }
+          }
+        ]
+      }
+    },
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "SoftBlocks"
+      }
+    },
+    "BlockParticleSetId": "Grass"
+  },
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Tags": {
+    "Type": [
+      "Bench"
+    ]
+  },
+  "MaxStack": 1,
+  "ItemLevel": 9,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}
