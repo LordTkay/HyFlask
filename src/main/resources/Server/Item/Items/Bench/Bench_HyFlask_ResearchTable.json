@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.items.Bench_Arcane.name",
-    "Description": "server.items.Bench_Arcane.description"
+    "Name": "server.hyflask.items.Bench_ResearchTable.name",
+    "Description": "server.hyflask.items.Bench_ResearchTable.description"
   },
   "Icon": "Icons/ItemsGenerated/Bench_Arcane.png",
   "Categories": [
