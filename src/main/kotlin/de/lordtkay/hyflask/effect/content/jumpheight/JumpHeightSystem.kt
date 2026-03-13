@@ -40,28 +40,59 @@ class JumpHeightSystem : EntityTickingSystem<EntityStore>() {
         val jumpHeightComponent = chunk.getComponent(index, JumpHeightComponent.componentType)!!
 
         val ref = playerRef.reference!!
-        val sources = jumpHeightComponent.getSources()
 
-        effectComponent.activeEffects.values.forEach { effect ->
-            val asset = EntityEffect.getAssetMap().getAsset(effect.entityEffectIndex) ?: return@forEach
-            sources.remove(asset.id)
-        }
-
-        sources.forEach { assetId -> jumpHeightComponent.removeModifier(assetId) }
-
-        val changes = jumpHeightComponent.getAndResetChanges()
-        if (changes != 0f) {
-            applyModifier(movementManager, playerRef, changes)
-        }
+        removeInactiveEffects(jumpHeightComponent, effectComponent)
+        applyChanges(jumpHeightComponent, movementManager, playerRef)
 
         if (jumpHeightComponent.isEmpty()) {
             commandBuffer.removeComponent(ref, JumpHeightComponent.componentType)
         }
     }
 
-    private fun applyModifier(movementManager: MovementManager, playerRef: PlayerRef, value: Float) {
-        movementManager.settings.jumpForce += value
+    /**
+     * Updates the movement settings related to jump height based on the changes recorded
+     * in the provided `JumpHeightComponent`. If changes are detected, the movement manager
+     * is updated and a log entry is created for the applied modifications.
+     *
+     * @param jumpHeightComponent the component managing jump height modifiers for the entity.
+     * @param movementManager the manager responsible for handling movement-related settings.
+     * @param playerRef a reference to the player entity for which the changes are applied.
+     */
+    private fun applyChanges(
+        jumpHeightComponent: JumpHeightComponent,
+        movementManager: MovementManager,
+        playerRef: PlayerRef
+    ) {
+        val changes = jumpHeightComponent.getAndResetChanges()
+        if (changes == 0f) return
+
+        movementManager.settings.jumpForce += changes
         movementManager.update(playerRef.packetHandler)
-        logger.atInfo().log("Jump height modifier of $value applied to player")
+        logger.atInfo().log("Jump height modifier of $changes applied to player")
+    }
+
+    /**
+     * Removes inactive jump height effects from the provided `JumpHeightComponent` by checking
+     * active effects in the `EffectControllerComponent`. Any effect listed in the
+     * jump height component but no longer active will be removed.
+     *
+     * @param jumpHeightComponent the component managing jump height modifiers for an entity.
+     * @param effectComponent the component managing active effects of an entity.
+     */
+    private fun removeInactiveEffects(
+        jumpHeightComponent: JumpHeightComponent,
+        effectComponent: EffectControllerComponent
+    ) {
+        // Gets all effects that are still listed
+        val sources = jumpHeightComponent.getSources()
+
+        // Removes all effects that are still active and thus are active
+        effectComponent.activeEffects.values.forEach { effect ->
+            val asset = EntityEffect.getAssetMap().getAsset(effect.entityEffectIndex) ?: return@forEach
+            sources.remove(asset.id)
+        }
+
+        // Removes all effects that are no longer active
+        sources.forEach { assetId -> jumpHeightComponent.removeModifier(assetId) }
     }
 }
