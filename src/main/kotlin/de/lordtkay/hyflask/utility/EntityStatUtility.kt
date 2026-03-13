@@ -44,7 +44,7 @@ object EntityStatUtility {
 
         val modifiedAmount = statContext.current + value
         statContext.statMap.setStatValue(statContext.index, modifiedAmount)
-        return Result.Success(modifiedAmount, statContext.min, statContext.max)
+        return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
     fun set(
@@ -57,7 +57,7 @@ object EntityStatUtility {
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
 
         statContext.statMap.setStatValue(statContext.index, value)
-        return Result.Success(value, statContext.min, statContext.max)
+        return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
     fun addModifier(
