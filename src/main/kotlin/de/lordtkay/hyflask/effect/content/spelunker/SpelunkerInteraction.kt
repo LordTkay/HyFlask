@@ -65,8 +65,10 @@ class SpelunkerInteraction : SimpleInstantInteraction() {
         }
 
         val ref = interactionContext.entity
-        val spelunkerComponent = commandBuffer.ensureAndGetComponent(ref, SpelunkerComponent.componentType)
-        val source = removeOnEffectId ?: id
-        spelunkerComponent.addModification(source, blockModifications)
+        commandBuffer.run { store ->
+            val spelunkerComponent = store.ensureAndGetComponent(ref, SpelunkerComponent.componentType)
+            val source = removeOnEffectId ?: id
+            spelunkerComponent.addModification(source, blockModifications)
+        }
     }
 }
