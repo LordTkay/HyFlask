@@ -8,5 +8,6 @@ enum class HyFlaskInteraction(val id: String) {
     MODIFY_JUMP_HEIGHT("HyFlask_ModifyJumpHeight"),
     HAS_USES("HyFlask_HasUses"),
     MODIFY_USES("HyFlask_ModifyUses"),
+    MODIFY_VISION("HyFlask_ModifyVision"),
     ;
 }

@@ -1,0 +1,8 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "Spelunker_Sparks",
+      "FixedRotation": false
+    }
+  ]
+}

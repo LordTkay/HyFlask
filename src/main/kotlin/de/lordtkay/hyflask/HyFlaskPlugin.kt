@@ -19,6 +19,9 @@ import de.lordtkay.hyflask.effect.content.jumpheight.JumpHeightSystem
 import de.lordtkay.hyflask.effect.content.jumpheight.ModifyJumpHeightInteraction
 import de.lordtkay.hyflask.effect.content.recall.RecallComponent
 import de.lordtkay.hyflask.effect.content.recall.RecallSystem
+import de.lordtkay.hyflask.effect.content.spelunker.SpelunkerComponent
+import de.lordtkay.hyflask.effect.content.spelunker.SpelunkerInteraction
+import de.lordtkay.hyflask.effect.content.spelunker.SpelunkerSystem
 import de.lordtkay.hyflask.effect.content.waterbreathing.WaterBreathingCondition
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.effect.interaction.FlaskEffectForgetInteraction
@@ -74,6 +77,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     private fun registerSystems() {
         entityStoreRegistry.registerSystem(RecallSystem())
         entityStoreRegistry.registerSystem(JumpHeightSystem())
+        entityStoreRegistry.registerSystem(SpelunkerSystem())
     }
 
     private fun registerAssetStores() {
@@ -130,6 +134,13 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             JumpHeightComponent.CODEC
         )
         JumpHeightComponent.componentType = jumpHeightComponent
+
+        val spelunkerComponent = entityStoreRegistry.registerComponent(
+            SpelunkerComponent::class.java,
+            HyFlaskComponent.SPELUNKER.id,
+            SpelunkerComponent.CODEC
+        )
+        SpelunkerComponent.componentType = spelunkerComponent
     }
 
     private fun registerInteractions() {
@@ -173,6 +184,12 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskInteraction.MODIFY_USES.id,
             ModifyUsesInteraction::class.java,
             ModifyUsesInteraction.CODEC
+        )
+
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.MODIFY_VISION.id,
+            SpelunkerInteraction::class.java,
+            SpelunkerInteraction.CODEC
         )
     }
 
