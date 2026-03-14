@@ -2,10 +2,27 @@
   "$Comment": "Tracks the remaining uses of the flask.",
   "InitialValue": 1,
   "Min": 0,
-  "Max": 1,
+  "Max": 3,
   "Shared": false,
   "ResetType": "MaxValue",
   "Regenerating": [
-
+    {
+      "$Comment": "Player slept successfully.",
+      "Interval": 1.0,
+      "Amount": 1.0,
+      "RegenType": "Percentage",
+      "Conditions": [
+        {
+          "Id": "Alive"
+        },
+        {
+          "Id": "Player"
+        },
+        {
+          "Id": "HyFlask_Slept",
+          "Message": "server.hyflask.notification.uses.recharged.success"
+        }
+      ]
+    }
   ]
 }

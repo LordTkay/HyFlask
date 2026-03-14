@@ -32,6 +32,7 @@ import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 import de.lordtkay.hyflask.enumeration.HyFlaskCondition
 import de.lordtkay.hyflask.enumeration.HyFlaskInteraction
 import de.lordtkay.hyflask.enumeration.HyFlaskPage
+import de.lordtkay.hyflask.uses.condition.SleptCondition
 import de.lordtkay.hyflask.uses.interaction.HasUsesInteraction
 import de.lordtkay.hyflask.uses.interaction.ModifyUsesInteraction
 
@@ -71,6 +72,12 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskCondition.WATER_BREATHING.id,
             WaterBreathingCondition::class.java,
             WaterBreathingCondition.CODEC
+        )
+
+        getCodecRegistry(Condition.CODEC).register(
+            HyFlaskCondition.SLEPT.id,
+            SleptCondition::class.java,
+            SleptCondition.CODEC
         )
     }
 
@@ -200,7 +207,6 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             FlaskEffectSelectionSupplier.CODEC
         )
     }
-
     override fun start() {
         logger.atInfo().log("[$name] Started!")
     }
