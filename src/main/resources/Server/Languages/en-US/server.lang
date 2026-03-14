@@ -111,6 +111,23 @@ hyflask.items.Scroll_FlaskEffect_WaterBreathing_T3.description=Teaches the Mythi
 hyflask.items.Scroll_FlaskEffect_Recall.name=Learn: Recall
 hyflask.items.Scroll_FlaskEffect_Recall.description=Teaches the Recall effect for the HyFlask.
 
+hyflask.items.Scroll_FlaskEffect_Spelunker_Gold.name=Learn: Gold Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Gold.description=Teaches the Gold Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Cobalt.name=Learn: Cobalt Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Cobalt.description=Teaches the Cobalt Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Copper.name=Learn: Copper Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Copper.description=Teaches the Copper Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Iron.name=Learn: Iron Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Iron.description=Teaches the Iron Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Thorium.name=Learn: Thorium Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Thorium.description=Teaches the Thorium Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Adamantite.name=Learn: Adamantite Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Adamantite.description=Teaches the Adamantite Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Silver.name=Learn: Silver Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Silver.description=Teaches the Silver Ore Vision effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_Spelunker_Mithril.name=Learn: Mithril Ore Vision
+hyflask.items.Scroll_FlaskEffect_Spelunker_Mithril.description=Teaches the Mithril Ore Vision effect for the HyFlask.
+
 # === flask effects ===
 hyflask.flaskEffectGroups.FlaskEffectGroup_HealthRegen.name=Health Regeneration
 hyflask.flaskEffects.FlaskEffect_HealthRegen_T1.name=Lesser Health Regeneration
@@ -190,6 +207,23 @@ hyflask.flaskEffects.FlaskEffect_PoisonResistance_T2.description=Increases your 
 
 hyflask.flaskEffects.FlaskEffect_Recall.name=Recall
 hyflask.flaskEffects.FlaskEffect_Recall.description=Upon activation, remain still for 5 seconds to be teleported to your spawn point.
+
+hyflask.flaskEffects.FlaskEffect_Spelunker_Gold.name=Gold Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Gold.description=Make gold ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Cobalt.name=Cobalt Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Cobalt.description=Make cobalt ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Copper.name=Copper Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Copper.description=Make copper ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Iron.name=Iron Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Iron.description=Make iron ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Thorium.name=Thorium Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Thorium.description=Make thorium ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Adamantite.name=Adamantite Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Adamantite.description=Make adamantite ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Silver.name=Silver Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Silver.description=Make silver ores glow and sparkle for 10 minutes.
+hyflask.flaskEffects.FlaskEffect_Spelunker_Mithril.name=Mithril Ore Vision
+hyflask.flaskEffects.FlaskEffect_Spelunker_Mithril.description=Make mithril ores glow and sparkle for 10 minutes.
 
 # === commands ===
 hyflask.commands=Commands for HyFlask.

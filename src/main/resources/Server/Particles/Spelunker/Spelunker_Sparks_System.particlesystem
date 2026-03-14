@@ -2,7 +2,7 @@
   "Spawners": [
     {
       "SpawnerId": "Spelunker_Sparks",
-      "FixedRotation": false
+      "FixedRotation": true
     }
   ]
 }

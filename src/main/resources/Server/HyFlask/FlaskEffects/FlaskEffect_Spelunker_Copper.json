@@ -1,0 +1,39 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Copper.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Copper.description"
+  },
+  "Quality": "Uncommon",
+  "Icon": "Icons/FlaskEffects/Spelunker/Copper.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Copper"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Copper",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Copper_Sandstone",
+                "Ore_Copper_Shale",
+                "Ore_Copper_Stone"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#633"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Silver.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Silver.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/Spelunker/Silver.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Silver"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Silver",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Silver_Basalt",
+                "Ore_Silver_Sandstone",
+                "Ore_Silver_Shale",
+                "Ore_Silver_Slate",
+                "Ore_Silver_Stone",
+                "Ore_Silver_Volcanic"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#666"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

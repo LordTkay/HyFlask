@@ -1,0 +1,42 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Iron.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Iron.description"
+  },
+  "Quality": "Uncommon",
+  "Icon": "Icons/FlaskEffects/Spelunker/Iron.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Iron"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Iron",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Iron_Basalt",
+                "Ore_Iron_Sandstone",
+                "Ore_Iron_Shale",
+                "Ore_Iron_Slate",
+                "Ore_Iron_Stone",
+                "Ore_Iron_Volcanic"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#666"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

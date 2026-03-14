@@ -1,0 +1,41 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Gold.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Gold.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/Spelunker/Gold.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Gold"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Gold",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Gold_Calcite",
+                "Ore_Gold_Sandstone",
+                "Ore_Gold_Shale",
+                "Ore_Gold_Stone",
+                "Ore_Gold_Volcanic"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#650"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

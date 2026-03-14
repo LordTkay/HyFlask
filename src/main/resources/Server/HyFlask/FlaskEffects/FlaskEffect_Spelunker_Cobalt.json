@@ -1,0 +1,39 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Cobalt.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Cobalt.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/Spelunker/Cobalt.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Cobalt"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Cobalt",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Cobalt",
+                "Ore_Cobalt_Shale",
+                "Ore_Cobalt_Slate"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#246"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

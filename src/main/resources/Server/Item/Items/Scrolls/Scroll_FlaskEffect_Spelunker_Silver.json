@@ -1,0 +1,76 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Silver.name",
+    "Description": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Silver.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Quality": "Epic",
+  "MaxStack": 99,
+  "ItemLevel": 40,
+  "Categories": [
+    "Items.Recipes"
+  ],
+  "PlayerAnimationsId": "Block",
+  "IconProperties": {
+    "Scale": 0.6,
+    "Rotation": [
+      22.5,
+      158,
+      22.5
+    ],
+    "Translation": [
+      -9,
+      -12
+    ]
+  },
+  "Recipe": {
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "HyFlask_ResearchTable",
+        "Categories": [
+          "HyFlask_ResearchTable_Utility"
+        ],
+        "RequiredTierLevel": 3
+      }
+    ],
+    "TimeSeconds": 5,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Bar_Silver",
+        "Quantity": 5
+      },
+      {
+        "ItemId": "Furniture_Crude_Torch",
+        "Quantity": 10
+      }
+    ],
+    "RequiredMemoriesLevel": 5
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "HyFlask_LearnEffect",
+          "EffectId": "FlaskEffect_Spelunker_Silver",
+          "Next": {
+            "Type": "ModifyInventory",
+            "AdjustHeldItemQuantity": -1
+          }
+        }
+      ]
+    }
+  },
+  "Consumable": true,
+  "Tags": {
+    "Family": [
+      "HyFlask",
+      "FlaskEffect"
+    ],
+    "Type": [
+      "Upgrade"
+    ]
+  }
+}

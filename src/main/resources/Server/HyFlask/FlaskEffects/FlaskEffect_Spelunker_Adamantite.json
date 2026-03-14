@@ -1,0 +1,37 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Adamantite.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Adamantite.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/Spelunker/Adamantite.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Adamantite"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Adamantite",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Adamantite_Magma"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#600"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

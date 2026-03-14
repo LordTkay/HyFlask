@@ -1,0 +1,38 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Thorium.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Thorium.description"
+  },
+  "Quality": "Rare",
+  "Icon": "Icons/FlaskEffects/Spelunker/Thorium.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Thorium"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Thorium",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Thorium_Mud",
+                "Ore_Thorium_Sandstone"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#252"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

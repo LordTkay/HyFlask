@@ -1,0 +1,37 @@
+{
+  "TranslationProperties": {
+    "Name": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Mithril.name",
+    "Description": "server.hyflask.flaskEffects.FlaskEffect_Spelunker_Mithril.description"
+  },
+  "Quality": "Epic",
+  "Icon": "Icons/FlaskEffects/Spelunker/Mithril.png",
+  "Cost": 1,
+  "Interactions": {
+    "Consumption": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Effect_Spelunker_Mithril"
+        },
+        {
+          "Type": "HyFlask_ModifyVision",
+          "RemoveOnEffectId": "Effect_Spelunker_Mithril",
+          "BlockModifications": [
+            {
+              "BlockIds": [
+                "Ore_Mithril_Stone"
+              ],
+              "Opacity": "Semitransparent",
+              "Light": {
+                "Color": "#056"
+              },
+              "Particles": [
+                "Spelunker_Sparks_System"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
