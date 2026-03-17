@@ -69,10 +69,22 @@ object EntityStatUtility {
         modifierTarget: Modifier.ModifierTarget,
         modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
     ): Result {
+        return addModifier(ref, store, targetStat, modifier.id, value, modifierTarget, modifierType)
+    }
+
+    fun addModifier(
+        ref: Ref<EntityStore?>,
+        store: Store<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String,
+        value: Float,
+        modifierTarget: Modifier.ModifierTarget,
+        modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
+    ): Result {
         val statContext = getStatContext(ref, store, targetStat)
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
 
-        val existingModifier = statContext.statMap.getModifier(statContext.index, modifier.id)
+        val existingModifier = statContext.statMap.getModifier(statContext.index, modifier)
 
         var modifierAmount = value
         if (existingModifier is StaticModifier) {
@@ -85,7 +97,7 @@ object EntityStatUtility {
             modifierAmount
         )
 
-        statContext.statMap.putModifier(statContext.index, modifier.id, modifiedModifier)
+        statContext.statMap.putModifier(statContext.index, modifier, modifiedModifier)
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
@@ -97,11 +109,22 @@ object EntityStatUtility {
         value: Float,
         modifierTarget: Modifier.ModifierTarget
     ): Result {
+        return setAdditiveModifier(ref, store, targetStat, modifier.id, value, modifierTarget)
+    }
+
+    fun setAdditiveModifier(
+        ref: Ref<EntityStore?>,
+        store: Store<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String,
+        value: Float,
+        modifierTarget: Modifier.ModifierTarget
+    ): Result {
         val statContext = getStatContext(ref, store, targetStat)
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
 
         var modifiedMax = statContext.max
-        val existingModifier = statContext.statMap.getModifier(statContext.index, modifier.id)
+        val existingModifier = statContext.statMap.getModifier(statContext.index, modifier)
         if (existingModifier is StaticModifier) {
             modifiedMax -= existingModifier.amount
         }
@@ -113,7 +136,7 @@ object EntityStatUtility {
             modifierAmount
         )
 
-        statContext.statMap.putModifier(statContext.index, modifier.id, modifiedModifier)
+        statContext.statMap.putModifier(statContext.index, modifier, modifiedModifier)
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
@@ -135,10 +158,19 @@ object EntityStatUtility {
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier
     ): Result {
+        return removeModifier(ref, store, targetStat, modifier.id)
+    }
+
+    fun removeModifier(
+        ref: Ref<EntityStore?>,
+        store: Store<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String,
+    ): Result {
         val statContext = getStatContext(ref, store, targetStat)
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
 
-        statContext.statMap.removeModifier(statContext.index, modifier.id)
+        statContext.statMap.removeModifier(statContext.index, modifier)
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
