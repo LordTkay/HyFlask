@@ -149,5 +149,6 @@
   },
   "Scale": 1.8,
   "MaxStack": 1,
-  "DropOnDeath": false
+  "DropOnDeath": false,
+  "Quality": "Rare"
 }
