@@ -13,6 +13,7 @@ import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.modules.entitystats.asset.condition.Condition
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+import com.hypixel.hytale.server.core.util.NotificationUtil
 import java.time.Instant
 
 class SleptCondition : Condition() {
@@ -64,7 +65,9 @@ class SleptCondition : Condition() {
         if (message != null) {
             val msg = Message.translation(message!!)
             val playerRef = componentAccessor.getComponent(ref, PlayerRef.getComponentType())
-            playerRef?.sendMessage(msg)
+            if (playerRef != null) {
+                NotificationUtil.sendNotification(playerRef.packetHandler, msg)
+            }
         }
         return true
     }
