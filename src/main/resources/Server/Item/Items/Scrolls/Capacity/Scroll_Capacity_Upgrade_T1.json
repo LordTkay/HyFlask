@@ -1,0 +1,32 @@
+{
+  "Parent": "Scroll_Capacity_Upgrade_Template",
+  "TranslationProperties": {
+    "Name": "server.hyflask.items.Scroll_Capacity_Upgrade_T1.name",
+    "Description": "server.hyflask.items.Scroll_Capacity_Upgrade_T1.description"
+  },
+  "Quality": "Rare",
+  "ItemLevel": 30,
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "CheckUniqueItemUsage",
+          "Next": {
+            "Type": "HyFlask_ModifyCapacity",
+            "Amount": 5,
+            "Modifier": "Scroll_ADDITIVE",
+            "Next": {
+              "Type": "Serial",
+              "Interactions": [
+                {
+                  "Type": "ModifyInventory",
+                  "AdjustHeldItemQuantity": -1
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

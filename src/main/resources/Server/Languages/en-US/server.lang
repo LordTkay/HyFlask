@@ -45,6 +45,11 @@ hyflask.items.Bench_ResearchTable.description=A research bench that can be used 
 hyflask.items.Bench_EffectsTable.name=Effects Cauldron
 hyflask.items.Bench_EffectsTable.description=A cauldron where you can select your active flask effects.
 
+
+hyflask.items.Scroll_Capacity_Upgrade_Template.name=Capacity Upgrade
+hyflask.items.Scroll_Capacity_Upgrade_T1.name=Capacity Upgrade I
+hyflask.items.Scroll_Capacity_Upgrade_T1.description=Improve your maximum capacity of your flask.
+
 hyflask.items.Scroll_FlaskEffect_FireResistance_T1.name=Learn: Lesser Fire Resistance
 hyflask.items.Scroll_FlaskEffect_FireResistance_T1.description=Teaches the Lesser Fire Resistance effect for the HyFlask.
 hyflask.items.Scroll_FlaskEffect_FireResistance_T2.name=Learn: Greater Fire Resistance
