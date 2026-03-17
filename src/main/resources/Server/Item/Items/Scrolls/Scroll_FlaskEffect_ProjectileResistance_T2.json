@@ -50,7 +50,8 @@
         "ItemId": "Ingredient_Fabric_Scrap_Cindercloth",
         "Quantity": 10
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

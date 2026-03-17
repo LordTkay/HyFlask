@@ -59,7 +59,8 @@
         "ItemId": "Ingredient_Spices",
         "Quantity": 2
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

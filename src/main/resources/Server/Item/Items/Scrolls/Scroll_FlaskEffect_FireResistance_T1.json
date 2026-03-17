@@ -61,6 +61,10 @@
             "Type": "ModifyInventory",
             "AdjustHeldItemQuantity": -1
           }
+        },
+        {
+          "Type": "LearnRecipe",
+          "ItemId": "Scroll_FlaskEffect_FireResistance_T2"
         }
       ]
     }

@@ -51,7 +51,8 @@
         "ItemId": "Plant_Crop_Health1",
         "Quantity": 10
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {
@@ -60,12 +61,21 @@
           "Type": "HyFlask_RequireEffect",
           "EffectId": "FlaskEffect_HealthAdd_T1",
           "Next": {
-            "Type": "HyFlask_LearnEffect",
-            "EffectId": "FlaskEffect_HealthAdd_T2",
-            "Next": {
-              "Type": "ModifyInventory",
-              "AdjustHeldItemQuantity": -1
-            }
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "HyFlask_LearnEffect",
+                "EffectId": "FlaskEffect_HealthAdd_T2",
+                "Next": {
+                  "Type": "ModifyInventory",
+                  "AdjustHeldItemQuantity": -1
+                }
+              },
+              {
+                "Type": "LearnRecipe",
+                "ItemId": "Scroll_FlaskEffect_HealthAdd_T3"
+              }
+            ]
           }
         }
       ]

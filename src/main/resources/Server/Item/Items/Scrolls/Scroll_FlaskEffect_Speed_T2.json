@@ -47,7 +47,8 @@
         "ItemId": "Plant_Crop_Chilli_Item",
         "Quantity": 25
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

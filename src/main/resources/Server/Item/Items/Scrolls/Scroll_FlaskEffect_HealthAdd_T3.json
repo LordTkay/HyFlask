@@ -55,7 +55,8 @@
         "ItemId": "Plant_Crop_Health3",
         "Quantity": 20
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

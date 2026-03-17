@@ -51,7 +51,8 @@
         "ResourceTypeId": "Meats",
         "Quantity": 18
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {
@@ -60,12 +61,21 @@
           "Type": "HyFlask_RequireEffect",
           "EffectId": "FlaskEffect_HealthRegen_T2",
           "Next": {
-            "Type": "HyFlask_LearnEffect",
-            "EffectId": "FlaskEffect_HealthRegen_T3",
-            "Next": {
-              "Type": "ModifyInventory",
-              "AdjustHeldItemQuantity": -1
-            }
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "HyFlask_LearnEffect",
+                "EffectId": "FlaskEffect_HealthRegen_T3",
+                "Next": {
+                  "Type": "ModifyInventory",
+                  "AdjustHeldItemQuantity": -1
+                }
+              },
+              {
+                "Type": "LearnRecipe",
+                "ItemId": "Scroll_FlaskEffect_HealthRegen_T4"
+              }
+            ]
           }
         }
       ]

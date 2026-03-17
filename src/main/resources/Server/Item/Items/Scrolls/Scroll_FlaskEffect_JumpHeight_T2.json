@@ -51,7 +51,8 @@
         "Quantity": 25
       }
     ],
-    "RequiredMemoriesLevel": 5
+    "RequiredMemoriesLevel": 5,
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

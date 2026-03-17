@@ -47,7 +47,8 @@
         "ResourceTypeId": "Fish_Legendary",
         "Quantity": 1
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

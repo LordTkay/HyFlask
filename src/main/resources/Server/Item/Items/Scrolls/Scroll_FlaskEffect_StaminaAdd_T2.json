@@ -51,7 +51,8 @@
         "ItemId": "Plant_Crop_Stamina1",
         "Quantity": 10
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {
@@ -60,12 +61,21 @@
           "Type": "HyFlask_RequireEffect",
           "EffectId": "FlaskEffect_StaminaAdd_T1",
           "Next": {
-            "Type": "HyFlask_LearnEffect",
-            "EffectId": "FlaskEffect_StaminaAdd_T2",
-            "Next": {
-              "Type": "ModifyInventory",
-              "AdjustHeldItemQuantity": -1
-            }
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "HyFlask_LearnEffect",
+                "EffectId": "FlaskEffect_StaminaAdd_T2",
+                "Next": {
+                  "Type": "ModifyInventory",
+                  "AdjustHeldItemQuantity": -1
+                }
+              },
+              {
+                "Type": "LearnRecipe",
+                "ItemId": "Scroll_FlaskEffect_StaminaAdd_T3"
+              }
+            ]
           }
         }
       ]

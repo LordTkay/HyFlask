@@ -50,7 +50,8 @@
         "ResourceTypeId": "Rock_Volcanic",
         "Quantity": 50
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {

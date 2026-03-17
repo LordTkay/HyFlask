@@ -63,6 +63,10 @@
             "Type": "ModifyInventory",
             "AdjustHeldItemQuantity": -1
           }
+        },
+        {
+          "Type": "LearnRecipe",
+          "ItemId": "Scroll_FlaskEffect_Speed_T2"
         }
       ]
     }

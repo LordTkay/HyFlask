@@ -50,7 +50,8 @@
         "ItemId": "Ingredient_Sac_Venom",
         "Quantity": 10
       }
-    ]
+    ],
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {
