@@ -31,7 +31,7 @@
         "Type": "Crafting",
         "Id": "HyFlask_ResearchTable",
         "Categories": [
-          "HyFlask_ResearchTable_Utility"
+          "HyFlask_ResearchTable_Misc"
         ],
         "RequiredTierLevel": 3
       }
