@@ -9,6 +9,7 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.config.ser
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
 import com.hypixel.hytale.server.core.util.Config
+import de.lordtkay.hyflask.capacity.interaction.ModifyCapacityInteraction
 import de.lordtkay.hyflask.command.HyFlaskCommandCollection
 import de.lordtkay.hyflask.config.FlaskConfig
 import de.lordtkay.hyflask.effect.asset.FlaskEffect
@@ -197,6 +198,11 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskInteraction.MODIFY_VISION.id,
             SpelunkerInteraction::class.java,
             SpelunkerInteraction.CODEC
+        )
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.MODIFY_CAPACITY.id,
+            ModifyCapacityInteraction::class.java,
+            ModifyCapacityInteraction.CODEC
         )
     }
 

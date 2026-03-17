@@ -9,5 +9,6 @@ enum class HyFlaskInteraction(val id: String) {
     HAS_USES("HyFlask_HasUses"),
     MODIFY_USES("HyFlask_ModifyUses"),
     MODIFY_VISION("HyFlask_ModifyVision"),
+    MODIFY_CAPACITY("HyFlask_ModifyCapacity"),
     ;
 }
