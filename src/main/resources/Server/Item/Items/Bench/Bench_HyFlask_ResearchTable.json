@@ -55,27 +55,27 @@
       "Categories": [
         {
           "Id": "HyFlask_ResearchTable_Upgrades",
-          "Icon": "Icons/CraftingCategories/Arcane/Portal_Device.png",
+          "Icon": "Icons/CraftingCategories/ResearchTable/Upgrades.png",
           "Name": "server.hyflask.benchCategories.upgrades"
         },
         {
           "Id": "HyFlask_ResearchTable_Resources",
-          "Icon": "Icons/CraftingCategories/Arcane/Portal_Device.png",
+          "Icon": "Icons/CraftingCategories/ResearchTable/Resources.png",
           "Name": "server.hyflask.benchCategories.resources"
         },
         {
           "Id": "HyFlask_ResearchTable_Resistance",
-          "Icon": "Icons/CraftingCategories/Arcane/Portal_Device.png",
+          "Icon": "Icons/CraftingCategories/ResearchTable/Resistance.png",
           "Name": "server.hyflask.benchCategories.resistance"
         },
         {
           "Id": "HyFlask_ResearchTable_Utility",
-          "Icon": "Icons/CraftingCategories/Arcane/Bench_Memories.png",
+          "Icon": "Icons/CraftingCategories/ResearchTable/Utility.png",
           "Name": "server.hyflask.benchCategories.utility"
         },
         {
           "Id": "HyFlask_ResearchTable_Misc",
-          "Icon": "Icons/CraftingCategories/Arcane/Bench_Memories.png",
+          "Icon": "Icons/CraftingCategories/ResearchTable/Misc.png",
           "Name": "server.hyflask.benchCategories.misc"
         }
       ],
