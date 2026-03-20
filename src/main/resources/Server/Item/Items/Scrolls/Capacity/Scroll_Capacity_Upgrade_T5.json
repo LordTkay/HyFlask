@@ -4,8 +4,21 @@
     "Name": "server.hyflask.items.Scroll_Capacity_Upgrade_T5.name",
     "Description": "server.hyflask.items.Scroll_Capacity_Upgrade_T5.description"
   },
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/CapacityUpgrade/T5.png",
   "Quality": "Legendary",
   "ItemLevel": 50,
+  "IconProperties": {
+    "Scale": 0.6,
+    "Rotation": [
+      22.5,
+      158,
+      22.5
+    ],
+    "Translation": [
+      -9,
+      -12
+    ]
+  },
   "Recipe": {
     "BenchRequirement": [
       {
@@ -49,5 +62,6 @@
         }
       ]
     }
-  }
+  },
+  "Icon": "Icons/ItemsGenerated/Scroll_Capacity_Upgrade_T5.png"
 }

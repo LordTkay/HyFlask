@@ -3,9 +3,9 @@
     "Name": "server.hyflask.items.Scroll_FlaskEffect_HealthRegen_T4.name",
     "Description": "server.hyflask.items.Scroll_FlaskEffect_HealthRegen_T4.description"
   },
-  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_HealthRegen_T4.png",
   "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
-  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/HealthRegen/T4.png",
   "Quality": "Epic",
   "MaxStack": 99,
   "ItemLevel": 40,

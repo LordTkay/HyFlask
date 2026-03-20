@@ -3,9 +3,9 @@
     "Name": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Silver.name",
     "Description": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Silver.description"
   },
-  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Spelunker_Silver.png",
   "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
-  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Spelunker/Silver.png",
   "Quality": "Epic",
   "MaxStack": 99,
   "ItemLevel": 40,

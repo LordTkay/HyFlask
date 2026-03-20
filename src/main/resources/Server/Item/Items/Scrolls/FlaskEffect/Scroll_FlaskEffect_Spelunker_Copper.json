@@ -3,9 +3,9 @@
     "Name": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Copper.name",
     "Description": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Copper.description"
   },
-  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Spelunker_Copper.png",
   "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
-  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Spelunker/Copper.png",
   "Quality": "Uncommon",
   "MaxStack": 99,
   "ItemLevel": 20,

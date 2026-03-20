@@ -3,9 +3,9 @@
     "Name": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Gold.name",
     "Description": "server.hyflask.items.Scroll_FlaskEffect_Spelunker_Gold.description"
   },
-  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Spelunker_Gold.png",
   "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
-  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Spelunker/Gold.png",
   "Quality": "Rare",
   "MaxStack": 99,
   "ItemLevel": 30,

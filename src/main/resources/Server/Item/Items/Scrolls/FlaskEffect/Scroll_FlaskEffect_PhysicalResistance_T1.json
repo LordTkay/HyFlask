@@ -3,9 +3,9 @@
     "Name": "server.hyflask.items.Scroll_FlaskEffect_PhysicalResistance_T1.name",
     "Description": "server.hyflask.items.Scroll_FlaskEffect_PhysicalResistance_T1.description"
   },
-  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_PhysicalResistance_T1.png",
   "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
-  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/PhysicalResistance/T1.png",
   "Quality": "Rare",
   "MaxStack": 99,
   "ItemLevel": 30,

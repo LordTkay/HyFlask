@@ -3,9 +3,9 @@
     "Name": "server.hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.name",
     "Description": "server.hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.description"
   },
-  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_Empty.png",
+  "Icon": "Icons/ItemsGenerated/Scroll_FlaskEffect_StaminaAdd_T3.png",
   "Model": "Items/Consumables/Scrolls/EffectScroll.blockymodel",
-  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/Empty.png",
+  "Texture": "Items/Consumables/Scrolls/EffectScroll_Textures/StaminaAdd/T3.png",
   "Quality": "Epic",
   "MaxStack": 99,
   "ItemLevel": 40,
