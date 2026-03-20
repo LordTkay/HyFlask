@@ -1,8 +1,8 @@
 {
   "$Comment": "Tracks the capacity for flask effects.",
-  "InitialValue": 15,
+  "InitialValue": 0,
   "Min": 0,
-  "Max": 15,
+  "Max": 4,
   "Shared": false,
   "ResetType": "MaxValue"
 }
