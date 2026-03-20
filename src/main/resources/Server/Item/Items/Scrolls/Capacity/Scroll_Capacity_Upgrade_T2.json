@@ -1,11 +1,11 @@
 {
   "Parent": "Scroll_Capacity_Upgrade_Template",
   "TranslationProperties": {
-    "Name": "server.hyflask.items.Scroll_Capacity_Upgrade_T1.name",
-    "Description": "server.hyflask.items.Scroll_Capacity_Upgrade_T1.description"
+    "Name": "server.hyflask.items.Scroll_Capacity_Upgrade_T2.name",
+    "Description": "server.hyflask.items.Scroll_Capacity_Upgrade_T2.description"
   },
-  "Quality": "Common",
-  "ItemLevel": 10,
+  "Quality": "Uncommon",
+  "ItemLevel": 20,
   "Recipe": {
     "BenchRequirement": [
       {
@@ -22,7 +22,9 @@
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
       }
-    ]
+    ],
+    "RequiredMemoriesLevel": 1,
+    "KnowledgeRequired": true
   },
   "Interactions": {
     "Secondary": {
@@ -31,7 +33,7 @@
           "Type": "CheckUniqueItemUsage",
           "Next": {
             "Type": "HyFlask_ModifyCapacity",
-            "Amount": 2,
+            "Amount": 4,
             "Modifier": "Scroll_ADDITIVE",
             "Next": {
               "Type": "Serial",
@@ -42,7 +44,7 @@
                 },
                 {
                   "Type": "LearnRecipe",
-                  "ItemId": "Scroll_Capacity_Upgrade_T2"
+                  "ItemId": "Scroll_Capacity_Upgrade_T3"
                 }
               ]
             }
