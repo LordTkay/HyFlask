@@ -40,7 +40,7 @@ hyflask.items.Potion_Flask.name=Flask
 hyflask.items.Potion_Flask.description=A rechargeable potion flask that refills when you sleep. It can store multiple charges and allows you to switch between different potion effects.
 
 hyflask.items.Bench_ResearchTable.name=Research Table
-hyflask.items.Bench_ResearchTable.description=A research bench that can be used to research new <color is="#4ade80">2.5x</color> flask effects.
+hyflask.items.Bench_ResearchTable.description=A research bench that can be used to research new flask effects.
 
 hyflask.items.Bench_EffectsTable.name=Effects Cauldron
 hyflask.items.Bench_EffectsTable.description=A cauldron where you can select your active flask effects.
