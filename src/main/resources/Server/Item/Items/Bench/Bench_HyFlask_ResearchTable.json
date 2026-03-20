@@ -54,6 +54,11 @@
       "CompletedSoundEventId": "SFX_Arcane_Workbench_Craft",
       "Categories": [
         {
+          "Id": "HyFlask_ResearchTable_Upgrades",
+          "Icon": "Icons/CraftingCategories/Arcane/Portal_Device.png",
+          "Name": "server.hyflask.benchCategories.upgrades"
+        },
+        {
           "Id": "HyFlask_ResearchTable_Resources",
           "Icon": "Icons/CraftingCategories/Arcane/Portal_Device.png",
           "Name": "server.hyflask.benchCategories.resources"
