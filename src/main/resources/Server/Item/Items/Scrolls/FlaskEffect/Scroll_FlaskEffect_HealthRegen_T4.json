@@ -37,7 +37,7 @@
       }
     ],
     "TimeSeconds": 5,
-    "RequiredMemoriesLevel": 4,
+    "RequiredMemoriesLevel": 3,
     "Input": [
       {
         "ItemId": "Ingredient_Bolt_Wool",

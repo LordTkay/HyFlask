@@ -32,11 +32,10 @@
         "Id": "HyFlask_ResearchTable",
         "Categories": [
           "HyFlask_ResearchTable_Resources"
-        ],
-        "RequiredTierLevel": 2
+        ]
       }
     ],
-    "RequiredMemoriesLevel": 2,
+    "RequiredMemoriesLevel": 1,
     "TimeSeconds": 5,
     "Input": [
       {
