@@ -5,7 +5,7 @@
   },
   "Quality": "Rare",
   "Icon": "Icons/FlaskEffects/HealthAdd/T2.png",
-  "Cost": 2,
+  "Cost": 4,
   "Interactions": {
     "Consumption": {
       "Interactions": [

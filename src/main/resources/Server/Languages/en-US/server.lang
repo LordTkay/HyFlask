@@ -48,7 +48,15 @@ hyflask.items.Bench_EffectsTable.description=A cauldron where you can select you
 
 hyflask.items.Scroll_Capacity_Upgrade_Template.name=Capacity Upgrade
 hyflask.items.Scroll_Capacity_Upgrade_T1.name=Capacity Upgrade I
-hyflask.items.Scroll_Capacity_Upgrade_T1.description=Improve your maximum capacity of your flask.
+hyflask.items.Scroll_Capacity_Upgrade_T1.description=Increase the maximum capacity of your flask by 2.
+hyflask.items.Scroll_Capacity_Upgrade_T2.name=Capacity Upgrade II
+hyflask.items.Scroll_Capacity_Upgrade_T2.description=Increase the maximum capacity of your flask by 4.
+hyflask.items.Scroll_Capacity_Upgrade_T3.name=Capacity Upgrade III
+hyflask.items.Scroll_Capacity_Upgrade_T3.description=Increase the maximum capacity of your flask by 5.
+hyflask.items.Scroll_Capacity_Upgrade_T4.name=Capacity Upgrade IV
+hyflask.items.Scroll_Capacity_Upgrade_T4.description=Increase the maximum capacity of your flask by 7.
+hyflask.items.Scroll_Capacity_Upgrade_T5.name=Capacity Upgrade V
+hyflask.items.Scroll_Capacity_Upgrade_T5.description=Increase the maximum capacity of your flask by 13.
 
 hyflask.items.Scroll_FlaskEffect_FireResistance_T1.name=Learn: Lesser Fire Resistance
 hyflask.items.Scroll_FlaskEffect_FireResistance_T1.description=Teaches the Lesser Fire Resistance effect for the HyFlask.
@@ -148,23 +156,23 @@ hyflask.flaskEffects.FlaskEffect_HealthRegen_T4.description=Heals 225 % of the m
 
 hyflask.flaskEffectGroups.FlaskEffectGroup_HealthAdd.name=Health Improvement
 hyflask.flaskEffects.FlaskEffect_HealthAdd_T1.name=Lesser Health Improvement
-hyflask.flaskEffects.FlaskEffect_HealthAdd_T1.description=Increase your maximum health by 25 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T1.description=Increase your maximum health by 25 for 10 minutes.
 hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.name=Greater Health Improvement
-hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.description=Increase your maximum health by 50 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T2.description=Increase your maximum health by 50 for 10 minutes.
 hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.name=Superior Health Improvement
-hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.description=Increase your maximum health by 50 for 120 seconds.
+hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.description=Increase your maximum health by 100 for 10 minutes.
 
 hyflask.flaskEffectGroups.FlaskEffectGroup_StaminaAdd.name=Stamina Improvement
 hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.name=Greater Stamina Improvement
-hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.description=Increase your maximum stamina by 5 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.description=Increase your maximum stamina by 5 for 5 minutes.
 hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.name=Superior Stamina Improvement
-hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.description=Increase your maximum stamina by 10 for 60 seconds.
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.description=Increase your maximum stamina by 10 for 5 minutes.
 hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.name=Mythic Stamina Improvement
-hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.description=Increase your maximum stamina by 10 for 120 seconds.
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.description=Increase your maximum stamina by 20 for 5 minutes.
 
 hyflask.flaskEffectGroups.FlaskEffectGroup_WaterBreathing.name=Water Breathing
 hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.name=Lesser Water Breathing
-hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.description=Increases your maximum oxygen by 100 for 5 minutes.
+hyflask.flaskEffects.FlaskEffect_WaterBreathing_T1.description=Increases your maximum oxygen by 200 for 5 minutes.
 hyflask.flaskEffects.FlaskEffect_WaterBreathing_T2.name=Superior Water Breathing
 hyflask.flaskEffects.FlaskEffect_WaterBreathing_T2.description=Allows you to breathe underwater for 5 minutes.
 hyflask.flaskEffects.FlaskEffect_WaterBreathing_T3.name=Mythic Water Breathing

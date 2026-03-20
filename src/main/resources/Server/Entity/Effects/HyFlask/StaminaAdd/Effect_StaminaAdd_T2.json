@@ -1,5 +1,5 @@
 {
-  "Duration": 60,
+  "Duration": 300,
   "StatusEffectIcon": "Icons/FlaskEffects/StaminaAdd/T2.png",
   "RawStatModifiers": {
     "Stamina": [

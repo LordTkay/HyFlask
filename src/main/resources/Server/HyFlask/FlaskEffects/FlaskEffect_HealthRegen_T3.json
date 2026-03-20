@@ -5,7 +5,7 @@
   },
   "Quality": "Rare",
   "Icon": "Icons/FlaskEffects/HealthRegen/T3.png",
-  "Cost": 3,
+  "Cost": 4,
   "Interactions": {
     "Consumption": {
       "Interactions": [

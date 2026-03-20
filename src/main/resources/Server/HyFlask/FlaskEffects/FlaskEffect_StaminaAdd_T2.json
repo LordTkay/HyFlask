@@ -5,7 +5,7 @@
   },
   "Quality": "Rare",
   "Icon": "Icons/FlaskEffects/StaminaAdd/T2.png",
-  "Cost": 2,
+  "Cost": 3,
   "Interactions": {
     "Consumption": {
       "Interactions": [

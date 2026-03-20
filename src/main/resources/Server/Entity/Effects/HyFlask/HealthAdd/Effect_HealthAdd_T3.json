@@ -1,11 +1,11 @@
 {
-  "Duration": 120,
+  "Duration": 600,
   "StatusEffectIcon": "Icons/FlaskEffects/HealthAdd/T3.png",
   "RawStatModifiers": {
     "Health": [
       {
         "CalculationType": "Additive",
-        "Amount": 50
+        "Amount": 100
       }
     ]
   },

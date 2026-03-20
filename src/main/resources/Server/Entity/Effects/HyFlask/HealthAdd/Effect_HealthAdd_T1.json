@@ -1,5 +1,5 @@
 {
-  "Duration": 60,
+  "Duration": 600,
   "StatusEffectIcon": "Icons/FlaskEffects/HealthAdd/T1.png",
   "RawStatModifiers": {
     "Health": [

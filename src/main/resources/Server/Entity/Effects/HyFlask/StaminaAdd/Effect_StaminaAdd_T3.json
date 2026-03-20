@@ -1,11 +1,11 @@
 {
-  "Duration": 120,
+  "Duration": 300,
   "StatusEffectIcon": "Icons/FlaskEffects/StaminaAdd/T3.png",
   "RawStatModifiers": {
     "Stamina": [
       {
         "CalculationType": "Additive",
-        "Amount": 10
+        "Amount": 20
       }
     ]
   },

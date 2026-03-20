@@ -5,7 +5,7 @@
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/Spelunker/Silver.png",
-  "Cost": 1,
+  "Cost": 3,
   "Interactions": {
     "Consumption": {
       "Interactions": [

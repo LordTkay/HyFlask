@@ -5,7 +5,7 @@
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/StaminaAdd/T3.png",
-  "Cost": 3,
+  "Cost": 5,
   "Interactions": {
     "Consumption": {
       "Interactions": [

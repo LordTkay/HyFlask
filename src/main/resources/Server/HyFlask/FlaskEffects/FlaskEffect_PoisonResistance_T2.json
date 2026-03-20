@@ -5,7 +5,7 @@
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/PoisonResistance/T2.png",
-  "Cost": 2,
+  "Cost": 3,
   "Interactions": {
     "Consumption": {
       "Interactions": [

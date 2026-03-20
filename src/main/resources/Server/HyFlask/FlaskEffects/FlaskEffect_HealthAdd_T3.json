@@ -5,7 +5,7 @@
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/HealthAdd/T3.png",
-  "Cost": 3,
+  "Cost": 6,
   "Interactions": {
     "Consumption": {
       "Interactions": [

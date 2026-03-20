@@ -5,7 +5,7 @@
   },
   "Quality": "Epic",
   "Icon": "Icons/FlaskEffects/Recall.png",
-  "Cost": 1,
+  "Cost": 5,
   "Interactions": {
     "Consumption": {
       "Interactions": [
