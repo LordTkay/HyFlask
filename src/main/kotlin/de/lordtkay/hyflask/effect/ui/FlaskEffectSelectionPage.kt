@@ -201,11 +201,6 @@ class FlaskEffectSelectionPage(
         val commandBuilder = UICommandBuilder()
         val eventBuilder = UIEventBuilder()
 
-        val activeEffects = activeGroups.values
-            .mapNotNull { it.activeEffect?.id }
-            .map { FlaskEffectComponent.normalizeAssetId(it) }
-            .toSet()
-
         val command = when (data.eventType) {
             INCREASE_LEVEL -> activeGroups[data.groupName]?.let {
                 IncreaseLevelUiCommand(activeGroups, it)
@@ -224,6 +219,10 @@ class FlaskEffectSelectionPage(
             }
 
             APPLY -> {
+                val activeEffects = activeGroups.values
+                    .mapNotNull { it.activeEffect?.id }
+                    .map { FlaskEffectComponent.normalizeAssetId(it) }
+                    .toSet()
                 ApplyEffectsUiCommand(ref, store, flaskEffectComponent, activeEffects)
             }
 
@@ -242,6 +241,10 @@ class FlaskEffectSelectionPage(
             initiator.execute(commandBuilder, eventBuilder, command)
         }
 
+        val activeEffects = activeGroups.values
+            .mapNotNull { it.activeEffect?.id }
+            .map { FlaskEffectComponent.normalizeAssetId(it) }
+            .toSet()
         // Checks if the effects selected in the UI are equal to the currently active effects
         val effectsUnchanged = flaskEffectComponent.activeEffects == activeEffects
 
