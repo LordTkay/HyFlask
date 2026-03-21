@@ -26,6 +26,8 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.*
+import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelUiCommand
+import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelUiCommand
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
@@ -202,13 +204,11 @@ class FlaskEffectSelectionPage(
 
         val command = when (data.eventType) {
             INCREASE_LEVEL -> activeGroups[data.groupName]?.let {
-//                IncreaseLevelUiCommand(activeGroups, learnedGroups, it)
-                null
+                IncreaseLevelUiCommand(activeGroups, it)
             }
 
             DECREASE_LEVEL -> activeGroups[data.groupName]?.let {
-//                DecreaseLevelUiCommand(activeGroups, learnedGroups, it)
-                null
+                DecreaseLevelUiCommand(activeGroups, it)
             }
 
             ACTIVATE_EFFECT -> learnedGroups[data.groupName]?.let {

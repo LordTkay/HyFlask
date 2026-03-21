@@ -6,7 +6,7 @@ import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
 import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
 class DecreaseLevelUiCommand(
-    val activeGroups: List<FlaskEffectSelectionPage.EffectGroup>,
+    val activeGroups: Map<String, FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup
 ) : UiCommand {
 
@@ -17,7 +17,7 @@ class DecreaseLevelUiCommand(
         val previousLevel = group.learnedEffects.lowerEntry(level) ?: return false
 
         group.activeEffect = previousLevel.value
-        val index = activeGroups.indexOf(group)
+        val index = activeGroups.values.indexOf(group)
 
         FlaskEffectSelectionPage.applyActiveEffectElement(
             commandBuilder,
