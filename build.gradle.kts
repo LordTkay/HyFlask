@@ -53,7 +53,7 @@ fun getChangelogTemplate(technical: Boolean): String = buildString {
     }
 
     appendLine()
-    append(getChangelogSection("feat", "Features", technical))
+    append(getChangelogSection("feature", "Features", technical))
     append(getChangelogSection("fix", "Bug Fixes", technical))
     append(getChangelogSection("gamedep", "Hytale Dependency Changes", technical))
     if (technical) {

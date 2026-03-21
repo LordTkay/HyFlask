@@ -6,7 +6,7 @@ non-technical information.
 
 | Tag          | Description                                                 | Visible for   |
 |--------------|-------------------------------------------------------------|---------------|
-| **feat**     | Introduces a new feature or extends existing functionality  | Dev & Non-Dev |
+| **feature**  | Introduces a new feature or extends existing functionality  | Dev & Non-Dev |
 | **fix**      | Fixes a bug or resolves incorrect behavior                  | Dev & Non-Dev |
 | **gamedep**  | Adds, updates, or changes a game-related dependency         | Dev & Non-Dev |
 | **refactor** | Improves internal code structure without changing behavior  | Dev           |
