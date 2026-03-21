@@ -4,8 +4,8 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractComman
 
 class EffectsCommandCollection(
     parentTranslationKey: String,
-    translationKey: String = "$parentTranslationKey.effects"
-) : AbstractCommandCollection("effects", translationKey) {
+    translationKey: String = "$parentTranslationKey.effect"
+) : AbstractCommandCollection("effect", translationKey) {
 
     init {
         addSubCommand(SelectEffectCommand(translationKey))
