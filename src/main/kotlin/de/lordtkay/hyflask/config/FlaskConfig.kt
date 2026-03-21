@@ -40,13 +40,13 @@ class FlaskConfig {
     /**
      * Contains the IDs of [FlaskEffect] assets that a new player will start with and could equip.
      */
-    var startingLearnedEffects: MutableSet<String> = mutableSetOf()
+    var startingLearnedEffects: MutableSet<String> = mutableSetOf("FlaskEffect_HealthRegen_T1")
         private set
 
     /**
      * Contains the IDs of [FlaskEffect] assets that a new player will start with and will be executed, when used.
      */
-    var startingActiveEffects: MutableSet<String> = mutableSetOf()
+    var startingActiveEffects: MutableSet<String> = mutableSetOf("FlaskEffect_HealthRegen_T1")
         private set
 
 }
