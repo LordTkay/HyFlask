@@ -30,8 +30,6 @@ kotlin {
 tasks.shadowJar {
     // Removed the `-all` suffix from the Shadow JAR
     archiveClassifier.set("")
-
-    relocate("kotlin", "de.lordtkay.hyflask.shadow.kotlin")
 }
 
 tasks.named<GitChangelogTask>("gitChangelog") {
