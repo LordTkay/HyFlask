@@ -26,10 +26,7 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.*
-import de.lordtkay.hyflask.effect.ui.event.ActivateEffectUiCommand
-import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectUiCommand
-import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelUiCommand
-import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelUiCommand
+import de.lordtkay.hyflask.effect.ui.event.*
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
@@ -204,6 +201,11 @@ class FlaskEffectSelectionPage(
         val commandBuilder = UICommandBuilder()
         val eventBuilder = UIEventBuilder()
 
+        val activeEffects = activeGroups.values
+            .mapNotNull { it.activeEffect?.id }
+            .map { FlaskEffectComponent.normalizeAssetId(it) }
+            .toSet()
+
         val command = when (data.eventType) {
             INCREASE_LEVEL -> activeGroups[data.groupName]?.let {
                 IncreaseLevelUiCommand(activeGroups, it)
@@ -221,6 +223,10 @@ class FlaskEffectSelectionPage(
                 DeactivateEffectUiCommand(activeGroups, learnedGroups, it)
             }
 
+            APPLY -> {
+                ApplyEffectsUiCommand(ref, store, flaskEffectComponent, activeEffects)
+            }
+
             UNDO -> {
                 initiator.undo(commandBuilder, eventBuilder)
                 null
@@ -230,25 +236,18 @@ class FlaskEffectSelectionPage(
                 initiator.redo(commandBuilder, eventBuilder)
                 null
             }
-
-            APPLY -> {
-                flaskEffectComponent.deactivateAllEffect(ref, store)
-
-                activeGroups.values.forEach { group ->
-                    flaskEffectComponent.activateEffect(group.activeEffect!!.id, ref, store)
-                }
-
-                null
-            }
         }
 
         if (command != null) {
             initiator.execute(commandBuilder, eventBuilder, command)
         }
 
+        // Checks if the effects selected in the UI are equal to the currently active effects
+        val effectsUnchanged = flaskEffectComponent.activeEffects == activeEffects
+
         commandBuilder.set("#RedoButton.Disabled", !initiator.hasRedoHistory)
         commandBuilder.set("#UndoButton.Disabled", !initiator.hasHistory)
-        applyCost(commandBuilder, !initiator.hasHistory || data.eventType == APPLY)
+        applyCost(commandBuilder, !initiator.hasHistory || effectsUnchanged)
 
         sendUpdate(commandBuilder, eventBuilder, false)
     }

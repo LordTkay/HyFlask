@@ -51,6 +51,8 @@ class FlaskEffectComponent : Component<EntityStore?> {
 
             CODEC = builder.build()
         }
+
+        fun normalizeAssetId(assetId: String) = assetId.uppercase()
     }
 
     /**
@@ -315,8 +317,6 @@ class FlaskEffectComponent : Component<EntityStore?> {
 
         return asset
     }
-
-    private fun normalizeAssetId(assetId: String) = assetId.uppercase()
 
     override fun clone(): Component<EntityStore?> {
         val copy = FlaskEffectComponent()
