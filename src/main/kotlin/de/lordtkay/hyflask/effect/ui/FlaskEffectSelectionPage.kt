@@ -26,10 +26,6 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.*
-import de.lordtkay.hyflask.effect.ui.event.ActivateEffectUiCommand
-import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectUiCommand
-import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelUiCommand
-import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelUiCommand
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
 import de.lordtkay.hyflask.utility.ui.command.UiCommandManager
 import java.util.*
@@ -49,8 +45,8 @@ class FlaskEffectSelectionPage(
 
     private val capacityStat: EntityStatValue
     private val initiator = UiCommandManager()
-    private val activeGroups: MutableList<EffectGroup> = mutableListOf()
-    private val learnedGroups: MutableList<EffectGroup> = mutableListOf()
+    private val activeGroups: MutableMap<String, EffectGroup> = TreeMap()
+    private val learnedGroups: MutableMap<String, EffectGroup> = TreeMap()
 
     init {
         val capacityIndex = HyFlaskEntityStat.CAPACITY.getIndex()
@@ -101,24 +97,20 @@ class FlaskEffectSelectionPage(
         groups.values.forEach { group ->
             val activeEffect = group.activeEffect
             if (activeEffect != null) {
-                activeGroups.add(group)
-                commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
-                applyActiveEffectElement(
-                    commandBuilder,
-                    eventBuilder,
-                    group,
-                    activeGroups.size - 1
-                )
+                activeGroups[group.name] = group
             } else {
-                learnedGroups.add(group)
-                commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
-                applyLearnedEffectElement(
-                    commandBuilder,
-                    eventBuilder,
-                    group,
-                    learnedGroups.size - 1
-                )
+                learnedGroups[group.name] = group
             }
+        }
+
+        activeGroups.values.forEachIndexed { index, group ->
+            commandBuilder.append("#ActiveEffects #EffectList", "Pages/FlaskEffectActiveItem.ui")
+            applyActiveEffectElement(commandBuilder, eventBuilder, group, index)
+        }
+
+        learnedGroups.values.forEachIndexed { index, group ->
+            commandBuilder.append("#LearnedEffects #Content", "Pages/FlaskEffectLearnedItem.ui")
+            applyLearnedEffectElement(commandBuilder, eventBuilder, group, index)
         }
 
         applyCost(commandBuilder)
@@ -177,7 +169,7 @@ class FlaskEffectSelectionPage(
     }
 
     private fun applyCost(commandBuilder: UICommandBuilder, applyButtonDisabled: Boolean = true) {
-        val totalCost = activeGroups.sumOf { it.activeEffect?.cost ?: 0 }
+        val totalCost = activeGroups.values.sumOf { it.activeEffect?.cost ?: 0 }
         val capacity = capacityStat.max
         val percentage = if (capacity > 0) {
             totalCost / capacity
@@ -209,20 +201,24 @@ class FlaskEffectSelectionPage(
         val eventBuilder = UIEventBuilder()
 
         val command = when (data.eventType) {
-            INCREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
-                IncreaseLevelUiCommand(activeGroups, learnedGroups, it)
+            INCREASE_LEVEL -> activeGroups[data.groupName]?.let {
+//                IncreaseLevelUiCommand(activeGroups, learnedGroups, it)
+                null
             }
 
-            DECREASE_LEVEL -> activeGroups.find { it.name == data.groupName }?.let {
-                DecreaseLevelUiCommand(activeGroups, learnedGroups, it)
+            DECREASE_LEVEL -> activeGroups[data.groupName]?.let {
+//                DecreaseLevelUiCommand(activeGroups, learnedGroups, it)
+                null
             }
 
-            ACTIVATE_EFFECT -> learnedGroups.find { it.name == data.groupName }?.let {
-                ActivateEffectUiCommand(activeGroups, learnedGroups, it)
+            ACTIVATE_EFFECT -> learnedGroups[data.groupName]?.let {
+//                ActivateEffectUiCommand(activeGroups, learnedGroups, it)
+                null
             }
 
-            DEACTIVATE_EFFECT -> activeGroups.find { it.name == data.groupName }?.let {
-                DeactivateEffectUiCommand(activeGroups, learnedGroups, it)
+            DEACTIVATE_EFFECT -> activeGroups[data.groupName]?.let {
+//                DeactivateEffectUiCommand(activeGroups, learnedGroups, it)
+                null
             }
 
             UNDO -> {
@@ -238,7 +234,7 @@ class FlaskEffectSelectionPage(
             APPLY -> {
                 flaskEffectComponent.deactivateAllEffect(ref, store)
 
-                activeGroups.forEach { group ->
+                activeGroups.values.forEach { group ->
                     flaskEffectComponent.activateEffect(group.activeEffect!!.id, ref, store)
                 }
 
