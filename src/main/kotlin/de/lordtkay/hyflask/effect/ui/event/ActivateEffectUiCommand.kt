@@ -7,25 +7,24 @@ import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
 import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
 class ActivateEffectUiCommand(
-    val activeGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
-    val learnedGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
+    val activeGroups: MutableMap<String, FlaskEffectSelectionPage.EffectGroup>,
+    val learnedGroups: MutableMap<String, FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup,
-    var newIndex: Int = activeGroups.size,
     var activateEffect: FlaskEffect? = null
 ) : UiCommand {
 
-    private var previousIndex: Int = -1
 
     override fun execute(commandBuilder: UICommandBuilder, eventBuilder: UIEventBuilder): Boolean {
         if (group.activeEffect != null) return false
 
-        previousIndex = learnedGroups.indexOf(group)
-
+        val previousIndex = learnedGroups.values.indexOf(group)
         val learnedSelector = FlaskEffectSelectionPage.getLearnedEffectSelector(previousIndex)
         commandBuilder.remove(learnedSelector)
-        learnedGroups.remove(group)
+        learnedGroups.remove(group.name)
 
-        activeGroups.add(newIndex, group)
+        activeGroups[group.name] = group
+        val newIndex = activeGroups.values.indexOf(group)
+
         group.activeEffect = activateEffect ?: group.learnedEffects.firstEntry().value
 
         for (i in newIndex until activeGroups.size) {
@@ -36,7 +35,7 @@ class ActivateEffectUiCommand(
             FlaskEffectSelectionPage.applyActiveEffectElement(
                 commandBuilder,
                 eventBuilder,
-                activeGroups[i],
+                activeGroups.values.elementAt(i),
                 i
             )
         }
@@ -45,6 +44,6 @@ class ActivateEffectUiCommand(
     }
 
     override fun undo(): UiCommand {
-        return DeactivateEffectUiCommand(activeGroups, learnedGroups, group, previousIndex)
+        return DeactivateEffectUiCommand(activeGroups, learnedGroups, group)
     }
 }

@@ -26,6 +26,8 @@ import de.lordtkay.hyflask.effect.asset.FlaskEffect
 import de.lordtkay.hyflask.effect.asset.FlaskEffectGroup
 import de.lordtkay.hyflask.effect.component.FlaskEffectComponent
 import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage.EventType.*
+import de.lordtkay.hyflask.effect.ui.event.ActivateEffectUiCommand
+import de.lordtkay.hyflask.effect.ui.event.DeactivateEffectUiCommand
 import de.lordtkay.hyflask.effect.ui.event.DecreaseLevelUiCommand
 import de.lordtkay.hyflask.effect.ui.event.IncreaseLevelUiCommand
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat
@@ -212,13 +214,11 @@ class FlaskEffectSelectionPage(
             }
 
             ACTIVATE_EFFECT -> learnedGroups[data.groupName]?.let {
-//                ActivateEffectUiCommand(activeGroups, learnedGroups, it)
-                null
+                ActivateEffectUiCommand(activeGroups, learnedGroups, it)
             }
 
             DEACTIVATE_EFFECT -> activeGroups[data.groupName]?.let {
-//                DeactivateEffectUiCommand(activeGroups, learnedGroups, it)
-                null
+                DeactivateEffectUiCommand(activeGroups, learnedGroups, it)
             }
 
             UNDO -> {

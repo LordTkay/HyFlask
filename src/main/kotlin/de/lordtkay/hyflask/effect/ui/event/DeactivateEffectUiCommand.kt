@@ -7,13 +7,11 @@ import de.lordtkay.hyflask.effect.ui.FlaskEffectSelectionPage
 import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
 class DeactivateEffectUiCommand(
-    val activeGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
-    val learnedGroups: MutableList<FlaskEffectSelectionPage.EffectGroup>,
+    val activeGroups: MutableMap<String, FlaskEffectSelectionPage.EffectGroup>,
+    val learnedGroups: MutableMap<String, FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup,
-    var newIndex: Int = learnedGroups.size
 ) : UiCommand {
 
-    private var previousIndex: Int = -1
     private var previousActiveEffect: FlaskEffect? = null
 
     override fun execute(commandBuilder: UICommandBuilder, eventBuilder: UIEventBuilder): Boolean {
@@ -22,13 +20,13 @@ class DeactivateEffectUiCommand(
         previousActiveEffect = group.activeEffect
         group.activeEffect = null
 
-        previousIndex = activeGroups.indexOf(group)
-
+        val previousIndex = activeGroups.values.indexOf(group)
         val activeSelector = FlaskEffectSelectionPage.getActiveEffectSelector(previousIndex)
         commandBuilder.remove(activeSelector)
-        activeGroups.remove(group)
+        activeGroups.remove(group.name)
 
-        learnedGroups.add(newIndex, group)
+        learnedGroups[group.name] = group
+        val newIndex = learnedGroups.values.indexOf(group)
 
         for (i in newIndex until learnedGroups.size) {
             if (i >= learnedGroups.size - 1) {
@@ -38,7 +36,7 @@ class DeactivateEffectUiCommand(
             FlaskEffectSelectionPage.applyLearnedEffectElement(
                 commandBuilder,
                 eventBuilder,
-                learnedGroups[i],
+                learnedGroups.values.elementAt(i),
                 i
             )
         }
@@ -48,6 +46,6 @@ class DeactivateEffectUiCommand(
     }
 
     override fun undo(): UiCommand {
-        return ActivateEffectUiCommand(activeGroups, learnedGroups, group, previousIndex, previousActiveEffect)
+        return ActivateEffectUiCommand(activeGroups, learnedGroups, group, previousActiveEffect)
     }
 }
