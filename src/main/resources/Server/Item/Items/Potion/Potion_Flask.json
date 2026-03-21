@@ -112,7 +112,7 @@
     "CustomModel": "Items/Consumables/Potions/HyFlask.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Items/Consumables/Potions/Potion_Textures/HyFlask_Textures.png",
+        "Texture": "Items/Consumables/Potions/Potion_Textures/HyFlask_Texture.png",
         "Weight": 1
       }
     ],

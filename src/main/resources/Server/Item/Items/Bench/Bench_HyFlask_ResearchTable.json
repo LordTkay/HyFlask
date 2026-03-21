@@ -3,7 +3,7 @@
     "Name": "server.hyflask.items.Bench_ResearchTable.name",
     "Description": "server.hyflask.items.Bench_ResearchTable.description"
   },
-  "Icon": "Icons/ItemsGenerated/Bench_Arcane.png",
+  "Icon": "Icons/ItemsGenerated/Bench_HyFlask_ResearchTable.png",
   "Categories": [
     "Furniture.Benches"
   ],
@@ -38,10 +38,10 @@
     "Material": "Solid",
     "DrawType": "Model",
     "Opacity": "Transparent",
-    "CustomModel": "Blocks/Benches/ArcaneTable.blockymodel",
+    "CustomModel": "Blocks/Benches/HyFlask_ResearchTable.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Blocks/Benches/ArcaneTable_Texture.png",
+        "Texture": "Blocks/Benches/HyFlask_ResearchTable_Texture.png",
         "Weight": 1
       }
     ],
@@ -203,7 +203,7 @@
     "Scale": 0.35,
     "Rotation": [
       22.5,
-      45.0,
+      45,
       22.5
     ],
     "Translation": [

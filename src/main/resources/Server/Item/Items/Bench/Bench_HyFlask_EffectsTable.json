@@ -41,7 +41,7 @@
     "CustomModel": "Blocks/Benches/HyFlask_EffectsTable.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Blocks/Benches/HyFlask_EffectsTable.png",
+        "Texture": "Blocks/Benches/HyFlask_EffectsTable_Texture.png",
         "Weight": 1
       }
     ],
