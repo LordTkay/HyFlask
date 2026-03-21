@@ -7,7 +7,6 @@ import de.lordtkay.hyflask.utility.ui.command.UiCommand
 
 class IncreaseLevelUiCommand(
     val activeGroups: List<FlaskEffectSelectionPage.EffectGroup>,
-    val learnedGroups: List<FlaskEffectSelectionPage.EffectGroup>,
     val group: FlaskEffectSelectionPage.EffectGroup
 ) : UiCommand {
 
@@ -30,6 +29,6 @@ class IncreaseLevelUiCommand(
     }
 
     override fun undo(): UiCommand {
-        return DecreaseLevelUiCommand(activeGroups, learnedGroups, group)
+        return DecreaseLevelUiCommand(activeGroups, group)
     }
 }
