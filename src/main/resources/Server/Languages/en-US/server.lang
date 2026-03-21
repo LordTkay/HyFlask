@@ -110,12 +110,12 @@ hyflask.items.Scroll_FlaskEffect_Speed_T1.description=Teaches the Lesser Speed e
 hyflask.items.Scroll_FlaskEffect_Speed_T2.name=Learn: Greater Speed
 hyflask.items.Scroll_FlaskEffect_Speed_T2.description=Teaches the Greater Speed effect for the HyFlask.
 
-hyflask.items.Scroll_FlaskEffect_StaminaAdd_T1.name=Learn: Greater Stamina Improvement
-hyflask.items.Scroll_FlaskEffect_StaminaAdd_T1.description=Teaches the Greater Stamina Improvement effect for the HyFlask.
-hyflask.items.Scroll_FlaskEffect_StaminaAdd_T2.name=Learn: Superior Stamina Improvement
-hyflask.items.Scroll_FlaskEffect_StaminaAdd_T2.description=Teaches the Superior Stamina Improvement effect for the HyFlask.
-hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.name=Learn: Mythic Stamina Improvement
-hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.description=Teaches the Mythic Stamina Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T1.name=Learn: Lesser Stamina Improvement
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T1.description=Teaches the Lesser Stamina Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T2.name=Learn: Greater Stamina Improvement
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T2.description=Teaches the Greater Stamina Improvement effect for the HyFlask.
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.name=Learn: Superior Stamina Improvement
+hyflask.items.Scroll_FlaskEffect_StaminaAdd_T3.description=Teaches the Superior Stamina Improvement effect for the HyFlask.
 
 hyflask.items.Scroll_FlaskEffect_WaterBreathing_T1.name=Learn: Lesser Water Breathing
 hyflask.items.Scroll_FlaskEffect_WaterBreathing_T1.description=Teaches the Lesser Water Breathing effect for the HyFlask.
@@ -164,11 +164,11 @@ hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.name=Superior Health Improvement
 hyflask.flaskEffects.FlaskEffect_HealthAdd_T3.description=Increase your maximum health by 100 for 10 minutes.
 
 hyflask.flaskEffectGroups.FlaskEffectGroup_StaminaAdd.name=Stamina Improvement
-hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.name=Greater Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.name=Lesser Stamina Improvement
 hyflask.flaskEffects.FlaskEffect_StaminaAdd_T1.description=Increase your maximum stamina by 5 for 5 minutes.
-hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.name=Superior Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.name=Greater Stamina Improvement
 hyflask.flaskEffects.FlaskEffect_StaminaAdd_T2.description=Increase your maximum stamina by 10 for 5 minutes.
-hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.name=Mythic Stamina Improvement
+hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.name=Superior Stamina Improvement
 hyflask.flaskEffects.FlaskEffect_StaminaAdd_T3.description=Increase your maximum stamina by 20 for 5 minutes.
 
 hyflask.flaskEffectGroups.FlaskEffectGroup_WaterBreathing.name=Water Breathing
