@@ -34,7 +34,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
             builder
                 .append(
                     KeyedCodec("LearnedEffects", Codec.STRING_ARRAY),
-                    { component, value -> component.learnedEffects.addAll(value.map { it.uppercase() }) },
+                    { component, value -> component.learnedEffects = value.map { it.uppercase() }.toMutableSet() },
                     { component -> component.learnedEffects.toTypedArray() }
                 )
                 .documentation("A list of effects that the player has learned and could equip.")
@@ -43,7 +43,7 @@ class FlaskEffectComponent : Component<EntityStore?> {
             builder
                 .append(
                     KeyedCodec("ActiveEffects", Codec.STRING_ARRAY),
-                    { component, value -> component.activeEffects.addAll(value.map { it.uppercase() }) },
+                    { component, value -> component.activeEffects = value.map { it.uppercase() }.toMutableSet() },
                     { component -> component.activeEffects.toTypedArray() }
                 )
                 .documentation("A list of effects that the player currently has active and would be executed, when consuming the flask.")
