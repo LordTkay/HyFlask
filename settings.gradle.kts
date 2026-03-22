@@ -10,7 +10,7 @@ pluginManagement {
 
 plugins {
     // See documentation on https://scaffoldit.dev
-    id("dev.scaffoldit") version "0.2.+"
+    id("dev.scaffoldit") version "0.2.13"
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
