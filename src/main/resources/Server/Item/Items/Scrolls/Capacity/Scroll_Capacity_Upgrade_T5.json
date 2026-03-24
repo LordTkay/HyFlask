@@ -35,6 +35,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Voidheart",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Ingredient_Void_Essence",
+        "Quantity": 300
       }
     ],
     "RequiredMemoriesLevel": 4,

@@ -35,6 +35,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Plant_Crop_Pumpkin_Item",
+        "Quantity": 15
+      },
+      {
+        "ItemId": "Plant_Crop_Turnip_Item",
+        "Quantity": 15
       }
     ],
     "RequiredMemoriesLevel": 2,
