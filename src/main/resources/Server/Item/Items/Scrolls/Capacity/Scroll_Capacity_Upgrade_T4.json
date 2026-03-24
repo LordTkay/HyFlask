@@ -35,6 +35,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Feathers_Blue",
+        "Quantity": 5
+      },
+      {
+        "ItemId": "Ingredient_Lightning_Essence",
+        "Quantity": 10
       }
     ],
     "RequiredMemoriesLevel": 3,

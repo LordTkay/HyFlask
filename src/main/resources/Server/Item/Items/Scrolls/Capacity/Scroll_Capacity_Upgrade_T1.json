@@ -34,6 +34,14 @@
       {
         "ItemId": "Ingredient_Bolt_Wool",
         "Quantity": 2
+      },
+      {
+        "ItemId": "Ingredient_Bar_Copper",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Furniture_Crude_Chest_Small",
+        "Quantity": 5
       }
     ]
   },
