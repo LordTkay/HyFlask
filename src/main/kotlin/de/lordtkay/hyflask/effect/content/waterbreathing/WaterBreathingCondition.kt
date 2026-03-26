@@ -9,7 +9,7 @@ import com.hypixel.hytale.protocol.BlockMaterial
 import com.hypixel.hytale.server.core.asset.type.entityeffect.config.EntityEffect
 import com.hypixel.hytale.server.core.entity.effect.EffectControllerComponent
 import com.hypixel.hytale.server.core.modules.collision.WorldUtil
-import com.hypixel.hytale.server.core.modules.entitystats.asset.condition.Condition
+import com.hypixel.hytale.server.core.modules.entity.condition.Condition
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import com.hypixel.hytale.server.core.util.TargetUtil

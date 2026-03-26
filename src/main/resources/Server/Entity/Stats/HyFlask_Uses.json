@@ -16,7 +16,7 @@
           "Id": "Alive"
         },
         {
-          "Id": "Player"
+          "Id": "IsPlayer"
         },
         {
           "Id": "HyFlask_Slept",

@@ -3,7 +3,7 @@ package de.lordtkay.hyflask
 import com.hypixel.hytale.assetstore.map.IndexedAssetMap
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.asset.HytaleAssetStore
-import com.hypixel.hytale.server.core.modules.entitystats.asset.condition.Condition
+import com.hypixel.hytale.server.core.modules.entity.condition.Condition
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.server.OpenCustomUIInteraction
 import com.hypixel.hytale.server.core.plugin.JavaPlugin

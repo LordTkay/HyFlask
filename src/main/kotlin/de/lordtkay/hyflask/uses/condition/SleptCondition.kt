@@ -10,7 +10,7 @@ import com.hypixel.hytale.component.ComponentAccessor
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.Message
-import com.hypixel.hytale.server.core.modules.entitystats.asset.condition.Condition
+import com.hypixel.hytale.server.core.modules.entity.condition.Condition
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import com.hypixel.hytale.server.core.util.NotificationUtil
