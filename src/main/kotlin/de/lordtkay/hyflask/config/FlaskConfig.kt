@@ -65,10 +65,10 @@ class FlaskConfig {
      */
     var usesUpgradeMap =
         sortedMapOf(
-            3 to 2,
-            9 to 3,
-            27 to 4,
-            75 to 5
+            3 to 1,
+            9 to 2,
+            27 to 3,
+            75 to 4
         )
         private set
 }
