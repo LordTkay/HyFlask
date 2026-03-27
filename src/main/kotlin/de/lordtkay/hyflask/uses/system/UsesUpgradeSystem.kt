@@ -6,10 +6,14 @@ import com.hypixel.hytale.component.CommandBuffer
 import com.hypixel.hytale.component.ComponentType
 import com.hypixel.hytale.component.Ref
 import com.hypixel.hytale.component.Store
+import com.hypixel.hytale.component.dependency.Dependency
+import com.hypixel.hytale.component.dependency.Order
+import com.hypixel.hytale.component.dependency.SystemDependency
 import com.hypixel.hytale.component.query.Query
 import com.hypixel.hytale.component.system.RefChangeSystem
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.Message
+import com.hypixel.hytale.server.core.modules.entitystats.EntityStatsModule
 import com.hypixel.hytale.server.core.modules.entitystats.modifier.Modifier
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
@@ -125,6 +129,12 @@ class UsesUpgradeSystem : RefChangeSystem<EntityStore, PlayerSomnolence>() {
             .param("uses", statUses.max.toInt())
         NotificationUtil.sendNotification(playerRef.packetHandler, upgradeMessage)
 
+    }
+
+    override fun getDependencies(): Set<Dependency<EntityStore?>?> {
+        return setOf(
+            SystemDependency(Order.BEFORE, EntityStatsModule.PlayerRegenerateStatsSystem::class.java)
+        )
     }
 
 }
