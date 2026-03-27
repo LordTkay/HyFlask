@@ -66,9 +66,9 @@ class FlaskConfig {
     var usesUpgradeMap =
         sortedMapOf(
             3 to 1,
-            9 to 2,
-            27 to 3,
-            75 to 4
+            10 to 2,
+            30 to 3,
+            80 to 4
         )
         private set
 }
