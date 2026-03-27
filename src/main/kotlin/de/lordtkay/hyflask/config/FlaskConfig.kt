@@ -63,10 +63,12 @@ class FlaskConfig {
      * A map that defines what max modifier the player received when a specific number of consumptions were made.
      * The key defines the number of consumptions required, and the value defines the new maximum modifier.
      */
-    var usesUpgradeMap = sortedMapOf(
-        5 to 2,
-        10 to 3,
-        15 to 4,
-        20 to 5
-    )
+    var usesUpgradeMap =
+        sortedMapOf(
+            3 to 2,
+            9 to 3,
+            27 to 4,
+            75 to 5
+        )
+        private set
 }
