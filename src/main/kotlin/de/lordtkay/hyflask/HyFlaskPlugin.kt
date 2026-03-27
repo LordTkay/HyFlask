@@ -86,6 +86,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     }
 
     private fun registerSystems() {
+        entityStoreRegistry.registerSystem(UsesUpgradeSystem())
         entityStoreRegistry.registerSystem(RecallSystem())
         entityStoreRegistry.registerSystem(JumpHeightSystem())
         entityStoreRegistry.registerSystem(SpelunkerSystem())

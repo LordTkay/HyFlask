@@ -17,6 +17,7 @@ hyflask.notification.flaskEffect.forgotten.success=Flask effect '{name}' forgott
 hyflask.notification.flaskEffect.required=Flask effect '{name}' needs to be learned first.
 
 hyflask.notification.uses.recharged.success=Your flask has been recharged.
+hyflask.notification.uses.upgrade.success=Flask uses was upgrade to {uses}!
 
 # === ui ====
 
