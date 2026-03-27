@@ -1,7 +1,7 @@
 package de.lordtkay.hyflask.utility
 
+import com.hypixel.hytale.component.ComponentAccessor
 import com.hypixel.hytale.component.Ref
-import com.hypixel.hytale.component.Store
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue
@@ -24,7 +24,7 @@ object EntityStatUtility {
 
     fun get(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat
     ): Result {
         val statContext = getStatContext(ref, store, targetStat)
@@ -35,7 +35,7 @@ object EntityStatUtility {
 
     fun add(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         value: Float
     ): Result {
@@ -49,7 +49,7 @@ object EntityStatUtility {
 
     fun set(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         value: Float
     ): Result {
@@ -62,7 +62,7 @@ object EntityStatUtility {
 
     fun addModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier,
         value: Float,
@@ -74,7 +74,7 @@ object EntityStatUtility {
 
     fun addModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: String,
         value: Float,
@@ -103,7 +103,7 @@ object EntityStatUtility {
 
     fun setAdditiveModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier,
         value: Float,
@@ -114,7 +114,7 @@ object EntityStatUtility {
 
     fun setAdditiveModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: String,
         value: Float,
@@ -142,7 +142,7 @@ object EntityStatUtility {
 
     fun reset(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat
     ): Result {
         val statContext = getStatContext(ref, store, targetStat)
@@ -154,7 +154,7 @@ object EntityStatUtility {
 
     fun removeModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier
     ): Result {
@@ -163,7 +163,7 @@ object EntityStatUtility {
 
     fun removeModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: String,
     ): Result {
@@ -176,7 +176,7 @@ object EntityStatUtility {
 
     private fun getStatContext(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat
     ): StatContext? {
         val statMap = store.getComponent(ref, EntityStatMap.getComponentType())
