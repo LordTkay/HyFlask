@@ -215,6 +215,11 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             ModifyCapacityInteraction::class.java,
             ModifyCapacityInteraction.CODEC
         )
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.MODIFY_STATISTIC.id,
+            ModifyStatisticInteraction::class.java,
+            ModifyStatisticInteraction.CODEC
+        )
     }
 
     private fun registerPages() {
