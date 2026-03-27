@@ -41,6 +41,7 @@ hytale {
             HytaleManifest.Author("Lord Tkay", "tobawa2601@gmail.com", "https://github.com/LordTkay")
         )
         IncludesAssetPack = true
+        ServerVersion = "2026.03.26-89796e57b"
         Dependencies = mapOf(
             "Hytale:Beds" to "*",
             "com.hypersonicsharkz:Hytalor" to "2.2"
