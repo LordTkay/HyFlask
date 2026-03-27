@@ -5,7 +5,7 @@ be replenished by sleeping through the night. The effect of the flask can be cha
 `Research Table` and then be equipped at the `Effect Cauldron`. You can have multiple effects active at the same time,
 as long as your capacity is not exceeded.
 
-Always open to critique or ideas!!
+Always open to critique or ideas!
 
 ## Getting Your Flask
 
