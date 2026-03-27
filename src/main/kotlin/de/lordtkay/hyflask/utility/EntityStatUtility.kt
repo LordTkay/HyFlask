@@ -163,12 +163,16 @@ object EntityStatUtility {
         val statContext = getStatContext(ref, store, targetStat)
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
 
-        var modifiedMax = statContext.max
+        var modifierValue = when (modifierTarget) {
+            Modifier.ModifierTarget.MAX -> statContext.max
+            Modifier.ModifierTarget.MIN -> statContext.min
+        }
+
         val existingModifier = statContext.statMap.getModifier(statContext.index, modifier)
         if (existingModifier is StaticModifier) {
-            modifiedMax -= existingModifier.amount
+            modifierValue -= existingModifier.amount
         }
-        val modifierAmount = value - modifiedMax
+        val modifierAmount = value - modifierValue
 
         val modifiedModifier = StaticModifier(
             modifierTarget,
