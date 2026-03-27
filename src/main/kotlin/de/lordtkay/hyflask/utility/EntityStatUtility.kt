@@ -101,6 +101,40 @@ object EntityStatUtility {
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
+    fun setModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: HyFlaskEntityStatModifier,
+        value: Float,
+        modifierTarget: Modifier.ModifierTarget,
+        modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
+    ): Result {
+        return setModifier(ref, store, targetStat, modifier.id, value, modifierTarget, modifierType)
+    }
+
+    fun setModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String,
+        value: Float,
+        modifierTarget: Modifier.ModifierTarget,
+        modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
+    ): Result {
+        val statContext = getStatContext(ref, store, targetStat)
+            ?: return Result.ComponentMissing(EntityStatMap::class.java)
+
+        val modifiedModifier = StaticModifier(
+            modifierTarget,
+            modifierType,
+            value
+        )
+
+        statContext.statMap.putModifier(statContext.index, modifier, modifiedModifier)
+        return Result.Success(statContext.current, statContext.min, statContext.max)
+    }
+
     /**
      * Calculates the modifier amount required to make the player's total Min or Max value match the desired value.
      */
