@@ -43,6 +43,10 @@
                 "Type": "Simple",
                 "RunTime": 0.2,
                 "$Comment": "Delay before next consume cycle can start to prevent sound overlap"
+              },
+              {
+                "Type": "HyFlask_ModifyStatistic",
+                "Target": "Uses"
               }
             ]
           }
