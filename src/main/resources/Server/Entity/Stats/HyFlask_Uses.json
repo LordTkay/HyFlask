@@ -2,7 +2,7 @@
   "$Comment": "Tracks the remaining uses of the flask.",
   "InitialValue": 1,
   "Min": 0,
-  "Max": 3,
+  "Max": 1,
   "Shared": false,
   "ResetType": "MaxValue",
   "Regenerating": [
