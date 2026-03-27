@@ -40,7 +40,7 @@ class SetMaxCapacityCommand(
     ) {
         val amount = amountArg.get(commandContext).toFloat()
 
-        val result = EntityStatUtility.setAdditiveModifier(
+        val result = EntityStatUtility.setToTotal(
             ref,
             store,
             HyFlaskEntityStat.CAPACITY,

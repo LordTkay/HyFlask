@@ -33,9 +33,12 @@ import de.lordtkay.hyflask.enumeration.HyFlaskComponent
 import de.lordtkay.hyflask.enumeration.HyFlaskCondition
 import de.lordtkay.hyflask.enumeration.HyFlaskInteraction
 import de.lordtkay.hyflask.enumeration.HyFlaskPage
+import de.lordtkay.hyflask.statistic.component.FlaskStatisticComponent
+import de.lordtkay.hyflask.statistic.interaction.ModifyStatisticInteraction
 import de.lordtkay.hyflask.uses.condition.SleptCondition
 import de.lordtkay.hyflask.uses.interaction.HasUsesInteraction
 import de.lordtkay.hyflask.uses.interaction.ModifyUsesInteraction
+import de.lordtkay.hyflask.uses.system.UsesUpgradeSystem
 
 @Suppress("unused")
 class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
@@ -83,6 +86,7 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
     }
 
     private fun registerSystems() {
+        entityStoreRegistry.registerSystem(UsesUpgradeSystem())
         entityStoreRegistry.registerSystem(RecallSystem())
         entityStoreRegistry.registerSystem(JumpHeightSystem())
         entityStoreRegistry.registerSystem(SpelunkerSystem())
@@ -128,6 +132,14 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             FlaskEffectComponent.CODEC
         )
         FlaskEffectComponent.componentType = flaskEffectComponent
+
+
+        val flaskStatisticComponent = entityStoreRegistry.registerComponent(
+            FlaskStatisticComponent::class.java,
+            HyFlaskComponent.STATISTICS.id,
+            FlaskStatisticComponent.CODEC
+        )
+        FlaskStatisticComponent.componentType = flaskStatisticComponent
 
         val recallComponent = entityStoreRegistry.registerComponent(
             RecallComponent::class.java,
@@ -203,6 +215,11 @@ class HyFlaskPlugin(init: JavaPluginInit) : JavaPlugin(init) {
             HyFlaskInteraction.MODIFY_CAPACITY.id,
             ModifyCapacityInteraction::class.java,
             ModifyCapacityInteraction.CODEC
+        )
+        getCodecRegistry(Interaction.CODEC).register(
+            HyFlaskInteraction.MODIFY_STATISTIC.id,
+            ModifyStatisticInteraction::class.java,
+            ModifyStatisticInteraction.CODEC
         )
     }
 

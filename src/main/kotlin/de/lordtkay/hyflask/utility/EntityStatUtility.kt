@@ -1,7 +1,7 @@
 package de.lordtkay.hyflask.utility
 
+import com.hypixel.hytale.component.ComponentAccessor
 import com.hypixel.hytale.component.Ref
-import com.hypixel.hytale.component.Store
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue
@@ -24,7 +24,7 @@ object EntityStatUtility {
 
     fun get(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat
     ): Result {
         val statContext = getStatContext(ref, store, targetStat)
@@ -35,7 +35,7 @@ object EntityStatUtility {
 
     fun add(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         value: Float
     ): Result {
@@ -49,7 +49,7 @@ object EntityStatUtility {
 
     fun set(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         value: Float
     ): Result {
@@ -62,7 +62,7 @@ object EntityStatUtility {
 
     fun addModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier,
         value: Float,
@@ -74,7 +74,7 @@ object EntityStatUtility {
 
     fun addModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: String,
         value: Float,
@@ -101,20 +101,60 @@ object EntityStatUtility {
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
-    fun setAdditiveModifier(
+    fun setModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: HyFlaskEntityStatModifier,
+        value: Float,
+        modifierTarget: Modifier.ModifierTarget,
+        modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
+    ): Result {
+        return setModifier(ref, store, targetStat, modifier.id, value, modifierTarget, modifierType)
+    }
+
+    fun setModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String,
+        value: Float,
+        modifierTarget: Modifier.ModifierTarget,
+        modifierType: StaticModifier.CalculationType = StaticModifier.CalculationType.ADDITIVE
+    ): Result {
+        val statContext = getStatContext(ref, store, targetStat)
+            ?: return Result.ComponentMissing(EntityStatMap::class.java)
+
+        val modifiedModifier = StaticModifier(
+            modifierTarget,
+            modifierType,
+            value
+        )
+
+        statContext.statMap.putModifier(statContext.index, modifier, modifiedModifier)
+        return Result.Success(statContext.current, statContext.min, statContext.max)
+    }
+
+    /**
+     * Calculates the modifier amount required to make the player's total Min or Max value match the desired value.
+     */
+    fun setToTotal(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier,
         value: Float,
         modifierTarget: Modifier.ModifierTarget
     ): Result {
-        return setAdditiveModifier(ref, store, targetStat, modifier.id, value, modifierTarget)
+        return setToTotal(ref, store, targetStat, modifier.id, value, modifierTarget)
     }
 
-    fun setAdditiveModifier(
+    /**
+     * Calculates the modifier amount required to make the player's total Min or Max value match the desired value.
+     */
+    fun setToTotal(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: String,
         value: Float,
@@ -123,12 +163,16 @@ object EntityStatUtility {
         val statContext = getStatContext(ref, store, targetStat)
             ?: return Result.ComponentMissing(EntityStatMap::class.java)
 
-        var modifiedMax = statContext.max
+        var modifierValue = when (modifierTarget) {
+            Modifier.ModifierTarget.MAX -> statContext.max
+            Modifier.ModifierTarget.MIN -> statContext.min
+        }
+
         val existingModifier = statContext.statMap.getModifier(statContext.index, modifier)
         if (existingModifier is StaticModifier) {
-            modifiedMax -= existingModifier.amount
+            modifierValue -= existingModifier.amount
         }
-        val modifierAmount = value - modifiedMax
+        val modifierAmount = value - modifierValue
 
         val modifiedModifier = StaticModifier(
             modifierTarget,
@@ -140,9 +184,37 @@ object EntityStatUtility {
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
+    fun getModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: HyFlaskEntityStatModifier
+    ): GetModifierResult {
+        return getModifier(ref, store, targetStat, modifier.id)
+    }
+
+    fun getModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String
+    ): GetModifierResult {
+        val statContext = getStatContext(ref, store, targetStat)
+            ?: return GetModifierResult.ComponentMissing(EntityStatMap::class.java)
+
+        val existingModifier = statContext.statMap.getModifier(statContext.index, modifier)
+
+        if (existingModifier !is StaticModifier) return GetModifierResult.ModifierMissing
+        return GetModifierResult.Success(
+            existingModifier.amount,
+            existingModifier.calculationType,
+            existingModifier.target
+        )
+    }
+
     fun reset(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat
     ): Result {
         val statContext = getStatContext(ref, store, targetStat)
@@ -154,7 +226,7 @@ object EntityStatUtility {
 
     fun removeModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: HyFlaskEntityStatModifier
     ): Result {
@@ -163,7 +235,7 @@ object EntityStatUtility {
 
     fun removeModifier(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
         modifier: String,
     ): Result {
@@ -176,7 +248,7 @@ object EntityStatUtility {
 
     private fun getStatContext(
         ref: Ref<EntityStore?>,
-        store: Store<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat
     ): StatContext? {
         val statMap = store.getComponent(ref, EntityStatMap.getComponentType())
@@ -212,6 +284,17 @@ object EntityStatUtility {
     sealed interface Result {
         data class Success(val current: Float, val min: Float, val max: Float) : Result
         data class ComponentMissing(val component: Class<*>) : Result
+    }
+
+    sealed interface GetModifierResult {
+        data class Success(
+            val modifier: Float,
+            val calculationType: StaticModifier.CalculationType,
+            val target: Modifier.ModifierTarget
+        ) : GetModifierResult
+
+        data class ComponentMissing(val component: Class<*>) : GetModifierResult
+        data object ModifierMissing : GetModifierResult
     }
 
 }

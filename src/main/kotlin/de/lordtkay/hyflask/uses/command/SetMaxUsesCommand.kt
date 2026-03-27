@@ -36,7 +36,7 @@ class SetMaxUsesCommand(
     ) {
         val amount = amountArg.get(commandContext).toFloat()
         val result =
-            EntityStatUtility.setAdditiveModifier(ref, store, USES, COMMAND_ADDITIVE, amount, ModifierTarget.MAX)
+            EntityStatUtility.setToTotal(ref, store, USES, COMMAND_ADDITIVE, amount, ModifierTarget.MAX)
 
         val message = when (result) {
             is EntityStatUtility.Result.ComponentMissing ->
