@@ -140,6 +140,34 @@ object EntityStatUtility {
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
+    fun getModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: HyFlaskEntityStatModifier
+    ): GetModifierResult {
+        return getModifier(ref, store, targetStat, modifier.id)
+    }
+
+    fun getModifier(
+        ref: Ref<EntityStore?>,
+        store: ComponentAccessor<EntityStore?>,
+        targetStat: HyFlaskEntityStat,
+        modifier: String
+    ): GetModifierResult {
+        val statContext = getStatContext(ref, store, targetStat)
+            ?: return GetModifierResult.ComponentMissing(EntityStatMap::class.java)
+
+        val existingModifier = statContext.statMap.getModifier(statContext.index, modifier)
+
+        if (existingModifier !is StaticModifier) return GetModifierResult.ModifierMissing
+        return GetModifierResult.Success(
+            existingModifier.amount,
+            existingModifier.calculationType,
+            existingModifier.target
+        )
+    }
+
     fun reset(
         ref: Ref<EntityStore?>,
         store: ComponentAccessor<EntityStore?>,
@@ -212,6 +240,17 @@ object EntityStatUtility {
     sealed interface Result {
         data class Success(val current: Float, val min: Float, val max: Float) : Result
         data class ComponentMissing(val component: Class<*>) : Result
+    }
+
+    sealed interface GetModifierResult {
+        data class Success(
+            val modifier: Float,
+            val calculationType: StaticModifier.CalculationType,
+            val target: Modifier.ModifierTarget
+        ) : GetModifierResult
+
+        data class ComponentMissing(val component: Class<*>) : GetModifierResult
+        data object ModifierMissing : GetModifierResult
     }
 
 }
