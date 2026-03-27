@@ -101,7 +101,10 @@ object EntityStatUtility {
         return Result.Success(statContext.current, statContext.min, statContext.max)
     }
 
-    fun setAdditiveModifier(
+    /**
+     * Calculates the modifier amount required to make the player's total Min or Max value match the desired value.
+     */
+    fun setToTotal(
         ref: Ref<EntityStore?>,
         store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
@@ -109,10 +112,13 @@ object EntityStatUtility {
         value: Float,
         modifierTarget: Modifier.ModifierTarget
     ): Result {
-        return setAdditiveModifier(ref, store, targetStat, modifier.id, value, modifierTarget)
+        return setToTotal(ref, store, targetStat, modifier.id, value, modifierTarget)
     }
 
-    fun setAdditiveModifier(
+    /**
+     * Calculates the modifier amount required to make the player's total Min or Max value match the desired value.
+     */
+    fun setToTotal(
         ref: Ref<EntityStore?>,
         store: ComponentAccessor<EntityStore?>,
         targetStat: HyFlaskEntityStat,
