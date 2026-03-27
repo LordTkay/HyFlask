@@ -43,7 +43,7 @@ hyflask.items.Potion_Flask.description=A rechargeable potion flask that refills 
 hyflask.items.Bench_ResearchTable.name=Research Table
 hyflask.items.Bench_ResearchTable.description=A research bench that can be used to research new flask effects.
 
-hyflask.items.Bench_EffectsTable.name=Effects Cauldron
+hyflask.items.Bench_EffectsTable.name=Effect Cauldron
 hyflask.items.Bench_EffectsTable.description=A cauldron where you can select your active flask effects.
 
 
