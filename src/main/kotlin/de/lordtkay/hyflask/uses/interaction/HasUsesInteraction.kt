@@ -16,7 +16,6 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHa
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInteraction
 import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.util.NotificationUtil
-import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
 class HasUsesInteraction : SimpleInteraction() {
@@ -58,7 +57,7 @@ class HasUsesInteraction : SimpleInteraction() {
         val commandBuffer = context.commandBuffer
         if (commandBuffer == null) {
             logger.atWarning()
-                .log("No command buffer found for interaction '${FlaskEffectApplyInteraction::class.java.simpleName}'")
+                .log("No command buffer found for interaction '${HasUsesInteraction::class.java.simpleName}'")
             return
         }
 
@@ -78,7 +77,7 @@ class HasUsesInteraction : SimpleInteraction() {
             state.state = InteractionState.Finished
         } else {
             val playerRef = commandBuffer.ensureAndGetComponent(ref, PlayerRef.getComponentType())
-            val message = Message.translation("server.hyflask.notification.uses.hasUses.failed")
+            val message = Message.translation("server.hyflask.notification.uses.has.failed")
             NotificationUtil.sendNotification(playerRef.packetHandler, message, NotificationStyle.Warning)
             state.state = InteractionState.Failed
         }

@@ -18,7 +18,8 @@ hyflask.notification.flaskEffect.required=Flask effect '{name}' needs to be lear
 
 hyflask.notification.uses.recharged.success=Your flask has been recharged.
 hyflask.notification.uses.upgrade.success=Flask uses was upgrade to {uses}!
-hyflask.notification.uses.hasUses.failed=Your flask has not enough uses for that!
+hyflask.notification.uses.modify.success=Your flask has {uses} uses left.
+hyflask.notification.uses.has.failed=Your flask has not enough uses for that!
 
 # === ui ====
 

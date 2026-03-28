@@ -7,10 +7,13 @@ import com.hypixel.hytale.codec.validation.Validators
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.protocol.InteractionState
 import com.hypixel.hytale.protocol.InteractionType
+import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.entity.InteractionContext
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInstantInteraction
+import com.hypixel.hytale.server.core.universe.PlayerRef
+import com.hypixel.hytale.server.core.util.NotificationUtil
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
 class ModifyUsesInteraction : SimpleInstantInteraction() {
@@ -47,9 +50,14 @@ class ModifyUsesInteraction : SimpleInstantInteraction() {
         context: InteractionContext,
         cooldownHandler: CooldownHandler
     ) {
+        val commandBuffer = context.commandBuffer
+        if (commandBuffer == null) {
+            logger.atWarning()
+                .log("No command buffer found for interaction '${ModifyUsesInteraction::class.java.simpleName}'")
+            return
+        }
         val ref = context.entity
-        val store = context.owningEntity
-        val statMap = store.store.getComponent(ref, EntityStatMap.getComponentType())
+        val statMap = commandBuffer.getComponent(ref, EntityStatMap.getComponentType())
         if (statMap == null) {
             logger.atWarning()
                 .log("${EntityStatMap::class.simpleName} was not found on player reference.")
@@ -61,6 +69,11 @@ class ModifyUsesInteraction : SimpleInstantInteraction() {
         val currentUses = usesStat?.get() ?: 0f
         val modifiedUses = currentUses + amount
         statMap.setStatValue(statIndex, modifiedUses)
+
+        val playerRef = commandBuffer.ensureAndGetComponent(ref, PlayerRef.getComponentType())
+        val message = Message.translation("server.hyflask.notification.uses.modify.success")
+            .param("uses", modifiedUses.toInt())
+        NotificationUtil.sendNotification(playerRef.packetHandler, message)
 
         context.state.state = InteractionState.Finished
     }
