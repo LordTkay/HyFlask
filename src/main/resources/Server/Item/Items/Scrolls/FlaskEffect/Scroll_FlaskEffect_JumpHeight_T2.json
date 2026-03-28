@@ -43,8 +43,8 @@
         "Quantity": 2
       },
       {
-        "ItemId": "Ingredient_Life_Essence",
-        "Quantity": 100
+        "ItemId": "Ingredient_Life_Essence_Concentrated",
+        "Quantity": 20
       },
       {
         "ItemId": "Plant_Crop_Corn_Item",

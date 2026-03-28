@@ -134,8 +134,12 @@
         }
       ]
     },
+    "BlockEntity": {
+      "Components": {
+        "BenchBlock": {}
+      }
+    },
     "State": {
-      "Id": "crafting",
       "Definitions": {
         "CraftCompleted": {
           "CustomModelAnimation": "Blocks/Benches/Alchemy_Crafting.blockyanim",
@@ -143,42 +147,6 @@
         },
         "CraftCompletedInstant": {
           "CustomModelAnimation": "Blocks/Benches/Alchemy_Crafting.blockyanim"
-        },
-        "Tier2": {
-          "CustomModel": "Blocks/Benches/ArcaneTable.blockymodel",
-          "CustomModelTexture": [
-            {
-              "Texture": "Blocks/Benches/ArcaneTable_Texture.png",
-              "Weight": 1
-            }
-          ],
-          "HitboxType": "Bench_Alchemy",
-          "State": {
-            "Id": "crafting",
-            "Definitions": {
-              "CraftCompleted": {
-                "CustomModelAnimation": "Blocks/Benches/Alchemy_Crafting.blockyanim"
-              }
-            }
-          }
-        },
-        "Tier3": {
-          "CustomModel": "Blocks/Benches/ArcaneTable.blockymodel",
-          "CustomModelTexture": [
-            {
-              "Texture": "Blocks/Benches/ArcaneTable_Texture.png",
-              "Weight": 1
-            }
-          ],
-          "HitboxType": "Bench_Alchemy",
-          "State": {
-            "Id": "crafting",
-            "Definitions": {
-              "CraftCompleted": {
-                "CustomModelAnimation": "Blocks/Benches/Alchemy_Crafting.blockyanim"
-              }
-            }
-          }
         }
       }
     },
@@ -203,7 +171,7 @@
     "Scale": 0.35,
     "Rotation": [
       22.5,
-      45,
+      45.0,
       22.5
     ],
     "Translation": [

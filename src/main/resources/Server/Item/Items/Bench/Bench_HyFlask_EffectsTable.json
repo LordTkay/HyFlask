@@ -18,8 +18,8 @@
         "Quantity": 2
       },
       {
-        "ItemId": "Ingredient_Crystal_Yellow",
-        "Quantity": 10
+        "ResourceTypeId": "Crystal_Shards",
+        "Quantity": 15
       }
     ],
     "BenchRequirement": [

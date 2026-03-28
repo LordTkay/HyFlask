@@ -36,12 +36,12 @@
         "Quantity": 2
       },
       {
-        "ItemId": "Ingredient_Crystal_Yellow",
+        "ItemId": "Plant_Crop_Pumpkin_Item",
         "Quantity": 15
       },
       {
-        "ItemId": "Plant_Flower_Orchid_Yellow",
-        "Quantity": 1
+        "ItemId": "Plant_Crop_Turnip_Item",
+        "Quantity": 15
       }
     ],
     "RequiredMemoriesLevel": 1,

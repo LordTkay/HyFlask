@@ -96,6 +96,11 @@ class UsesUpgradeSystem : RefChangeSystem<EntityStore, PlayerSomnolence>() {
             USAGE_ADDITIVE
         )
 
+        if (modified == 0) {
+            // No upgrade needed
+            return
+        }
+
         if (getResult is EntityStatUtility.GetModifierResult.Success &&
             getResult.modifier == modified.toFloat()
         ) {
