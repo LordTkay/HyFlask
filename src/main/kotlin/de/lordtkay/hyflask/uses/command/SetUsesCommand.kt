@@ -39,8 +39,8 @@ class SetUsesCommand(
 
             is EntityStatUtility.Result.Success ->
                 Message.translation("$translationKey.success")
-                    .param("uses", result.current)
-                    .param("max", result.max)
+                    .param("uses", result.current.toInt())
+                    .param("max", result.max.toInt())
         }
 
         commandContext.sendMessage(message)
