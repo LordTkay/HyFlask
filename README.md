@@ -40,6 +40,14 @@ using `--help`.
 
 ## Configuration
 
+Upon loading the plugin, it will create a config file in the mod folder that contains the following settings:
+
+| Field                  | Description                                                                                                                                                                           |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| StartingLearnedEffects | List of `FlaskEffect` asset IDs that new players start with as learned effects, available for equipping at the Effect Cauldron.                                                       |
+| StartingActiveEffects  | List of FlaskEffect asset IDs that are active by default for new players.                                                                                                             |
+| UsesUpgradeMap         | Maps cumulative flask use counts to a maximum uses modifier. When the player's total uses reach a key's threshold, their maximum uses modifier is updated to the corresponding value. |
+
 ## Credits
 
 - Flask Model was done by my friend Haruka
