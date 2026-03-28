@@ -17,7 +17,8 @@ You can use the flask like any other potion. However, instead of consuming the p
 to your player. This means you cannot have multiple flasks or use another player's flask to gain additional uses. To
 replenish your charges, you must sleep through the night.
 
-==HOW TO INCREASE==
+You get more charges the more often you use the flask. Whenever you sleep, it will check how many times you have
+used the flask and then upgrades your maximum number of charges if a new threshold is reached.
 
 ## Effects
 
@@ -30,12 +31,14 @@ After learning a new effect, they can be equipped at the `Effect Cauldron`. You 
 However, every effect has a cost and the flask has a maximum capacity that limits the number of effects you can have
 active at the same time.
 
-==HOW TO INCREASE==
+The capacity of the flask is increased by the `CapacityScroll` effects at the `Research Table`.
 
 ## Commands
 
 The root command is `hyflask`. Explanation of the available subcommands can be found in Hytale with the command ui or
 using `--help`.
+
+## Configuration
 
 ## Credits
 
