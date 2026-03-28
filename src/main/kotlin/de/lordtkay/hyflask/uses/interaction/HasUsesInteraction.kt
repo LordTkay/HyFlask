@@ -8,10 +8,15 @@ import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.protocol.InteractionState
 import com.hypixel.hytale.protocol.InteractionType
 import com.hypixel.hytale.protocol.WaitForDataFrom
+import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle
+import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.entity.InteractionContext
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInteraction
+import com.hypixel.hytale.server.core.universe.PlayerRef
+import com.hypixel.hytale.server.core.util.NotificationUtil
+import de.lordtkay.hyflask.effect.interaction.FlaskEffectApplyInteraction
 import de.lordtkay.hyflask.enumeration.HyFlaskEntityStat.USES
 
 class HasUsesInteraction : SimpleInteraction() {
@@ -50,9 +55,15 @@ class HasUsesInteraction : SimpleInteraction() {
         context: InteractionContext,
         cooldownHandler: CooldownHandler
     ) {
+        val commandBuffer = context.commandBuffer
+        if (commandBuffer == null) {
+            logger.atWarning()
+                .log("No command buffer found for interaction '${FlaskEffectApplyInteraction::class.java.simpleName}'")
+            return
+        }
+
         val ref = context.entity
-        val store = context.owningEntity
-        val statMap = store.store.getComponent(ref, EntityStatMap.getComponentType())
+        val statMap = commandBuffer.getComponent(ref, EntityStatMap.getComponentType())
         if (statMap == null) {
             logger.atWarning()
                 .log("${EntityStatMap::class.simpleName} was not found on player reference.")
@@ -66,6 +77,9 @@ class HasUsesInteraction : SimpleInteraction() {
         if (currentUses >= costs) {
             state.state = InteractionState.Finished
         } else {
+            val playerRef = commandBuffer.ensureAndGetComponent(ref, PlayerRef.getComponentType())
+            val message = Message.translation("server.hyflask.notification.uses.hasUses.failed")
+            NotificationUtil.sendNotification(playerRef.packetHandler, message, NotificationStyle.Warning)
             state.state = InteractionState.Failed
         }
         super.tick0(firstRun, time, type, context, cooldownHandler)
