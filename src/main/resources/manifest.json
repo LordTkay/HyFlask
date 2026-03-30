@@ -1,0 +1,22 @@
+{
+  "Group": "LordTkay",
+  "Name": "HyFlask",
+  "Version": "1.0.0",
+  "Description": "A mod that adds reusable and upgradable flasks!",
+  "Authors": [
+    {
+      "Name": "Lord Tkay",
+      "Email": "tobawa2601@gmail.com",
+      "Url": "https://github.com/LordTkay"
+    }
+  ],
+  "Website": "https://www.curseforge.com/hytale/mods/hyflask",
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {
+    "Hytale:Beds": "*",
+    "com.hypersonicsharkz:Hytalor": "2.2"
+  },
+  "ServerVersion": "2026.03.26-89796e57b",
+  "Main": "de.lordtkay.hyflask.HyFlaskPlugin"
+}

@@ -47,6 +47,5 @@ devserver
 
 /hytale-assets/*
 !/hytale-assets/.gitkeep
-src/main/resources/manifest.json
 .claude/*
 CLAUDE.md
