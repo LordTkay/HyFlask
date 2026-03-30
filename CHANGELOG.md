@@ -1,12 +1,5 @@
 ## [v1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0-beta.1) (2026-03-30)
 
-### Chores
-
--  Gradle-Version is now fetched for the manifest version ([1d9aabcc7aba9e7](https://github.com/LordTkay/HyFlask/commit/1d9aabcc7aba9e7c2cd762f9d2ebf49bde121188))
--  update changelogs for v.1.0.0-beta.1 ([a6870a8877b51d6](https://github.com/LordTkay/HyFlask/commit/a6870a8877b51d60cf8444d24c03ce3db1e15fd6))
-
-## [v.1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v.1.0.0-beta.1) (2026-03-30)
-
 ### Features
 
 -  Added a new interaction that is responsible for modifying statistics ([b3fc946373025d0](https://github.com/LordTkay/HyFlask/commit/b3fc946373025d0a92ba7eaa55657b80ff1fd0bd))
@@ -86,6 +79,10 @@
 
 ### Chores
 
+-  Removed the "Release" prefix from the release title ([19edf812bfb72cd](https://github.com/LordTkay/HyFlask/commit/19edf812bfb72cd01e80b0842f2593b893f7dcc1))
+-  update changelogs for v1.0.0-beta.1 ([338ac74764186dc](https://github.com/LordTkay/HyFlask/commit/338ac74764186dc1727976e63f0deb5a97bd4bdc))
+-  Gradle-Version is now fetched for the manifest version ([1d9aabcc7aba9e7](https://github.com/LordTkay/HyFlask/commit/1d9aabcc7aba9e7c2cd762f9d2ebf49bde121188))
+-  update changelogs for v.1.0.0-beta.1 ([a6870a8877b51d6](https://github.com/LordTkay/HyFlask/commit/a6870a8877b51d60cf8444d24c03ce3db1e15fd6))
 -  On the release changelog the tag-header is removed ([d92d664e6f3b804](https://github.com/LordTkay/HyFlask/commit/d92d664e6f3b8042c5ada7432dbec3efbcf2f2c4))
 -  update changelogs for v1.0.0-beta.1 ([9f886e458920c08](https://github.com/LordTkay/HyFlask/commit/9f886e458920c08463881a8dd4dcdd4271e88196))
 -  The changelogs will now be committed in the CI/CD build process ([4e1339b8b16a2ab](https://github.com/LordTkay/HyFlask/commit/4e1339b8b16a2ab5b12eab67d68048285c8920e4))
