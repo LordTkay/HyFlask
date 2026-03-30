@@ -51,7 +51,10 @@ tasks.register<GitChangelogTask>("gitChangelogRelease") {
     }.standardOutput.asText.map { it.trim() }
 
     file.set(file("CHANGELOG_RELEASE.md"))
-    fromRevision.set(prevTag)
+    if (fromRevision.isPresent) {
+        fromRevision.set(prevTag)
+    }
+
     toRevision.set(currentTag)
     templateContent.set(getChangelogTemplate(true))
 }
@@ -61,7 +64,7 @@ fun getChangelogTemplate(technical: Boolean): String = buildString {
     appendLine("{{#ifReleaseTag .}}")
 
     if (technical) {
-        appendLine("## [{{name}}](https://gitlab.com/html-validate/html-validate/compare/{{name}}) ({{tagDate .}})")
+        appendLine("## [{{name}}](https://github.com/LordTkay/HyFlask/releases/tag/{{name}}) ({{tagDate .}})")
     } else {
         appendLine("## {{name}} ({{tagDate .}})")
     }
@@ -88,7 +91,7 @@ fun getChangelogSection(tag: String, title: String, technical: Boolean): String 
 
     appendLine("{{#ifCommitType . type='$tag'}}")
     if (technical) {
-        appendLine("- {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://gitlab.com/html-validate/html-validate/commit/{{hashFull}}))")
+        appendLine("- {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://github.com/LordTkay/HyFlask/commit/{{hashFull}}))")
     } else {
         appendLine("- {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}}")
     }
