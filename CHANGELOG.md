@@ -1,3 +1,9 @@
+## [v1.0.0](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0) (2026-03-30)
+
+### Chores
+
+-  update changelogs for v1.0.0-beta.2 ([e9a9458e1478736](https://github.com/LordTkay/HyFlask/commit/e9a9458e1478736756be22203d9ca7291ac75cb4))
+
 ## [v1.0.0-beta.2](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0-beta.2) (2026-03-30)
 
 ### Chores
