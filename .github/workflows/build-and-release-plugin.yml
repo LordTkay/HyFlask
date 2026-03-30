@@ -34,14 +34,16 @@ jobs:
         run: |
           ./gradlew gitChangelog
           ./gradlew gitChangelogConsumer
+          ./gradlew gitChangelogRelease
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          body_path: CHANGELOG.md
+          body_path: CHANGELOG_RELEASE.md
           files: |
             build/libs/*.jar
             CHANGELOG.md
             CHANGELOG_CONSUMER.md
+            CHANGELOG_RELEASE.md

@@ -42,6 +42,20 @@ tasks.register<GitChangelogTask>("gitChangelogConsumer") {
     templateContent.set(getChangelogTemplate(false))
 }
 
+tasks.register<GitChangelogTask>("gitChangelogRelease") {
+    val currentTag = providers.exec {
+        commandLine("git", "describe", "--tags", "--abbrev=0", "--match", "v*", "HEAD")
+    }.standardOutput.asText.map { it.trim() }
+    val prevTag = providers.exec {
+        commandLine("git", "describe", "--tags", "--abbrev=0", "--match", "v*", "${currentTag.get()}^")
+    }.standardOutput.asText.map { it.trim() }
+
+    file.set(file("CHANGELOG_RELEASE.md"))
+    fromRevision.set(prevTag)
+    toRevision.set(currentTag)
+    templateContent.set(getChangelogTemplate(true))
+}
+
 fun getChangelogTemplate(technical: Boolean): String = buildString {
     appendLine("{{#tags}}")
     appendLine("{{#ifReleaseTag .}}")
