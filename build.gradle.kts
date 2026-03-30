@@ -35,7 +35,7 @@ tasks.shadowJar {
 val preReleaseSuffixes = listOf("alpha", "beta", "rc")
 
 tasks.named<GitChangelogTask>("gitChangelog") {
-    templateContent.set(getChangelogTemplate(true))
+    templateContent.set(getChangelogTemplate(technical = true, skipHeader = false))
 }
 
 
@@ -43,7 +43,7 @@ tasks.register<GitChangelogTask>("gitChangelogConsumer") {
     file.set(file("CHANGELOG_CONSUMER.md"))
     val names = preReleaseSuffixes.joinToString("|")
     ignoreTagsIfNameMatches.set(".*-($names).*")
-    templateContent.set(getChangelogTemplate(false))
+    templateContent.set(getChangelogTemplate(technical = false, skipHeader = false))
 }
 
 tasks.register<GitChangelogTask>("gitChangelogRelease") {
@@ -75,16 +75,18 @@ tasks.register<GitChangelogTask>("gitChangelogRelease") {
 
     toRevision.set(currentTag)
 
-    templateContent.set(getChangelogTemplate(true))
+    templateContent.set(getChangelogTemplate(technical = true, skipHeader = true))
 }
 
-fun getChangelogTemplate(technical: Boolean): String = buildString {
+fun getChangelogTemplate(technical: Boolean, skipHeader: Boolean): String = buildString {
     appendLine("{{#tags}}")
 
-    if (technical) {
-        appendLine("## [{{name}}](https://github.com/LordTkay/HyFlask/releases/tag/{{name}}) ({{tagDate .}})")
-    } else {
-        appendLine("## {{name}} ({{tagDate .}})")
+    if (!skipHeader) {
+        if (technical) {
+            appendLine("## [{{name}}](https://github.com/LordTkay/HyFlask/releases/tag/{{name}}) ({{tagDate .}})")
+        } else {
+            appendLine("## {{name}} ({{tagDate .}})")
+        }
     }
 
     appendLine()
