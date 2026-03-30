@@ -1,4 +1,4 @@
-## [v1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0-beta.1) (2026-03-30)
+## [v.1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v.1.0.0-beta.1) (2026-03-30)
 
 ### Features
 
@@ -79,6 +79,8 @@
 
 ### Chores
 
+-  On the release changelog the tag-header is removed ([d92d664e6f3b804](https://github.com/LordTkay/HyFlask/commit/d92d664e6f3b8042c5ada7432dbec3efbcf2f2c4))
+-  update changelogs for v1.0.0-beta.1 ([9f886e458920c08](https://github.com/LordTkay/HyFlask/commit/9f886e458920c08463881a8dd4dcdd4271e88196))
 -  The changelogs will now be committed in the CI/CD build process ([4e1339b8b16a2ab](https://github.com/LordTkay/HyFlask/commit/4e1339b8b16a2ab5b12eab67d68048285c8920e4))
 -  Modified the release changelog, so that on pre-releases it only shows changes since last pre-release and on release since last release. ([1963f8ed19a136f](https://github.com/LordTkay/HyFlask/commit/1963f8ed19a136f2e629bc0d27520ed299878270))
 -  Modified the GIT-Commit and Release links in the changelogs ([315d9cd0db6a6ce](https://github.com/LordTkay/HyFlask/commit/315d9cd0db6a6ce2ebefafea5c796d152bc13e66))
