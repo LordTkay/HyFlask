@@ -33,35 +33,50 @@ tasks.shadowJar {
 }
 
 tasks.named<GitChangelogTask>("gitChangelog") {
+    ignoreTagsIfNameMatches.set(".*-(alpha|beta|rc).*")
     templateContent.set(getChangelogTemplate(true))
 }
 
 
 tasks.register<GitChangelogTask>("gitChangelogConsumer") {
     file.set(file("CHANGELOG_CONSUMER.md"))
+    ignoreTagsIfNameMatches.set(".*-(alpha|beta|rc).*")
     templateContent.set(getChangelogTemplate(false))
 }
 
 tasks.register<GitChangelogTask>("gitChangelogRelease") {
-    val currentTag = providers.exec {
-        commandLine("git", "describe", "--tags", "--abbrev=0", "--match", "v*", "HEAD")
-    }.standardOutput.asText.map { it.trim() }
-    val prevTag = providers.exec {
-        commandLine("git", "describe", "--tags", "--abbrev=0", "--match", "v*", "${currentTag.get()}^")
+    val preReleaseSuffixes = listOf("-alpha", "-beta", "-rc")
+
+    fun getTag(startingPoint: String, excludes: List<String> = listOf()): Provider<String> = providers.exec {
+        commandLine(
+            "git", "describe", "--tags", "--abbrev=0", "--match", "v*",
+            startingPoint,
+            *excludes.map { "--exclude=*$it*" }.toTypedArray()
+        )
     }.standardOutput.asText.map { it.trim() }
 
-    file.set(file("CHANGELOG_RELEASE.md"))
-    if (fromRevision.isPresent) {
-        fromRevision.set(prevTag)
+
+    val currentTag = getTag("HEAD")
+
+    val isPreRelease = preReleaseSuffixes.any { currentTag.get().contains(it) }
+
+    var prevTag: Provider<String>? = null
+    if (isPreRelease) {
+        prevTag = getTag("${currentTag.get()}^")
+    } else {
+        prevTag = getTag("${currentTag.get()}^", preReleaseSuffixes)
+        ignoreTagsIfNameMatches.set(".*-(alpha|beta|rc).*")
     }
 
+    file.set(file("CHANGELOG_RELEASE.md"))
+    fromRevision.set(prevTag)
     toRevision.set(currentTag)
+
     templateContent.set(getChangelogTemplate(true))
 }
 
 fun getChangelogTemplate(technical: Boolean): String = buildString {
     appendLine("{{#tags}}")
-    appendLine("{{#ifReleaseTag .}}")
 
     if (technical) {
         appendLine("## [{{name}}](https://github.com/LordTkay/HyFlask/releases/tag/{{name}}) ({{tagDate .}})")
@@ -78,7 +93,6 @@ fun getChangelogTemplate(technical: Boolean): String = buildString {
         append(getChangelogSection("docs", "Documentation", true))
         append(getChangelogSection("chore", "Chores", true))
     }
-    appendLine("{{/ifReleaseTag}}")
     appendLine("{{/tags}}")
 }
 
