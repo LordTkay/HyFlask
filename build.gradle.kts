@@ -32,26 +32,27 @@ tasks.shadowJar {
     archiveClassifier.set("")
 }
 
+val preReleaseSuffixes = listOf("alpha", "beta", "rc")
+
 tasks.named<GitChangelogTask>("gitChangelog") {
-    ignoreTagsIfNameMatches.set(".*-(alpha|beta|rc).*")
     templateContent.set(getChangelogTemplate(true))
 }
 
 
 tasks.register<GitChangelogTask>("gitChangelogConsumer") {
     file.set(file("CHANGELOG_CONSUMER.md"))
-    ignoreTagsIfNameMatches.set(".*-(alpha|beta|rc).*")
+    val names = preReleaseSuffixes.joinToString("|")
+    ignoreTagsIfNameMatches.set(".*-($names).*")
     templateContent.set(getChangelogTemplate(false))
 }
 
 tasks.register<GitChangelogTask>("gitChangelogRelease") {
-    val preReleaseSuffixes = listOf("-alpha", "-beta", "-rc")
 
     fun getTag(startingPoint: String, excludes: List<String> = listOf()): Provider<String> = providers.exec {
         commandLine(
             "git", "describe", "--tags", "--abbrev=0", "--match", "v*",
             startingPoint,
-            *excludes.map { "--exclude=*$it*" }.toTypedArray()
+            *excludes.map { "--exclude=*-$it*" }.toTypedArray()
         )
     }.standardOutput.asText.map { it.trim() }
 
@@ -65,11 +66,13 @@ tasks.register<GitChangelogTask>("gitChangelogRelease") {
         prevTag = getTag("${currentTag.get()}^")
     } else {
         prevTag = getTag("${currentTag.get()}^", preReleaseSuffixes)
-        ignoreTagsIfNameMatches.set(".*-(alpha|beta|rc).*")
+        val names = preReleaseSuffixes.joinToString("|")
+        ignoreTagsIfNameMatches.set(".*-($names).*")
     }
 
     file.set(file("CHANGELOG_RELEASE.md"))
-    fromRevision.set(prevTag)
+    runCatching { fromRevision.set(prevTag.get()) }
+
     toRevision.set(currentTag)
 
     templateContent.set(getChangelogTemplate(true))
