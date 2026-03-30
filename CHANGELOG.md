@@ -1,3 +1,10 @@
+## [v1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0-beta.1) (2026-03-30)
+
+### Chores
+
+-  Gradle-Version is now fetched for the manifest version ([1d9aabcc7aba9e7](https://github.com/LordTkay/HyFlask/commit/1d9aabcc7aba9e7c2cd762f9d2ebf49bde121188))
+-  update changelogs for v.1.0.0-beta.1 ([a6870a8877b51d6](https://github.com/LordTkay/HyFlask/commit/a6870a8877b51d60cf8444d24c03ce3db1e15fd6))
+
 ## [v.1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v.1.0.0-beta.1) (2026-03-30)
 
 ### Features
