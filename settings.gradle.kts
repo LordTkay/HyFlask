@@ -33,7 +33,7 @@ hytale {
     manifest {
         Group = "LordTkay"
         Name = "HyFlask"
-        Version = "1.0.0-2"
+        Version = extra["version"].toString()
         Description = "A mod that adds reusable and upgradable flasks!"
         Main = "de.lordtkay.hyflask.HyFlaskPlugin"
         Website = "https://www.curseforge.com/hytale/mods/hyflask"
