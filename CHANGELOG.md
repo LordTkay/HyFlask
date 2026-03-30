@@ -1,7 +1,9 @@
-## [v1.0.0](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0) (2026-03-30)
+## [v1.0.0-beta.2](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0-beta.2) (2026-03-30)
 
 ### Chores
 
+-  Added the manifest file to the repository ([8b549531ec10104](https://github.com/LordTkay/HyFlask/commit/8b549531ec10104614c2b1df36b62db4fda2bdbd))
+-  update changelogs for v1.0.0 ([6a60ed7a1dedeab](https://github.com/LordTkay/HyFlask/commit/6a60ed7a1dedeab07ef5dd46ab0f518ed06e2091))
 -  update changelogs for v1.0.0-beta.1 ([01d0bc01ee7d2fd](https://github.com/LordTkay/HyFlask/commit/01d0bc01ee7d2fd3e2f5138faffeeba55d3c46b2))
 
 ## [v1.0.0-beta.1](https://github.com/LordTkay/HyFlask/releases/tag/v1.0.0-beta.1) (2026-03-30)
